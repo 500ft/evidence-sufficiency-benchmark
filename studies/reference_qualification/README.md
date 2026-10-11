@@ -2,15 +2,18 @@
 
 The [executed matrix](../../reports/reference-qualification/matrix.md) compares
 closed-form answers with independent stiffness and heat-balance solutions.
-It extends the existing axial foundation with beam bending and steady heat
-conduction. All problems are development candidates pending independent human
+It extends the existing axial foundation with beam bending, thick-cylinder
+elasticity and steady heat conduction, giving four distinct development families.
+All problems are development candidates pending independent human
 review. M1.2 remains incomplete; this is no admission or reviewer-performance
 result.
 
 ## Contracts and coverage
 
-[spec.json](spec.json) is the input home for exact rational SI parameters,
+[spec.json](spec.json) is the input home for exact rational parameters,
 geometry, loading, claim locations, units, assumptions, controls and partitions.
+The retained beam/slab use SI; VM25 uses inch/psi and VM92 uses foot/Btu/hour
+and Fahrenheit temperature differences, explicitly named in every parameter.
 Decimal strings represent exact specified model inputs, not measured precision.
 [source records](sources.json) pin the inspected references by URL, section and
 SHA-256. The references support the continuum equations and boundaries; the
@@ -20,16 +23,18 @@ local implementations and calculations were written separately.
 | :--- | :--- | :--- | :--- |
 | Axial response | Existing [M1.1 contract](../evidence_sufficiency/claims/spec.json), [geometry/loading](../evidence_sufficiency/spec.json) and [derivation](../evidence_sufficiency/claims/README.md) | Existing [global stiffness tests](../../tests/test_evidence_sufficiency.py) | Reused unchanged; loading variants count once |
 | Beam bending | Uniformly loaded rectangular cantilever, ideal clamp, free tip | Cubic Hermite stiffness assembly with consistent distributed loading | New authored parameter set; nominal beam stress and nodal deflection only |
-| Steady conduction | MFiX FLD02 continuum slab with prescribed opposing face temperatures and insulated remaining faces | Local conductance balances on separate partitions | Published boundary-value definition; no MFiX solver reproduction or imported numerical output |
+| Thick-cylinder elasticity | VM25 pressure-only cylinder with zero axial end resultant | Radial equilibrium/constitutive BVP, independently stepped with RK4 shooting | Approximate cross-method values and step refinement; no rotation or end-cap load |
+| Steady conduction | VM92 layered wall with film boundaries; retained MFiX FLD02 slab control | Local conduction/convection balances and interface continuity | One conduction family; no vendor solver reproduction or imported solver output |
 
 The [generated JSON](../../reports/reference-qualification/results.json) holds
 all computed values, exact fractions, per-partition checks and source hashes.
 The Markdown matrix is a view of that JSON. Boundary and scaling controls do
 not increase the family count. The existing end-point-loaded cantilever
 regressions remain intact; the new bending case uses a distributed load and a
-separate assembled route. Thick-cylinder and plate-with-hole problems were not
-added merely to increase coverage. VM142 and the proposed connector witness
-remain outside this task.
+separate assembled route. The retained slab is a supporting conduction control and does not create a
+fifth family. These families do not satisfy the provisional target of ten
+qualified problems. VM142 and the proposed connector witness remain outside
+this task.
 
 ## Bending derivation and independent route
 
@@ -92,15 +97,99 @@ temperatures. The regression retains this counterexample. The local solution
 uses the PDF and independently derived boundary-value solution; the published
 solver's error figures were not imported as local evidence.
 
+## VM25 pressure-only thick cylinder
+
+The [VM25 specification](https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM25.html)
+and [pressure-step axial constraints](https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM25TXT.html)
+define the source scope. The pinned input couples one end's axial displacement
+while leaving its resultant free; no end-cap pressure is applied. Thus the
+homogeneous solution has sigma_z = 0 and a uniform free axial strain.
+Constraining that strain to zero or applying closed-end pressure changes radial
+displacement. Rotation is a separate published case and is excluded here.
+The source's exterior printout pressure is recorded as a numerical dummy; a
+regression checks its effect against the local numerical budget. No vendor
+input file or figure is redistributed.
+
+For radii a,b and pressures pi,po, tension-positive radial traction is -pi at
+a and -po at b. Equilibrium sigma_r' = (sigma_theta-sigma_r)/r, compatibility
+and isotropic elasticity give
+
+```
+A = (pi*a² - po*b²)/(b²-a²); B = (pi-po)*a²*b²/(b²-a²)
+sigma_r = A - B/r²; sigma_theta = A + B/r²
+u_r = ((1-nu)*A*r + (1+nu)*B/r)/E     [sigma_z = 0]
+```
+
+Claims specify inner displacement and radial/hoop stress at the inner,
+mid-thickness and outer radii. Units are inch and psi. The independent
+[radial route](radial.py) never computes A or B. It integrates the state (u,s):
+
+```
+u' = (1-nu²)*s/E - nu*u/r
+s' = E*u/r² - (1-nu)*s/r
+```
+
+Two RK4 trajectories and a scalar shooting solve enforce both radial tractions.
+Step doubling checks the output error against the exact reference. A separate
+trapezoid integral checks [r*sigma_r] = integral sigma_theta dr. Its second-order
+residual is retained, separate from the fourth-order displacement error.
+Tests cover zero pressure, modulus scaling and zero Poisson ratio, and reject
+closed-end and plane-strain displacement as answers to this contract.
+
+The cylinder's numeric claim and cross-method tolerance is one part per million
+of max(pi,po) for stress and of a*max(pi,po)/E for displacement. These dimensions
+come from traction and elastic compliance; the fraction is a declared development
+accuracy budget, not a certified bound or physical allowable. All specified step
+counts must meet it, and regression tests require refinement of both displacement
+error and the separately recovered equilibrium residual. Published display
+precision is a separate comparison and never supplies the truth labels.
+
+## VM92 layered wall and evidence precision
+
+The [VM92 specification](https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM92.html)
+provides both layer thicknesses, conductivities, film coefficients, fluid
+temperatures and area. These facts are stored once in the specification.
+With perfect contact and no generation, each series path carries the same rate:
+
+```
+R = (1/hi + L1/k1 + L2/k2 + 1/ho)/area
+Q = (Thot - Tambient)/R
+Ti = Thot - Q/(hi*area); To = Tambient + Q/(ho*area)
+Tinterface = Ti - Q*L1/(k1*area)
+```
+
+The independent assembly uses separate convection edges and partitioned layer
+conductances, solves each nodal energy balance and recovers all edge heat rates.
+It never calls the resistance formula. Interface continuity, reversed/equal
+fluid temperatures and area scaling are checked. Fahrenheit values enter flux
+calculations only through differences; adding a common temperature offset must
+leave Q unchanged. Rates are Btu/hr and temperatures degF, with no implicit SI
+conversion or misuse of absolute-temperature ratios.
+
+The source labels its targets rounded-off. Local exact arithmetic and independent
+balances determine the reference from inputs. The generated source comparison
+shows the displayed target, derived value, difference, and half-/whole-display-unit
+consistency. The outer target is outside a nearest-unit rounding interval even
+though it is within a full display unit. The source does not specify a rounding
+mode that resolves this last-digit discrepancy. Therefore the display is coarse
+support only; it is never an acceptance target at 1e-8 or at serialization precision.
+The exact value and other source comparisons are in the generated matrix rather
+than a second hand-maintained numeric table. Source precision is not uncertainty
+in a physical measurement, and no evidence-sufficiency label is inferred from
+this coarse comparison.
+
 ## Decisions, tolerances and checks
 
-Reference qualification requires **exact equality** of rational values from
-[reference.py](reference.py) and the independent assembly. All inputs and
-matrix operations are rational, so there is no truncation or floating-point
-solve tolerance hidden in that comparison. A discrepancy fails the runner.
+For beam and conduction controls, qualification requires **exact equality** of
+rational values from [reference.py](reference.py) and the independent assembly.
+All declared model inputs and
+beam/conduction matrix operations are rational, so there is no truncation or
+floating-point solve tolerance hidden in those comparisons. The cylinder
+uses its explicit independent numerical budget described above. A discrepancy
+fails the runner.
 This verifies the declared observables, not every possible solver output.
 
-For a numeric artifact reporting a binary64 value, the explicit decision rule
+For beam/conduction output reporting a binary64 value, the explicit decision rule
 is absolute error no greater than one ULP of the correctly rounded exact
 reference, inclusive. Each tolerance is derived from that observable's value
 and canonical unit via `math.ulp`; zero uses the smallest positive binary64
@@ -128,17 +217,20 @@ The runner uses only Python's standard library and existing public axial
 results. It writes only the new result JSON and Markdown table. It does not
 contact hosts or retrieve references at run time. Original axial results and
 figures remain unchanged. Tables retain accessible text and full-precision
-source values; another plot would add little to this exact comparison.
+source values; another plot would add little to this reference comparison.
 
 Source documents were inspected and hashed, and are linked rather than
 redistributed. No third-party figures, prose, solver code or output datasets
 are bundled. Public accessibility does not establish permission for later
 redistribution; the source records preserve that unresolved rights boundary.
-The beam's parameters are locally authored; the thermal problem uses the
-published continuum setup. Neither is an admitted benchmark problem yet.
+The beam parameters are locally authored; the cylinder and thermal definitions
+use published continuum setups. No candidate is an admitted benchmark problem.
 
 Independent human review must examine the problem definitions, source scope,
 derivations, observable choices, tolerance suitability and implementation
-independence before admission. The external title and reviewer remain
-proposals. No reserved families, new defect campaign, reviewer pilot or
+independence before admission. The suggested external title,
+Evidence Sufficiency for Engineering Verification,
+and a Gupta reviewer referral remain recommendations awaiting owner decisions.
+No naming change, reviewer appointment or contact is authorized by this
+supplement. No reserved families, new defect campaign, reviewer pilot or
 CAD/FEA host run was added.

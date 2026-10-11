@@ -7,15 +7,15 @@ from pathlib import Path
 
 import pytest
 
-from studies.reference_qualification import assembled, reference
+from studies.reference_qualification import assembled, reference, radial
 from studies.reference_qualification.run import build, control_case, numeric_agreement, qualify, table
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = json.loads((ROOT / "studies/reference_qualification/spec.json").read_text())
-BEAM, SLAB = SPEC["cases"]
+BEAM, SLAB, CYLINDER, WALL = SPEC["cases"]
 
 
-@pytest.mark.parametrize("case", SPEC["cases"], ids=lambda c: c["id"])
+@pytest.mark.parametrize("case", [BEAM, SLAB, WALL], ids=lambda c: c["id"])
 def test_all_declared_controls_and_partitions_agree_exactly(case):
     for control in case["controls"]:
         result = qualify(case, control)
@@ -111,8 +111,8 @@ def test_qualification_uses_computed_values_not_control_names(monkeypatch):
     monkeypatch.setattr(assembled, "solve", faulty)
     result = qualify(c, control)
     assert not result["qualified_numerically"]
-    assert all(not r["exact_agreement"]["tip_deflection"] for r in result["cross_checks"])
-    assert all(r["exact_agreement"]["root_stress"] for r in result["cross_checks"])
+    assert all(not r["agreement"]["tip_deflection"] for r in result["cross_checks"])
+    assert all(r["agreement"]["root_stress"] for r in result["cross_checks"])
 
 
 @pytest.mark.parametrize("case,key,value", [(BEAM,"height_m","0"), (BEAM,"modulus_Pa","-1"),
@@ -135,5 +135,126 @@ def test_committed_result_and_table_reproduce_without_admission():
     result = build()
     assert result == json.loads((ROOT / "reports/reference-qualification/results.json").read_text())
     assert table(result) == (ROOT / "reports/reference-qualification/matrix.md").read_text()
-    assert result["coverage"] == {"development_families": 3, "admitted_problems": 0, "independent_human_reviews": 0}
-    assert result["all_new_controls_agree_exactly"]
+    assert result["coverage"] == {"development_families": 4, "admitted_problems": 0, "independent_human_reviews": 0}
+    assert result["all_new_controls_qualify"]
+
+
+@pytest.mark.parametrize("control", CYLINDER["controls"], ids=lambda c:c["id"])
+def test_cylinder_cross_method_refinement_and_separate_equilibrium(control):
+    changed = control_case(CYLINDER, control)
+    p = reference.parameters(changed)
+    result = qualify(CYLINDER, control)
+    assert result["qualified_numerically"]
+    previous = None
+    for run in result["cross_checks"]:
+        d = run["diagnostics"]
+        assert d["finite"]
+        traction_budget = float(max(p["internal_pressure_psi"],p["external_pressure_psi"]))*1e-12
+        assert abs(d["inner_traction_error_psi"]) <= traction_budget
+        assert abs(d["outer_traction_error_psi"]) <= traction_budget
+        if p["internal_pressure_psi"]:
+            error = run["absolute_error"]["inner_displacement"]
+            residual = abs(d["integrated_equilibrium_residual_psi_in"])
+            h = float((p["outer_radius_in"]-p["inner_radius_in"])/run["steps"])
+            # Separate trapezoid balance is second order, while RK4 is fourth order.
+            assert residual < float(p["internal_pressure_psi"]*p["inner_radius_in"])*(h/float(p["inner_radius_in"]))**2
+            if previous:
+                assert 15 < previous[0]/error < 17
+                assert 3.9 < previous[1]/residual < 4.1
+            previous = error,residual
+        else:
+            assert set(run["output_binary64"].values()) == {0}
+
+
+def test_cylinder_axial_convention_cannot_be_replaced_by_closed_ends_or_plane_strain():
+    p = reference.parameters(CYLINDER)
+    expected = reference.solve(CYLINDER)
+    a,b,nu,E = (p[k] for k in ["inner_radius_in","outer_radius_in","poisson_ratio","modulus_psi"])
+    sr,st = expected["inner_radial_stress"],expected["inner_hoop_stress"]
+    zero_resultant_u = a*(st-nu*sr)/E
+    closed_end_axial = (p["internal_pressure_psi"]*a*a-p["external_pressure_psi"]*b*b)/(b*b-a*a)
+    plane_strain_axial = nu*(sr+st)
+    assert zero_resultant_u == expected["inner_displacement"]
+    for axial_stress in [closed_end_axial,plane_strain_axial]:
+        alternative_u = a*(st-nu*(sr+axial_stress))/E
+        assert not numeric_agreement(float(alternative_u), zero_resultant_u)
+    assert expected["inner_radial_stress"] == -p["internal_pressure_psi"]
+    assert expected["outer_radial_stress"] == -p["external_pressure_psi"]
+    half = reference.solve(control_case(CYLINDER,CYLINDER["controls"][2]))
+    assert half["inner_displacement"] == 2*zero_resultant_u
+    assert half["inner_hoop_stress"] == st
+
+
+def test_vm25_dummy_outer_pressure_is_explicitly_negligible_for_declared_budget():
+    altered = copy.deepcopy(CYLINDER)
+    altered["parameters"]["external_pressure_psi"] = "1e-10"
+    exact, with_dummy = reference.solve(CYLINDER),reference.solve(altered)
+    budgets = qualify(CYLINDER,CYLINDER["controls"][0])["cross_checks"][0]["cross_method_absolute_tolerance"]
+    for k in exact:
+        assert abs(float(exact[k]-with_dummy[k])) < budgets[k]
+
+
+def test_vm92_precision_is_separate_from_exact_truth_and_numeric_tolerance():
+    expected = reference.solve(WALL)
+    p = reference.parameters(WALL)
+    assert (p["hot_temperature_F"]-p["ambient_temperature_F"])/expected["heat_rate"] == F(91,16)
+    assert expected["outer_surface_temperature"] == F(30640,91)
+    assert not numeric_agreement(336., expected["outer_surface_temperature"])
+    assert round(float(expected["outer_surface_temperature"])) == 337
+    from studies.reference_qualification.run import published_comparison
+    comparison = published_comparison(WALL)
+    outer = next(c for c in comparison["comparisons"] if c["observable"] == "outer_surface_temperature")
+    assert not outer["within_half_display_unit"]
+    assert outer["within_one_display_unit"]
+    assert .5 < outer["absolute_difference"] < 1
+
+
+def test_wall_interface_conservation_area_and_affine_temperature_units():
+    for control in WALL["controls"]:
+        changed = control_case(WALL,control)
+        for partition in WALL["partitions"]:
+            computed,d = assembled.solve(changed,partition)
+            assert computed == reference.solve(changed)
+            assert len(set(d["edge_heat_rates_Btu_per_hr"])) == 1
+    base = reference.solve(WALL)
+    larger = reference.solve(control_case(WALL,WALL["controls"][3]))
+    assert larger["heat_rate"] == 2*base["heat_rate"]
+    shifted = copy.deepcopy(WALL)
+    for k in ("hot_temperature_F","ambient_temperature_F"):
+        shifted["parameters"][k] = str(F(shifted["parameters"][k])+180)
+    solution = reference.solve(shifted)
+    assert solution["heat_rate"] == base["heat_rate"]
+    for k in base:
+        if k != "heat_rate":
+            assert larger[k] == base[k]
+            assert solution[k] == base[k]+180
+
+
+@pytest.mark.parametrize("case,key,value", [(CYLINDER,"poisson_ratio","1/2"),
+    (CYLINDER,"inner_radius_in","8"), (WALL,"outer_h_Btu_per_hr_ft2_F","0")])
+def test_new_reference_domains_are_enforced(case,key,value):
+    changed = copy.deepcopy(case)
+    changed["parameters"][key] = value
+    with pytest.raises(ValueError):
+        reference.solve(changed)
+
+
+def test_radial_claim_budget_and_published_precision_are_distinct():
+    result = qualify(CYLINDER,CYLINDER["controls"][0])
+    for claim in result["claims"]:
+        budget = claim["absolute_tolerance"]
+        assert claim["decision_rule"] == "characteristic-scale budget"
+        assert budget == result["cross_checks"][0]["cross_method_absolute_tolerance"][claim["observable"]]
+        # Boundary test at zero avoids an unrepresentable reference-plus-budget sum.
+        assert numeric_agreement(budget, F(0), budget)
+        assert numeric_agreement(-budget, F(0), budget)
+        assert not numeric_agreement(math.nextafter(budget,math.inf), F(0), budget)
+    from studies.reference_qualification.run import published_comparison
+    displayed = published_comparison(CYLINDER)["comparisons"][0]
+    assert float(displayed["display_unit"]) != result["claims"][0]["absolute_tolerance"]
+
+
+def test_missing_cross_check_does_not_qualify_a_reference():
+    changed = copy.deepcopy(BEAM)
+    changed["partitions"] = []
+    assert not qualify(changed,{"id":"nominal"})["qualified_numerically"]

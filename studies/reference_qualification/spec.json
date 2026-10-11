@@ -8,8 +8,8 @@
     "independent_check": "tests/test_evidence_sufficiency.py",
     "counting": "One existing family; force/displacement configurations are not additional problems"
   },
-  "qualification_rule": "Exact equality of rational closed-form and independently assembled solutions for each claimed observable",
-  "numeric_claim_rule": "Absolute error <= one binary64 ULP of the correctly rounded exact reference, inclusive; serialization agreement only",
+  "qualification_rule": "Exact equality for rational stiffness/conduction routes; cylinder RK4 error within its declared characteristic-scale budget with refinement and traction/equilibrium regressions",
+  "numeric_claim_rule": "Exact-route output serialization: <= one binary64 ULP of the correctly rounded exact value; radial cylinder: <= declared characteristic-scale budget. All boundaries inclusive.",
   "cases": [
     {
       "id": "cantilever_uniform_load",
@@ -181,6 +181,258 @@
           }
         }
       ]
+    },
+    {
+      "id": "vm25_pressure_only",
+      "family": "thick_cylinder_elasticity",
+      "model": "thick_cylinder",
+      "source_ids": [
+        "ansys_vm25",
+        "ansys_vm25_input"
+      ],
+      "parameter_origin": "VM25 pressure-only continuum problem; excludes rotation and the 1e-10 psi outer printout pressure",
+      "parameters": {
+        "inner_radius_in": "4",
+        "outer_radius_in": "8",
+        "modulus_psi": "30000000",
+        "poisson_ratio": "0.3",
+        "internal_pressure_psi": "30000",
+        "external_pressure_psi": "0"
+      },
+      "loading_convention": "Axisymmetric internal/external radial pressure, tension-positive stress and outward-positive displacement; zero axial resultant, sigma_z=0; axial strain is free",
+      "assumptions": [
+        "Homogeneous isotropic small-strain linear elasticity",
+        "Long uniform cylinder; no end-cap pressure, rotation, body force or thermal strain",
+        "Uniform free axial strain, not constrained plane strain or closed ends",
+        "No vessel safety or physical material qualification",
+        "Published input applies 1e-10 psi exterior dummy pressure for printout; continuum target uses zero"
+      ],
+      "qualification": {
+        "method": "radial_rk4_shooting",
+        "steps": [
+          32,
+          64,
+          128
+        ],
+        "relative_scale_budget": "1/1000000",
+        "displacement_scale": "a*max(p_internal,p_external)/E",
+        "stress_scale": "max(p_internal,p_external)",
+        "meaning": "One part per million of the stated characteristic scale; numerical development budget requiring step refinement, not a certified error bound"
+      },
+      "claims": [
+        {
+          "observable": "inner_displacement",
+          "unit": "in",
+          "meaning": "Radial displacement at r=a"
+        },
+        {
+          "observable": "inner_radial_stress",
+          "unit": "psi",
+          "meaning": "Tension-positive radial stress at r=a"
+        },
+        {
+          "observable": "inner_hoop_stress",
+          "unit": "psi",
+          "meaning": "Tension-positive hoop stress at r=a"
+        },
+        {
+          "observable": "mid_radial_stress",
+          "unit": "psi",
+          "meaning": "Tension-positive radial stress at r=(a+b)/2"
+        },
+        {
+          "observable": "mid_hoop_stress",
+          "unit": "psi",
+          "meaning": "Tension-positive hoop stress at r=(a+b)/2"
+        },
+        {
+          "observable": "outer_radial_stress",
+          "unit": "psi",
+          "meaning": "Tension-positive radial stress at r=b"
+        },
+        {
+          "observable": "outer_hoop_stress",
+          "unit": "psi",
+          "meaning": "Tension-positive hoop stress at r=b"
+        }
+      ],
+      "controls": [
+        {
+          "id": "nominal"
+        },
+        {
+          "id": "zero_pressure",
+          "scale": {
+            "internal_pressure_psi": "0"
+          }
+        },
+        {
+          "id": "half_modulus",
+          "scale": {
+            "modulus_psi": "1/2"
+          }
+        },
+        {
+          "id": "zero_poisson",
+          "scale": {
+            "poisson_ratio": "0"
+          }
+        }
+      ],
+      "published_evidence": {
+        "source": "ansys_vm25",
+        "rule": "Coarse consistency within one last displayed unit; not a qualification gate or an inferred rounding mode",
+        "targets": [
+          {
+            "observable": "inner_displacement",
+            "displayed": "0.0078666",
+            "display_unit": "0.0000001"
+          },
+          {
+            "observable": "inner_radial_stress",
+            "displayed": "-30000",
+            "display_unit": "1"
+          },
+          {
+            "observable": "mid_radial_stress",
+            "displayed": "-7778",
+            "display_unit": "1"
+          },
+          {
+            "observable": "outer_radial_stress",
+            "displayed": "0",
+            "display_unit": "1"
+          },
+          {
+            "observable": "inner_hoop_stress",
+            "displayed": "50000",
+            "display_unit": "1"
+          },
+          {
+            "observable": "mid_hoop_stress",
+            "displayed": "27778",
+            "display_unit": "1"
+          },
+          {
+            "observable": "outer_hoop_stress",
+            "displayed": "20000",
+            "display_unit": "1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vm92_layered_wall",
+      "family": "steady_heat_conduction",
+      "model": "layered_wall",
+      "source_ids": [
+        "ansys_vm92"
+      ],
+      "parameter_origin": "VM92 two-layer continuum wall and convection boundaries; original local implementation only",
+      "parameters": {
+        "layer1_ft": "3/4",
+        "layer2_ft": "5/12",
+        "area_ft2": "1",
+        "k1_Btu_per_hr_ft_F": "4/5",
+        "k2_Btu_per_hr_ft_F": "1/10",
+        "inner_h_Btu_per_hr_ft2_F": "12",
+        "outer_h_Btu_per_hr_ft2_F": "2",
+        "hot_temperature_F": "3000",
+        "ambient_temperature_F": "80"
+      },
+      "loading_convention": "Steady outward heat rate from hot fluid through layer 1, layer 2 and exterior convection; absolute face temperatures in degF; differences in delta_degF",
+      "assumptions": [
+        "One-dimensional conduction, uniform area, constant positive conductivities and film coefficients",
+        "Perfect thermal contact with no mortar/contact resistance",
+        "No internal generation, radiation, advection within wall or transient storage",
+        "Affine Fahrenheit temperatures appear only through differences in heat balances",
+        "No physical furnace or safety validation"
+      ],
+      "claims": [
+        {
+          "observable": "heat_rate",
+          "unit": "Btu/hr",
+          "meaning": "Signed outward total heat loss over specified area"
+        },
+        {
+          "observable": "inner_surface_temperature",
+          "unit": "degF",
+          "meaning": "Hot-side material face temperature"
+        },
+        {
+          "observable": "interface_temperature",
+          "unit": "degF",
+          "meaning": "Temperature at perfect-contact layer interface"
+        },
+        {
+          "observable": "outer_surface_temperature",
+          "unit": "degF",
+          "meaning": "Cold-side material face temperature"
+        }
+      ],
+      "partitions": [
+        [
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "1/2",
+          "1"
+        ],
+        [
+          "0",
+          "1/4",
+          "1/2",
+          "1"
+        ]
+      ],
+      "controls": [
+        {
+          "id": "nominal"
+        },
+        {
+          "id": "equal_fluid_temperatures",
+          "copy": {
+            "ambient_temperature_F": "hot_temperature_F"
+          }
+        },
+        {
+          "id": "reversed_heat_flow",
+          "swap": [
+            "hot_temperature_F",
+            "ambient_temperature_F"
+          ]
+        },
+        {
+          "id": "double_area",
+          "scale": {
+            "area_ft2": "2"
+          }
+        }
+      ],
+      "published_evidence": {
+        "source": "ansys_vm92",
+        "rule": "Coarse consistency within one last displayed unit; not a qualification gate or an inferred rounding mode",
+        "targets": [
+          {
+            "observable": "heat_rate",
+            "displayed": "513",
+            "display_unit": "1"
+          },
+          {
+            "observable": "inner_surface_temperature",
+            "displayed": "2957",
+            "display_unit": "1"
+          },
+          {
+            "observable": "outer_surface_temperature",
+            "displayed": "336",
+            "display_unit": "1"
+          }
+        ]
+      }
     }
-  ]
+  ],
+  "published_evidence_rule": "Published display precision is separate from claim and cross-method tolerances; coarse source checks do not define truth"
 }

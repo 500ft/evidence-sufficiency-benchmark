@@ -26,5 +26,26 @@
     "sha256": "f44d0518755720aafcad441628a176448065c4eb10a5f618f7bc74a00e4ff719",
     "accessed": "2026-10-11",
     "reuse": "Linked reference only. No third-party figure, prose, solver code or published output redistributed. Any future source redistribution needs applicable rights review."
+  },
+  "ansys_vm25": {
+    "title": "VM25 pressure-only specification and target table",
+    "url": "https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM25.html",
+    "sha256": "b826627740698538b7255f914ba898c29daf2aa333d9e2b03259765e2be86b13",
+    "accessed": "2026-10-11",
+    "reuse": "Copyright Ansys. Reference facts and original derivations only; vendor input files, figures and source prose are not redistributed."
+  },
+  "ansys_vm25_input": {
+    "title": "VM25 published input, pressure-only axial constraints and dummy outer pressure",
+    "url": "https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM25TXT.html",
+    "sha256": "a2eeda0221385c6049896e0e3f301f0f720cd1282d00d3aae5c393bb8eb0c959",
+    "accessed": "2026-10-11",
+    "reuse": "Copyright Ansys. Reference facts and original derivations only; vendor input files, figures and source prose are not redistributed."
+  },
+  "ansys_vm92": {
+    "title": "VM92 layered wall specification and rounded target table",
+    "url": "https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM92.html",
+    "sha256": "c78a0dbb0e790379cea0fe093955f58dda6db2506e73c799ef387b0431845b95",
+    "accessed": "2026-10-11",
+    "reuse": "Copyright Ansys. Reference facts and original derivations only; vendor input files, figures and source prose are not redistributed."
   }
 }

@@ -8,7 +8,8 @@ claim within a stated budget?
 
 This is the only active plan. The [owner decision](docs/OPEN_QUESTIONS.md)
 authorizes its adoption, repository cleanup, the completed M1.1 implementation
-and bounded M1.2 development qualification. Model spending, recruitment, host experiments and publication
+and bounded M1.2 development qualification. Model spending, recruitment,
+host experiments and publication
 require separate authorization.
 
 The core finish line is a reproducible, independently labeled benchmark with
@@ -78,9 +79,12 @@ problems**, not additional reference cases. This is a coverage target subject
 to qualification, not a sample-size justification or a claim that cases exist.
 
 **Executed development progress:** the [reference qualification result](reports/reference-qualification/matrix.md)
-reuses the axial family and adds distributed-load bending and steady conduction
-candidates. Exact closed forms agree with separate stiffness and heat-balance
-solutions for the declared observables and controls. The
+covers four development families: reused axial response, distributed-load
+bending, pressure-only thick-cylinder elasticity and steady conduction.
+Bending and conduction have exact independent stiffness/heat-balance checks;
+the cylinder has a separately integrated radial boundary-value solution with
+explicit numerical budgets and step-refinement evidence. The layered-wall
+reference separates published display precision from numerical agreement. The
 [contracts and derivations](studies/reference_qualification/README.md) record
 source scope, assumptions, boundaries and task-specific output tolerances.
 All candidates remain pending independent human review; none is admitted.

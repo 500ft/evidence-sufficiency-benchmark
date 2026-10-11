@@ -36,7 +36,8 @@ the same observed stress resolves stress agreement but leaves deflection
 agreement ambiguous across the declared implementation explanations. See the
 [claim contract and independent derivation](studies/evidence_sufficiency/claims/README.md).
 M1.2 now has [development reference candidates](reports/reference-qualification/matrix.md)
-for axial response, distributed-load bending and steady conduction, with
+for axial response, distributed-load bending, thick-cylinder elasticity and
+steady conduction, with
 independent computational cross-checks. Human review and admission remain
 unresolved. The historical full-tuple example retains abstract check tokens;
 setup/execution costs and

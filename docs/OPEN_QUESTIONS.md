@@ -76,16 +76,19 @@ source reuse rights, model spending, host execution or reserved-case expansion.
 
 The owner authorized the weekly reference-qualification implementation.
 The [executed candidates](../reports/reference-qualification/matrix.md) reuse
-the axial foundation and add bending and conduction specifications with
+the axial foundation and add bending, cylinder and conduction specifications with
 independent computational routes. This authorization covers development
 qualification only. No problem has been admitted and no independent human
-review has taken place. The external title and reviewer remain proposals.
+review has taken place. The research supplement suggests the external title
+"Evidence Sufficiency for Engineering Verification" and a Gupta referral for
+independent review. Both remain recommendations: no naming change, reviewer
+appointment or recruitment/contact approval is recorded.
 
 ## Remaining inputs and decisions
 
 - Next uncompleted technical step: M1.2's independently qualified problems and
-  review. M1.1 adds claim-relative development labels for the existing bar;
-  no additional base problem or reviewer pilot was executed.
+  review. The bounded M1.2 work adds development candidates and computational
+  cross-checks; no problem is admitted and no reviewer pilot was executed.
 - Independent collaborator review and reviewer availability remain unresolved.
   Stiffness cross-checks are software verification, not a second human review.
 - Model pilot execution and resources require separate owner authorization.

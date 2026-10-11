@@ -81,9 +81,35 @@ def slab(p, nodes):
                     "internal_heat_balance_residual": "0"}
 
 
+def layered_wall(p, nodes):
+    # Independent local balances including convection edges and a material interface.
+    # Each layer is partitioned separately; nodes are local fractions of each layer.
+    area = p["area_ft2"]
+    conductances = [p["inner_h_Btu_per_hr_ft2_F"]*area]
+    for layer in (1, 2):
+        for a,b in zip(nodes,nodes[1:]):
+            conductances.append(p[f"k{layer}_Btu_per_hr_ft_F"]*area/(p[f"layer{layer}_ft"]*(b-a)))
+    conductances.append(p["outer_h_Btu_per_hr_ft2_F"]*area)
+    n = len(conductances)+1
+    k = [[F(0)]*n for _ in range(n)]
+    for i,g in enumerate(conductances):
+        k[i][i] += g
+        k[i+1][i+1] += g
+        k[i][i+1] -= g
+        k[i+1][i] -= g
+    t,_ = constrained(k, [F(0)]*n, {0:p["hot_temperature_F"], n-1:p["ambient_temperature_F"]})
+    flows = [g*(a-b) for g,a,b in zip(conductances,t,t[1:])]
+    assert len(set(flows)) == 1
+    return {"heat_rate": flows[0], "inner_surface_temperature": t[1],
+            "interface_temperature": t[len(nodes)], "outer_surface_temperature": t[-2]}, {
+            "nodal_temperatures_F": list(map(str,t)), "edge_heat_rates_Btu_per_hr": list(map(str,flows)),
+            "internal_heat_balance_residual": "0"}
+
+
 def solve(case, partition):
     p = {key: F(value) for key, value in case["parameters"].items()}
     nodes = [F(x) for x in partition]
     if nodes[0] != 0 or nodes[-1] != 1 or any(b <= a for a, b in zip(nodes, nodes[1:])):
         raise ValueError("partition must increase from zero to one")
-    return {"beam_bending": beam, "steady_heat_conduction": slab}[case["family"]](p, nodes)
+    return {"beam_bending": beam, "steady_heat_conduction": slab,
+            "layered_wall": layered_wall}[case.get("model",case["family"])](p, nodes)
