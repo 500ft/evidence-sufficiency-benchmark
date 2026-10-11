@@ -7,8 +7,8 @@ and select the least-cost applicable check or combination that settles the
 claim within a stated budget?
 
 This is the only active plan. The [owner decision](docs/OPEN_QUESTIONS.md)
-authorizes its adoption, repository cleanup and the completed M1.1 software
-implementation. Model spending, recruitment, host experiments and publication
+authorizes its adoption, repository cleanup, the completed M1.1 implementation
+and bounded M1.2 development qualification. Model spending, recruitment, host experiments and publication
 require separate authorization.
 
 The core finish line is a reproducible, independently labeled benchmark with
@@ -70,12 +70,22 @@ stiffness cross-checks. The historical full-tuple result remains reproducible.
 This completes the public bar claim definition within the declared explanation
 set; independently qualified problems and label review remain incomplete.
 
-### M1.2 Qualify independent problems: next, incomplete
+### M1.2 Qualify independent problems: started, incomplete
 
 **Prerequisite:** M1.1's claim contract. The provisional benchmark target is
 **10 independently qualified base problems in total, including 2 published-reference
 problems**, not additional reference cases. This is a coverage target subject
 to qualification, not a sample-size justification or a claim that cases exist.
+
+**Executed development progress:** the [reference qualification result](reports/reference-qualification/matrix.md)
+reuses the axial family and adds distributed-load bending and steady conduction
+candidates. Exact closed forms agree with separate stiffness and heat-balance
+solutions for the declared observables and controls. The
+[contracts and derivations](studies/reference_qualification/README.md) record
+source scope, assumptions, boundaries and task-specific output tolerances.
+All candidates remain pending independent human review; none is admitted.
+The published thermal HTML equation discrepancy is resolved against its PDF
+and boundary conditions. This completes only the bounded development task.
 
 - Select distinct problems across applicable axial, bending, pressure-vessel,
   holed-plate and conduction physics. Parameter variants and loading variants
@@ -144,8 +154,8 @@ execution records and a reproducible cost ledger, with missing outcomes explicit
 - Add a greedy decision-theoretic (value-of-information) check-selection rule
   to that comparison. EC2-style methods (Golovin, Krause and Ray 2010; Chen,
   Hassani and Krause 2017; see [docs/references.bib](docs/references.bib)) are
-  exactly such greedy rules. Added 2026-10-09 from the 2026-10-09 literature
-  review under owner instruction.
+  exactly such greedy rules. The owner-requested literature review is recorded
+  in [prior-work provenance](docs/references.bib).
 - For each insufficient case, verify that a proposed informative check actually
   distinguishes its two compatible explanations in the executed matrix. Allow
   combinations and multiple equally useful choices. Claim least cost only

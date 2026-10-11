@@ -1,0 +1,186 @@
+{
+  "status": "development_candidates_pending_independent_human_review",
+  "reused_axial": {
+    "family": "axial_response",
+    "contract": "studies/evidence_sufficiency/claims/spec.json",
+    "result": "reports/claim-sufficiency/results.json",
+    "derivation": "studies/evidence_sufficiency/claims/README.md",
+    "independent_check": "tests/test_evidence_sufficiency.py",
+    "counting": "One existing family; force/displacement configurations are not additional problems"
+  },
+  "qualification_rule": "Exact equality of rational closed-form and independently assembled solutions for each claimed observable",
+  "numeric_claim_rule": "Absolute error <= one binary64 ULP of the correctly rounded exact reference, inclusive; serialization agreement only",
+  "cases": [
+    {
+      "id": "cantilever_uniform_load",
+      "family": "beam_bending",
+      "source_ids": [
+        "mit_bending",
+        "mit_energy"
+      ],
+      "parameter_origin": "Repository-authored development example using published beam theory; not a published numerical benchmark",
+      "parameters": {
+        "length_m": "0.6",
+        "width_m": "0.02",
+        "height_m": "0.01",
+        "modulus_Pa": "200000000000",
+        "line_load_N_per_m": "10"
+      },
+      "loading_convention": "Uniform transverse dead load q along +w over the entire span; x=0 clamped (w=0, slope=0); x=L free of point force and couple",
+      "assumptions": [
+        "Uniform rectangular section with height in bending direction",
+        "Homogeneous constant positive elastic modulus",
+        "Euler-Bernoulli small-slope bending; shear deformation excluded",
+        "No axial load, self-weight beyond specified q, inertia, thermal strain or initial curvature",
+        "Ideal clamp; nominal beam-section stress, excluding local clamp concentration",
+        "No strength, yield, fatigue, buckling or safety decision"
+      ],
+      "claims": [
+        {
+          "observable": "tip_deflection",
+          "unit": "m",
+          "meaning": "Signed transverse displacement w(L), positive with q"
+        },
+        {
+          "observable": "root_stress",
+          "unit": "Pa",
+          "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0"
+        },
+        {
+          "observable": "support_force",
+          "unit": "N",
+          "meaning": "Signed support reaction along +w"
+        },
+        {
+          "observable": "support_moment",
+          "unit": "N*m",
+          "meaning": "Signed support couple, positive work-conjugate to slope dw/dx"
+        }
+      ],
+      "partitions": [
+        [
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "1/2",
+          "1"
+        ],
+        [
+          "0",
+          "1/8",
+          "1/2",
+          "3/4",
+          "1"
+        ]
+      ],
+      "controls": [
+        {
+          "id": "nominal"
+        },
+        {
+          "id": "zero_load",
+          "scale": {
+            "line_load_N_per_m": "0"
+          }
+        },
+        {
+          "id": "reversed_load",
+          "scale": {
+            "line_load_N_per_m": "-1"
+          }
+        },
+        {
+          "id": "double_modulus",
+          "scale": {
+            "modulus_Pa": "2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "slab_dirichlet",
+      "family": "steady_heat_conduction",
+      "source_ids": [
+        "mfix_fld02_pdf",
+        "mfix_fld02_html"
+      ],
+      "parameter_origin": "FLD02 continuum boundary-value problem; no MFiX solver or published output imported",
+      "parameters": {
+        "length_m": "1",
+        "height_m": "1",
+        "conductivity_W_per_m_K": "1",
+        "left_temperature_K": "400",
+        "right_temperature_K": "300"
+      },
+      "loading_convention": "Prescribed uniform T at x=0 and x=L; remaining faces perfectly insulated; flux positive along +x",
+      "assumptions": [
+        "Steady one-dimensional Fourier conduction",
+        "Constant positive isotropic thermal conductivity",
+        "No internal heat generation, advection or radiation",
+        "Slab height matches FLD02; flux is per unit area, so no depth or total heat-rate claim",
+        "No contact resistance; exact Dirichlet face temperatures",
+        "No transient, physical material qualification or apparatus prediction"
+      ],
+      "claims": [
+        {
+          "observable": "midpoint_temperature",
+          "unit": "K",
+          "meaning": "Absolute temperature at x=L/2"
+        },
+        {
+          "observable": "heat_flux",
+          "unit": "W/m^2",
+          "meaning": "Signed axial heat flux, positive toward x=L"
+        }
+      ],
+      "partitions": [
+        [
+          "0",
+          "1/2",
+          "1"
+        ],
+        [
+          "0",
+          "1/4",
+          "1/2",
+          "3/4",
+          "1"
+        ],
+        [
+          "0",
+          "1/10",
+          "1/4",
+          "1/2",
+          "3/4",
+          "1"
+        ]
+      ],
+      "controls": [
+        {
+          "id": "nominal"
+        },
+        {
+          "id": "equal_face_temperatures",
+          "copy": {
+            "right_temperature_K": "left_temperature_K"
+          }
+        },
+        {
+          "id": "reversed_gradient",
+          "swap": [
+            "left_temperature_K",
+            "right_temperature_K"
+          ]
+        },
+        {
+          "id": "double_conductivity",
+          "scale": {
+            "conductivity_W_per_m_K": "2"
+          }
+        }
+      ]
+    }
+  ]
+}

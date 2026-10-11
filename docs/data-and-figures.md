@@ -108,3 +108,14 @@ explained above. Existing CAD workflow diagrams and navigation tables describe
 retained machinery and do not encode new scientific results. No manuscript or
 frozen release artifact was restyled. The roadmap and pending decisions are
 unchanged; claim-specific benchmark development remains incomplete.
+
+## Reference qualification candidates
+
+The [development matrix](../reports/reference-qualification/matrix.md) and
+[numeric source](../reports/reference-qualification/results.json) report the
+M1.2 reference cross-checks. The axial foundation is reused unchanged.
+New bending and conduction controls have separate exact stiffness or
+conservation solutions; independent human review remains pending.
+[Contracts, sources and derivations](../studies/reference_qualification/README.md)
+define their scope and output tolerances. Regenerate the new outputs with
+`python -m studies.reference_qualification.run`.

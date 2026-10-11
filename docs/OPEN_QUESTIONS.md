@@ -72,6 +72,15 @@ development result remains reproducible.
 This authorization ends at M1.1. It supplies no independent problem review,
 source reuse rights, model spending, host execution or reserved-case expansion.
 
+## Bounded M1.2 development authorization
+
+The owner authorized the weekly reference-qualification implementation.
+The [executed candidates](../reports/reference-qualification/matrix.md) reuse
+the axial foundation and add bending and conduction specifications with
+independent computational routes. This authorization covers development
+qualification only. No problem has been admitted and no independent human
+review has taken place. The external title and reviewer remain proposals.
+
 ## Remaining inputs and decisions
 
 - Next uncompleted technical step: M1.2's independently qualified problems and

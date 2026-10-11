@@ -1,0 +1,1086 @@
+{
+  "status": "development_candidates_pending_independent_human_review",
+  "coverage": {
+    "development_families": 3,
+    "admitted_problems": 0,
+    "independent_human_reviews": 0
+  },
+  "reused_axial": {
+    "family": "axial_response",
+    "contract": "studies/evidence_sufficiency/claims/spec.json",
+    "result": "reports/claim-sufficiency/results.json",
+    "derivation": "studies/evidence_sufficiency/claims/README.md",
+    "independent_check": "tests/test_evidence_sufficiency.py",
+    "counting": "One existing family; force/displacement configurations are not additional problems",
+    "case_ids": [
+      "bar_force",
+      "bar_displacement"
+    ],
+    "claim_ids": [
+      "stress",
+      "deflection"
+    ]
+  },
+  "qualification_rule": "Exact equality of rational closed-form and independently assembled solutions for each claimed observable",
+  "numeric_claim_rule": "Absolute error <= one binary64 ULP of the correctly rounded exact reference, inclusive; serialization agreement only",
+  "cases": [
+    {
+      "id": "cantilever_uniform_load",
+      "family": "beam_bending",
+      "controls": [
+        {
+          "control": "nominal",
+          "claims": [
+            {
+              "observable": "tip_deflection",
+              "unit": "m",
+              "meaning": "Signed transverse displacement w(L), positive with q",
+              "reference_exact": "243/500000",
+              "reference_binary64": 0.000486,
+              "absolute_tolerance": 5.421010862427522e-20
+            },
+            {
+              "observable": "root_stress",
+              "unit": "Pa",
+              "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0",
+              "reference_exact": "5400000",
+              "reference_binary64": 5400000.0,
+              "absolute_tolerance": 9.313225746154785e-10
+            },
+            {
+              "observable": "support_force",
+              "unit": "N",
+              "meaning": "Signed support reaction along +w",
+              "reference_exact": "-6",
+              "reference_binary64": -6.0,
+              "absolute_tolerance": 8.881784197001252e-16
+            },
+            {
+              "observable": "support_moment",
+              "unit": "N*m",
+              "meaning": "Signed support couple, positive work-conjugate to slope dw/dx",
+              "reference_exact": "-9/5",
+              "reference_binary64": -1.8,
+              "absolute_tolerance": 2.220446049250313e-16
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/500000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/500000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "1377/8000000",
+                  "243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "189/200000",
+                  "27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/8",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/500000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "28593/2048000000",
+                  "1377/8000000",
+                  "41553/128000000",
+                  "243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "4563/12800000",
+                  "189/200000",
+                  "1701/1600000",
+                  "27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "zero_load",
+          "claims": [
+            {
+              "observable": "tip_deflection",
+              "unit": "m",
+              "meaning": "Signed transverse displacement w(L), positive with q",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "absolute_tolerance": 5e-324
+            },
+            {
+              "observable": "root_stress",
+              "unit": "Pa",
+              "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "absolute_tolerance": 5e-324
+            },
+            {
+              "observable": "support_force",
+              "unit": "N",
+              "meaning": "Signed support reaction along +w",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "absolute_tolerance": 5e-324
+            },
+            {
+              "observable": "support_moment",
+              "unit": "N*m",
+              "meaning": "Signed support couple, positive work-conjugate to slope dw/dx",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "absolute_tolerance": 5e-324
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "0",
+                "root_stress": "0",
+                "support_force": "0",
+                "support_moment": "0"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "0"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "0"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "0",
+                "root_stress": "0",
+                "support_force": "0",
+                "support_moment": "0"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/8",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "0",
+                "root_stress": "0",
+                "support_force": "0",
+                "support_moment": "0"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "reversed_load",
+          "claims": [
+            {
+              "observable": "tip_deflection",
+              "unit": "m",
+              "meaning": "Signed transverse displacement w(L), positive with q",
+              "reference_exact": "-243/500000",
+              "reference_binary64": -0.000486,
+              "absolute_tolerance": 5.421010862427522e-20
+            },
+            {
+              "observable": "root_stress",
+              "unit": "Pa",
+              "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0",
+              "reference_exact": "5400000",
+              "reference_binary64": 5400000.0,
+              "absolute_tolerance": 9.313225746154785e-10
+            },
+            {
+              "observable": "support_force",
+              "unit": "N",
+              "meaning": "Signed support reaction along +w",
+              "reference_exact": "6",
+              "reference_binary64": 6.0,
+              "absolute_tolerance": 8.881784197001252e-16
+            },
+            {
+              "observable": "support_moment",
+              "unit": "N*m",
+              "meaning": "Signed support couple, positive work-conjugate to slope dw/dx",
+              "reference_exact": "9/5",
+              "reference_binary64": 1.8,
+              "absolute_tolerance": 2.220446049250313e-16
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "-243/500000",
+                "root_stress": "5400000",
+                "support_force": "6",
+                "support_moment": "9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "-243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "-27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "-243/500000",
+                "root_stress": "5400000",
+                "support_force": "6",
+                "support_moment": "9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "-1377/8000000",
+                  "-243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "-189/200000",
+                  "-27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/8",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "-243/500000",
+                "root_stress": "5400000",
+                "support_force": "6",
+                "support_moment": "9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "-28593/2048000000",
+                  "-1377/8000000",
+                  "-41553/128000000",
+                  "-243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "-4563/12800000",
+                  "-189/200000",
+                  "-1701/1600000",
+                  "-27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "double_modulus",
+          "claims": [
+            {
+              "observable": "tip_deflection",
+              "unit": "m",
+              "meaning": "Signed transverse displacement w(L), positive with q",
+              "reference_exact": "243/1000000",
+              "reference_binary64": 0.000243,
+              "absolute_tolerance": 2.710505431213761e-20
+            },
+            {
+              "observable": "root_stress",
+              "unit": "Pa",
+              "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0",
+              "reference_exact": "5400000",
+              "reference_binary64": 5400000.0,
+              "absolute_tolerance": 9.313225746154785e-10
+            },
+            {
+              "observable": "support_force",
+              "unit": "N",
+              "meaning": "Signed support reaction along +w",
+              "reference_exact": "-6",
+              "reference_binary64": -6.0,
+              "absolute_tolerance": 8.881784197001252e-16
+            },
+            {
+              "observable": "support_moment",
+              "unit": "N*m",
+              "meaning": "Signed support couple, positive work-conjugate to slope dw/dx",
+              "reference_exact": "-9/5",
+              "reference_binary64": -1.8,
+              "absolute_tolerance": 2.220446049250313e-16
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/1000000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "243/1000000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "27/50000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/1000000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "1377/16000000",
+                  "243/1000000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "189/400000",
+                  "27/50000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/8",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/1000000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "exact_agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "28593/4096000000",
+                  "1377/16000000",
+                  "41553/256000000",
+                  "243/1000000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "4563/25600000",
+                  "189/400000",
+                  "1701/3200000",
+                  "27/50000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        }
+      ]
+    },
+    {
+      "id": "slab_dirichlet",
+      "family": "steady_heat_conduction",
+      "controls": [
+        {
+          "control": "nominal",
+          "claims": [
+            {
+              "observable": "midpoint_temperature",
+              "unit": "K",
+              "meaning": "Absolute temperature at x=L/2",
+              "reference_exact": "350",
+              "reference_binary64": 350.0,
+              "absolute_tolerance": 5.684341886080802e-14
+            },
+            {
+              "observable": "heat_flux",
+              "unit": "W/m^2",
+              "meaning": "Signed axial heat flux, positive toward x=L",
+              "reference_exact": "100",
+              "reference_binary64": 100.0,
+              "absolute_tolerance": 1.4210854715202004e-14
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "100"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "350",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "100",
+                  "100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "100"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "375",
+                  "350",
+                  "325",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "100",
+                  "100",
+                  "100",
+                  "100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/10",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "100"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "390",
+                  "375",
+                  "350",
+                  "325",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "100",
+                  "100",
+                  "100",
+                  "100",
+                  "100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "equal_face_temperatures",
+          "claims": [
+            {
+              "observable": "midpoint_temperature",
+              "unit": "K",
+              "meaning": "Absolute temperature at x=L/2",
+              "reference_exact": "400",
+              "reference_binary64": 400.0,
+              "absolute_tolerance": 5.684341886080802e-14
+            },
+            {
+              "observable": "heat_flux",
+              "unit": "W/m^2",
+              "meaning": "Signed axial heat flux, positive toward x=L",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "absolute_tolerance": 5e-324
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "400",
+                "heat_flux": "0"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "400",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "400",
+                "heat_flux": "0"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "400",
+                  "400",
+                  "400",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/10",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "400",
+                "heat_flux": "0"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "400",
+                  "400",
+                  "400",
+                  "400",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "reversed_gradient",
+          "claims": [
+            {
+              "observable": "midpoint_temperature",
+              "unit": "K",
+              "meaning": "Absolute temperature at x=L/2",
+              "reference_exact": "350",
+              "reference_binary64": 350.0,
+              "absolute_tolerance": 5.684341886080802e-14
+            },
+            {
+              "observable": "heat_flux",
+              "unit": "W/m^2",
+              "meaning": "Signed axial heat flux, positive toward x=L",
+              "reference_exact": "-100",
+              "reference_binary64": -100.0,
+              "absolute_tolerance": 1.4210854715202004e-14
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "-100"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "300",
+                  "350",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "-100",
+                  "-100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "-100"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "300",
+                  "325",
+                  "350",
+                  "375",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "-100",
+                  "-100",
+                  "-100",
+                  "-100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/10",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "-100"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "300",
+                  "310",
+                  "325",
+                  "350",
+                  "375",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "-100",
+                  "-100",
+                  "-100",
+                  "-100",
+                  "-100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "double_conductivity",
+          "claims": [
+            {
+              "observable": "midpoint_temperature",
+              "unit": "K",
+              "meaning": "Absolute temperature at x=L/2",
+              "reference_exact": "350",
+              "reference_binary64": 350.0,
+              "absolute_tolerance": 5.684341886080802e-14
+            },
+            {
+              "observable": "heat_flux",
+              "unit": "W/m^2",
+              "meaning": "Signed axial heat flux, positive toward x=L",
+              "reference_exact": "200",
+              "reference_binary64": 200.0,
+              "absolute_tolerance": 2.842170943040401e-14
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "200"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "350",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "200",
+                  "200"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "200"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "375",
+                  "350",
+                  "325",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "200",
+                  "200",
+                  "200",
+                  "200"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/10",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "200"
+              },
+              "exact_agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "390",
+                  "375",
+                  "350",
+                  "325",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "200",
+                  "200",
+                  "200",
+                  "200",
+                  "200"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        }
+      ]
+    }
+  ],
+  "all_new_controls_agree_exactly": true,
+  "provenance": {
+    "studies/reference_qualification/assembled.py": "b0c299f789e7edd516c0c6e142a5a318150fdce230510605041a6953ab854f4c",
+    "studies/reference_qualification/reference.py": "06c5f6374a15e7658acef9fd7057ec529090a30041d290a53afd9c3ac7757efc",
+    "studies/reference_qualification/run.py": "035dd0b410c829424e45047db7ccb71aec9dc1bc8084ed8255659ce56499cab8",
+    "studies/reference_qualification/spec.json": "d6455ac2bc0565876ced0ddc39af35cb99d52b6881a663f53c15a0a1a1b22648",
+    "studies/reference_qualification/sources.json": "68c2fb4d380ce787de083d7521cc52b96a60d981bc50d47918d2d941e6fc04d2",
+    "reports/claim-sufficiency/results.json": "09cedad894e03c128b57d00a978cfeb5111774c29a809e67f08642cbddff1992",
+    "studies/evidence_sufficiency/claims/spec.json": "de43966b2014a782bcf54fb1a803715fbbd30b2f69be9077a1bfa22ecb516678"
+  }
+}
