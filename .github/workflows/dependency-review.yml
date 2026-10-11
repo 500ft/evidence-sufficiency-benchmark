@@ -1,7 +1,7 @@
 name: Dependency Review
 on:
+  # Include stacked implementation PRs as well as PRs targeting main.
   pull_request:
-    branches: [main]
 
 permissions:
   contents: read

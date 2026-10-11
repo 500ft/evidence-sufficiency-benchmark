@@ -91,6 +91,16 @@ All candidates remain pending independent human review; none is admitted.
 The published thermal HTML equation discrepancy is resolved against its PDF
 and boundary conditions. This completes only the bounded development task.
 
+**Executed compute extension:** the [frozen development sweeps and fault boundaries](reports/development-compute/matrix.md)
+exercise the existing independent routes across geometry, material and boundary
+inputs. The cylinder's inherited coarse-step gate fails for part of the wider
+domain; finer diagnostic runs preserve those failures and no failed specimen
+enters downstream checks. Eligible nominal specimens have synthetic bounded-error
+detectability results. Retained FEA stress and displacement both lack Richardson/GCI
+eligibility. These results extend numerical qualification only; the human admission,
+reviewed labels and outcome/cost matrix needed for policy baselines remain absent.
+The original published wall-display discrepancy remains unresolved at its last digit.
+
 - Select distinct problems across applicable axial, bending, pressure-vessel,
   holed-plate and conduction physics. Parameter variants and loading variants
   do not by themselves create independent problems.
