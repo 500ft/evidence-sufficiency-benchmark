@@ -1,0 +1,67 @@
+{
+  "status": "provisional_public_development_only",
+  "parent_commit": "fd1c6bb0b2e6688ca506eed2533796984ce3f111",
+  "seed": null,
+  "sampling": "Deterministic full Cartesian grids in listed order; no random draws or Monte Carlo",
+  "exposure": "Existing public development specifications only; no reserved cases, labels, reviewer or policy tuning",
+  "resources": {"workers": 1, "numerical_threads": 1, "max_seconds": 14400, "max_new_bytes": 5368709120, "rss_stop_bytes": 2147483648},
+  "pilot": "First two grid entries per swept model plus its nominal case; measure before full grid. Full run only if projected runtime and size fit caps.",
+  "stopping": "Keep every grid entry and diagnostic, including failures. Exact-route mismatch stops dependent fault work for that model; cylinder budget failure excludes that specification from downstream use. No tolerance retuning. Stop at resource cap with next-index checkpoint; no baselines without admission.",
+  "sweep": {
+    "cantilever_uniform_load": {
+      "axes": {
+        "length_m": ["3/10", "3/5", "6/5"],
+        "width_m": ["1/100", "1/50"],
+        "height_m": ["1/200", "1/100"],
+        "modulus_Pa": ["100000000000", "200000000000"],
+        "line_load_N_per_m": ["-1", "0", "1"]
+      },
+      "qualification": "All inherited partitions must give exact claim equality and equilibrium. Units, clamp/free-end and dead-load assumptions inherited unchanged."
+    },
+    "vm25_pressure_only": {
+      "axes": {
+        "inner_radius_in": ["1", "4"],
+        "radius_ratio": ["5/4", "2", "4", "8"],
+        "modulus_psi": ["30000000", "60000000"],
+        "poisson_ratio": ["-1/2", "0", "3/10", "49/100"],
+        "pressure_pair_psi": [["0", "0"], ["300", "0"], ["30000", "0"], ["0", "30000"], ["30000", "30000"]]
+      },
+      "diagnostic_steps": [256, 512],
+      "qualification": "Preserve PR21 gate: all inherited 32/64/128-step claim errors within 1e-6 characteristic-scale budget. Extra 256/512 steps diagnose failure without rescuing eligibility. Keep traction and separate trapezoid equilibrium residuals. No end resultant, sigma_z=0, free axial strain."
+    },
+    "vm92_layered_wall": {
+      "axes": {
+        "layer_length_factors": [["1/2", "2"], ["1", "1"], ["2", "1/2"]],
+        "k1_factor": ["1/10", "1", "10"],
+        "k2_factor": ["1/10", "1", "10"],
+        "film_factors": [["1/2", "2"], ["1", "1"], ["2", "1/2"]],
+        "area_ft2": ["1/2", "2"],
+        "temperature_pair_F": [["3000", "80"], ["80", "3000"], ["80", "80"]]
+      },
+      "qualification": "All inherited layer partitions must give exact claim equality and local heat balance. Perfect contact and linear steady convection/conduction retained; no radiation or physical furnace prediction."
+    }
+  },
+  "reused": ["axial family and all historical outputs", "slab Dirichlet qualification as supporting conduction control"],
+  "faults": {
+    "eligibility": "Nominal specification and each changed artifact must independently meet inherited numerical qualification; exact-route sweep failure blocks that model. Numerical eligibility is provisional, never human admission.",
+    "cases": {
+      "cantilever_uniform_load": {"parameter": "modulus_Pa", "observables": ["root_stress", "tip_deflection"], "nuisance": "density (no gravity or inertia)"},
+      "vm25_pressure_only": {"parameter": "modulus_psi", "observables": ["inner_hoop_stress", "inner_displacement"], "nuisance": "density (no gravity, rotation or inertia)"},
+      "vm92_layered_wall": {"parameter": "k2_Btu_per_hr_ft_F", "observables": ["heat_rate", "outer_surface_temperature"], "nuisance": "heat capacity (steady state)"}
+    },
+    "parameter_change": "p_artifact = p_nominal * (1 - magnitude)",
+    "magnitudes": ["0", "1/100000", "1/10000", "1/1000", "1/200", "1/100", "1/50", "1/20", "1/10", "1/4", "1/2"],
+    "claim_tolerance_fraction": "1/100",
+    "bounded_observation_error_fraction": "1/500",
+    "scale": "Absolute nominal observable, except outer wall temperature uses nominal temperature minus ambient in delta_degF. Positive scales required. These are synthetic agreement tolerances, separate from inherited numerical qualification.",
+    "reference_error": "Exact rational truth has zero arithmetic error; exact assembly uses rational output without serialization. Cylinder observation uncertainty additionally includes the inherited 1e-6 characteristic-scale numerical budget for the changed artifact, verified against exact truth at each evaluated magnitude.",
+    "decision": "Inclusive pass at abs(observed - nominal) <= tolerance. With exact signal d and total bounded error e: guaranteed pass when d+e<=t, guaranteed detection when d-e>t, otherwise error-dependent. No probabilities or empirical reviewer sensitivity.",
+    "boundary_search": {"bracket": ["0", "1/2"], "bisections": 24, "method": "Monotone deterministic interval bisection for leaving guaranteed pass and entering guaranteed detection; preserve brackets and strictness. No crossing is reported explicitly."},
+    "controls": "Correct magnitude zero; benign partition or radial refinement; nuisance metadata changes density/heat capacity only in models excluding them. Null space is derived from governing equations and checked by exact response differences, never assigned from a mutation name."
+  },
+  "fea": "Offline retained-record inspection only. Check same geometry/material/load, target h, observable, refinement changes and asymptotic behavior. Never infer effective h from element counts or combine conflicting local/global refinements. Report unavailable p/extrapolation/GCI if eligibility fails.",
+  "excluded": {
+    "holed_plate": "Retained finite plate has geometry and load but no qualified exact reference or feasible authorized independent finite-domain solve. Heywood correlation and infinite Kirsch cannot supply one; VM142 is a different specified problem.",
+    "baselines": "Labels, applicable-check matrix, independent truth admission and human review remain incomplete; no policy execution or M1.2/M2 completion."
+  }
+}
