@@ -208,7 +208,15 @@ scoped benchmark and baseline write-up.
   convention or import defects. Reuse retained machinery. Completion evidence
   is independent claim truth and executed applicable checks. Historical solver
   success and stress agreement alone do not supply it; host execution needs
-  separate authorization and resources.
+  separate authorization and resources. No CAD or Ansys task is necessary for
+  the base benchmark. Recommended for this extension only: a parametric
+  plate-with-hole family in which each variant carries its own derived
+  reference, since the Ansys VM142 reference applies to its specified finite
+  plate alone; and the proposed stress-pass, deflection-fail witness built from
+  the connector's recorded material and mass mismatch, which holds no
+  structural solve yet and counts only after execution under force-controlled
+  linear-elastic conditions. The retained mesh records already show agreement
+  without demonstrated convergence; explaining that needs no new host run.
 - **Broader family transfer:** admit genuinely new families and freeze their
   evaluation before tuning. Completion evidence is a held-out comparison with
   coverage and cost reported. This adds to the initial holdout requirement.
