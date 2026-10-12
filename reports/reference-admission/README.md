@@ -55,7 +55,7 @@ remain historical as-fetched pins. The separate
 record two fresh raw hashes per page, their matching canonical visible-text
 hashes, URLs by source key and the exact
 [hash method](source_text_hash.py).
-The v2 method also removes uppercase script/style tags; the inspected pages'
+The v3 parser also removes uppercase and spaced script/style tags; the inspected pages'
 digests remain identical to the reviewer's hashes. Stability across two fetches
 does not guarantee permanent stability or redistribution
 rights. No vendor page bytes are committed.
@@ -117,7 +117,7 @@ Checks executed for this reconciliation:
 | :--- | :--- |
 | Copy the supplied `independent_checks.py` to scratch; `python3 -I independent_checks.py <checkout>`; compare its JSON with the untouched supplied `results.json` | All 50 keys matched. The supplied original files were not overwritten. |
 | `python3 reports/reference-admission/review_repro.py > /tmp/repro.json`; `cmp /tmp/repro.json reports/reference-admission/reproduction.json` | Byte-identical. |
-| Fetch each Ansys URL in `sources.json` twice with `curl --fail --location --silent --show-error --max-time 30 --header 'Cache-Control: no-cache'`; run `source_text_hash.py` on all six scratch files and compare raw SHA-256 | Raw hashes differed for each pair; both canonical hashes for each page matched `source-content-hashes.json` and the supplied reviewer record. The v2 uppercase-tag control also passed. |
+| Fetch each Ansys URL in `sources.json` twice with `curl --fail --location --silent --show-error --max-time 30 --header 'Cache-Control: no-cache'`; run `source_text_hash.py` on all six scratch files and compare raw SHA-256 | Raw hashes differed for each pair; both canonical hashes for each page matched `source-content-hashes.json` and the supplied reviewer record. The v3 uppercase and spaced-tag controls also passed. |
 | `.venv/bin/pytest -q` | 189 passed, 2 skipped. |
 | `.venv/bin/engineering-audit eval benchmark/ --report /tmp/evidence-review-reconcile-benchmark.md` | 17 passed, 0 failed, 2 skipped. |
 | `git diff --check`; check links and heading anchors in the changed Markdown | Passed. |
