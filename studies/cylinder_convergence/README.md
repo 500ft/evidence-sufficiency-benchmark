@@ -61,3 +61,32 @@ Only failed inputs and the named controls are processed. Parameter variants do
 not create new families, human-reviewed labels or qualified benchmark problems.
 The source precision discrepancy for the layered wall and all human-admission,
 policy, reserved-data and physical-validity gates remain unchanged.
+
+## Executed result and reproduction
+
+The [executed report](../../reports/cylinder-convergence/matrix.md) records
+selected levels, errors, balance residuals, observed orders and conditioning.
+The largest coarse failure persists in 50-digit arithmetic but shrinks with
+fourth-order refinement. This supports under-resolution rather than a change
+to the formula or constitutive convention. The independent energy/quadrature
+gate sometimes requires finer resolution than output agreement alone.
+The conditional estimate is checked against the exact reference after selection;
+it does not establish a general rigorous bound outside the declared inputs.
+
+```sh
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+export VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+RAW_DIR=/absolute/path/outside/repository/cylinder-convergence
+.venv/bin/pytest -q tests/test_cylinder_convergence.py
+.venv/bin/python -m studies.cylinder_convergence.run --phase pilot --raw-dir "$RAW_DIR"
+.venv/bin/python -m studies.cylinder_convergence.run --phase full --raw-dir "$RAW_DIR"
+.venv/bin/python scripts/report_cylinder_convergence.py
+```
+
+Use a fresh raw directory for a new reproduction. The full phase reuses every
+completed pilot row. An interrupted matching run resumes remaining IDs; a
+completed run is reused. The checkpoint records PID, elapsed compute, RSS,
+source hashes and pending IDs. It stops at the registered resource caps or
+maximum resolution, retaining any unqualified result. Runtime/PID/RSS vary
+by machine; binary64 diagnostics can vary at roundoff level. The outcome
+criteria and immutable retained observations stay fixed.

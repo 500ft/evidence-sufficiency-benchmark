@@ -100,6 +100,13 @@ detectability results. Retained FEA stress and displacement both lack Richardson
 eligibility. These results extend numerical qualification only; the human admission,
 reviewed labels and outcome/cost matrix needed for policy baselines remain absent.
 The original published wall-display discrepancy remains unresolved at its last digit.
+The [focused cylinder convergence investigation](reports/cylinder-convergence/matrix.md)
+now characterizes the wider-domain failures as coarse-grid under-resolution.
+A prospectively registered resolution rule, independent energy/equilibrium
+checks and separate exact-reference audit qualify the affected inputs at finer
+steps without altering their original failure status or tolerance. Numerical
+solver adequacy is established only for these declared equations and inputs.
+
 
 - Select distinct problems across applicable axial, bending, pressure-vessel,
   holed-plate and conduction physics. Parameter variants and loading variants

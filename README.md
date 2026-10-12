@@ -42,7 +42,9 @@ independent computational cross-checks. Human review and admission remain
 unresolved. The [executed development sweep](reports/development-compute/matrix.md)
 retains cylinder numerical-gate failures, reports conditional fault-detection
 boundaries, and finds no eligible Richardson/GCI estimate in the retained FEA.
-Policy baselines remain blocked on human admission. The historical full-tuple example retains abstract check tokens;
+A [focused cylinder investigation](reports/cylinder-convergence/matrix.md) now
+qualifies finer numerical resolutions for the previously failing inputs while
+preserving the original coarse failures and tolerance. Policy baselines remain blocked on human admission. The historical full-tuple example retains abstract check tokens;
 setup/execution costs and
 reserved-family evaluation remain future work. The wild-capture campaign and
 its CLI entry point are retired.
