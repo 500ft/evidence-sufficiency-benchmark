@@ -1,0 +1,12 @@
+{
+  "vm92_outer": {
+    "exact_fraction_degF": "30640/91",
+    "displayed_degF": "336",
+    "outside_nearest_display_interval": true
+  },
+  "vm25_nominal_trapezoid": {
+    "steps": 32,
+    "exact_field_residual_psi_in": -22.781534531372017,
+    "retained_rk4_residual_psi_in": -22.778685979312286
+  }
+}

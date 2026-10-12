@@ -35,25 +35,25 @@ M1.1 now separates claim correctness from evidence sufficiency in a
 the same observed stress resolves stress agreement but leaves deflection
 agreement ambiguous across the declared implementation explanations. See the
 [claim contract and independent derivation](studies/evidence_sufficiency/claims/README.md).
-M1.2 now has [development reference candidates](reports/reference-qualification/matrix.md)
-for axial response, distributed-load bending, thick-cylinder elasticity and
-steady conduction, with
-independent computational cross-checks. The owner has authorized Claude AI
-technical review for current case admission; its reports and admission
-decisions remain pending. The
+M1.2 has [four admitted development reference problems](reports/reference-admission/README.md)
+across axial response, distributed-load bending, thick-cylinder elasticity and
+steady conduction. VM25 is the one firm published-reference problem; VM92 is
+admitted as derived, with its disputed printed outer-face value excluded from
+published corroboration. The provisional coverage target remains incomplete.
+The earlier [development matrix](reports/reference-qualification/matrix.md)
+is retained as a historical numerical snapshot. The
 [executed development sweep](reports/development-compute/matrix.md)
 retains cylinder numerical-gate failures, reports conditional fault-detection
 boundaries, and finds no eligible Richardson/GCI estimate in the retained FEA.
 A [focused cylinder investigation](reports/cylinder-convergence/matrix.md) now
 qualifies finer numerical resolutions for the previously failing inputs while
 preserving the original coarse failures and tolerance. The [Claude AI technical
-review scope](studies/reference_qualification/README.md#claude-ai-technical-review-scope)
-is the next gate. Each case needs a pinned report, findings and reconciled
-disposition before admission. After case-by-case admission, claim truth and
-reserved families must be frozen before executing the check/cost matrix and
-cost-matched baselines.
+review](reports/reference-admission/README.md) was non-blind, separately derived
+and reconciled at each admitted scope; it is not a scored reviewer pilot.
+Claim truth and reserved families still need a separate freeze before the
+check/cost matrix and cost-matched baselines.
 The existing synthetic fault study is reusable within its declared assumptions;
-no case is admitted. The historical full-tuple example retains abstract
+no policy result follows from admission. The historical full-tuple example retains abstract
 check tokens; setup/execution costs and reserved-family evaluation remain future
 work. The wild-capture campaign and its CLI entry point are retired.
 

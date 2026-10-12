@@ -138,14 +138,31 @@ pilot and optional human-comparison study. Their funding, exposure, recruitment
 and authorization gates remain. No new model campaign, baseline study, reserved
 data access, hardware run or publication follows from this decision.
 
+## AUD-8: reconciled Claude AI technical review, 2026-10-12
+
+The completed [case-by-case admission record](../reports/reference-admission/README.md)
+reconciles the owner's supplied non-blind Claude AI technical report and
+focused reproductions. It records the admitted development reference problems
+and their published-reference count. VM92 is admitted as derived; its disputed
+printed outer-wall target is excluded from published corroboration. M1.2
+remains incomplete against its provisional target. This decision supersedes
+the pending-admission status in AUD-6 and AUD-7. Their text and the generated
+development report remain historical snapshots.
+
+The original report hash, reviewed commit, model/session provenance, prior
+exposure, separate calculation and finding dispositions are in the admission
+record. Raw source hashes remain as-fetched history; a versioned canonical-text
+method now documents the dynamic Ansys pages. R1–R5 remain prerequisites for
+label freeze, with the proposed observation-tolerance shortcut rejected as a
+general remedy. This admits reference problems only. It authorizes no labels,
+cost matrix, baselines, scored reviewer pilot, human comparison or physical work.
+
 ## Remaining inputs and decisions
 
-- Next uncompleted technical step: M1.2's independently qualified problems and
-  review. The bounded M1.2 work adds development candidates and computational
-  cross-checks; no problem is admitted and no reviewer pilot was executed.
-- The assigned Claude AI technical reviewers' pinned reports, case-specific
-  findings and reconciled resolutions are needed before admission. Human
-  review is not required for this current gate.
+- M1.2 still needs distinct qualified problems to meet its provisional
+  coverage target. The current admitted count and scope are in AUD-8.
+- R1–R5 in the admission record require resolution before M1.3 label freeze.
+  The current admissions need no additional human-review gate.
 - Model pilot execution and resources require separate owner authorization.
 - Human comparison is optional and requires the institution's determination
   and separate authorization before recruitment.

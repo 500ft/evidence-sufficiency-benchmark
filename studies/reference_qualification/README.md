@@ -4,9 +4,10 @@ The [executed matrix](../../reports/reference-qualification/matrix.md) compares
 closed-form answers with independent stiffness and heat-balance solutions.
 It extends the existing axial foundation with beam bending, thick-cylinder
 elasticity and steady heat conduction, giving four distinct development families.
-All problems are development candidates pending Claude AI technical review
-reports and case-specific resolutions. M1.2 remains incomplete; this is no
-admission or reviewer-performance result.
+The [Claude AI technical review reconciliation](../../reports/reference-admission/README.md)
+admits the base reference problems at specified development scopes.
+The generated matrix below remains the earlier, unchanged development snapshot.
+M1.2 coverage is incomplete, and this is no reviewer-performance result.
 
 ## Contracts and coverage
 
@@ -15,8 +16,10 @@ geometry, loading, claim locations, units, assumptions, controls and partitions.
 The retained beam/slab use SI; VM25 uses inch/psi and VM92 uses foot/Btu/hour
 and Fahrenheit temperature differences, explicitly named in every parameter.
 Decimal strings represent exact specified model inputs, not measured precision.
-[source records](sources.json) pin the inspected references by URL, section and
-SHA-256. The references support the continuum equations and boundaries; the
+[source records](sources.json) retain raw as-fetched SHA-256 pins by URL and
+section. [Canonical-text hashes](source-content-hashes.json) with a versioned
+[method](../../reports/reference-admission/source_text_hash.py) support current content comparison for dynamic
+Ansys pages. The references support the continuum equations and boundaries; the
 local implementations and calculations were written separately.
 
 | Family | Definition and reference | Separate route | Qualification boundary |
@@ -38,15 +41,15 @@ this task.
 
 ## Claude AI technical review scope
 
-The owner authorized Claude AI technical review for this current admission gate.
-The existing reviewers have been assigned; their reports are not yet available.
-Human review is not a prerequisite for this scoped development review. Use the
-existing public specifications and results below. Review the reference
+The owner authorized Claude AI technical review for this admission gate. The
+completed report and case-specific resolutions are recorded in the
+[admission record](../../reports/reference-admission/README.md). Human review
+is not a prerequisite for these scoped development admissions. The review used
+the existing public specifications and results below. It examined the reference
 source scope and reuse rights, the derivation separately from its computational
 cross-check, observable locations and units, decision tolerance, controls and
 excluded physics. Record an explicit case-by-case disposition and any resolved
-discrepancy before admitting a problem. Four families remain development
-candidates, with none admitted; loading and parameter variants do not
+discrepancy before admitting a problem. Loading and parameter variants do not
 increase the independent-problem count.
 
 - **Axial response:** Read the [claim contract](../evidence_sufficiency/claims/spec.json),
@@ -97,10 +100,9 @@ increase the independent-problem count.
   for wall values, with Fahrenheit used through differences. Check the
   independent rational heat balances and serialized-value decisions against
   [`qualification_rule` and `numeric_claim_rule`](spec.json).
-  Resolve the VM92 displayed outer-wall value versus the exact-input value in
-  the linked source comparison, which lies outside a nearest-unit rounding
-  interval, or explicitly confine the display to coarse supporting evidence
-  before treating it as a published-reference problem.
+  The [reconciliation](../../reports/reference-admission/README.md) excludes
+  the disputed VM92 printed outer-wall value from published corroboration and
+  admits the wall as a derived problem using its exact-input equations.
   The slab is a control within this family, not another admitted base problem.
 
 Each report must pin its reviewed commit and source hashes, record model and
@@ -117,8 +119,8 @@ The completed [synthetic fault-detectability result](../../reports/development-c
 can inform later control design only within its declared bounded-error model;
 it does not supply admission or empirical reviewer sensitivity. The retained
 [FEA records](../../reports/fea-interpretation.json) have no eligible GCI.
-The report findings, resolutions and admission outcomes remain unresolved. No
-human reviewer or signature is implied.
+The [reconciled findings](../../reports/reference-admission/README.md) support
+the scoped admissions; no human reviewer or signature is implied.
 
 ## Bending derivation and independent route
 
@@ -189,7 +191,10 @@ define the source scope. The pinned input couples one end's axial displacement
 while leaving its resultant free; no end-cap pressure is applied. Thus the
 homogeneous solution has sigma_z = 0 and a uniform free axial strain.
 Constraining that strain to zero or applying closed-end pressure changes radial
-displacement. Rotation is a separate published case and is excluded here.
+displacement. Rotation is a separate published load step with a different axial
+constraint in the [VM25 input listing](https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM25TXT.html)
+and is excluded here. Its printed rotation targets are not pressure-only
+long-cylinder reference claims.
 The source's exterior printout pressure is recorded as a numerical dummy; a
 regression checks its effect against the local numerical budget. No vendor
 input file or figure is redistributed.
@@ -216,7 +221,12 @@ s' = E*u/r² - (1-nu)*s/r
 Two RK4 trajectories and a scalar shooting solve enforce both radial tractions.
 Step doubling checks the output error against the exact reference. A separate
 trapezoid integral checks [r*sigma_r] = integral sigma_theta dr. Its second-order
-residual is retained, separate from the fourth-order displacement error.
+residual is retained, separate from the fourth-order displacement error. The
+[review reproduction](../../reports/reference-admission/reproduction.json) shows
+that the nominal residual is largely present even on the exact field, so it is
+a quadrature-dominated sanity check, not an isolated RK4 error measure. The
+[registered Simpson and energy checks](../cylinder_convergence/README.md)
+provide separate equilibrium and energy evidence.
 Tests cover zero pressure, modulus scaling and zero Poisson ratio, and reject
 closed-end and plane-strain displacement as answers to this contract.
 
@@ -255,8 +265,11 @@ balances determine the reference from inputs. The generated source comparison
 shows the displayed target, derived value, difference, and half-/whole-display-unit
 consistency. The outer target is outside a nearest-unit rounding interval even
 though it is within a full display unit. The source does not specify a rounding
-mode that resolves this last-digit discrepancy. Therefore the display is coarse
-support only; it is never an acceptance target at 1e-8 or at serialization precision.
+mode that resolves this last-digit discrepancy. The current
+[admission record](../../reports/reference-admission/README.md) counts this as a
+derived problem: the heat-rate and inner-face displays are coarse corroboration,
+and the outer printed target is excluded. No display value is an acceptance
+target at claim or serialization precision.
 The exact value and other source comparisons are in the generated matrix rather
 than a second hand-maintained numeric table. Source precision is not uncertainty
 in a physical measurement, and no evidence-sufficiency label is inferred from
@@ -309,7 +322,8 @@ redistributed. No third-party figures, prose, solver code or output datasets
 are bundled. Public accessibility does not establish permission for later
 redistribution; the source records preserve that unresolved rights boundary.
 The beam parameters are locally authored; the cylinder and thermal definitions
-use published continuum setups. No candidate is an admitted benchmark problem.
+use published continuum setups. The current scoped admissions and coverage
+limits are in the [admission record](../../reports/reference-admission/README.md).
 
 The Claude AI technical review and finding reconciliation must examine the
 problem definitions, source scope, derivations, observable choices, tolerance
