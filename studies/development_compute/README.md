@@ -3,7 +3,10 @@
 The executed [result](../../reports/development-compute/matrix.md) extends the
 four-family reference foundation from PR #21. It measures the limits of its
 numerical gates across parameter grids and then evaluates eligible nominal
-specimens under a synthetic observation model. Human admission remains pending.
+specimens under a synthetic observation model. The later
+[Claude AI technical review reconciliation](../../reports/reference-admission/README.md)
+admitted the four base development references at their stated scopes. The
+generated result and frozen manifest retain their earlier admission status.
 
 The [manifest](manifest.json) was committed before any campaign results in
 `a6ae617`. It freezes the Cartesian axes, units, conventions, tolerances, error

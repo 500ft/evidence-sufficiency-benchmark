@@ -4,10 +4,12 @@ This is the current case-admission record. **Four base reference problems are
 admitted at the scopes below; one is a firm published-reference problem
 (VM25). M1.2 remains incomplete at 4/10 against its provisional coverage
 target, including 1/2 published-reference problems.** The generated
-[development matrix](../reference-qualification/matrix.md) and its
-[numeric source](../reference-qualification/results.json) are retained
-unchanged. Their zero-admission and pending-human-review fields describe the
-earlier development snapshot, not this decision. The original
+[reference qualification](../reference-qualification/matrix.md),
+[development compute](../development-compute/matrix.md) and
+[cylinder convergence](../cylinder-convergence/matrix.md) reports retain their
+earlier zero-admission or pending-human-review statements as historical
+snapshots. Their numeric sources are unchanged; this record gives the current
+admission status. The original
 [claim contract](../../studies/evidence_sufficiency/claims/spec.json),
 [reference specification](../../studies/reference_qualification/spec.json),
 numeric budgets and [convergence manifest](../../studies/cylinder_convergence/manifest.json)
@@ -122,7 +124,10 @@ Checks executed for this reconciliation:
 | `.venv/bin/engineering-audit eval benchmark/ --report /tmp/evidence-review-reconcile-benchmark.md` | 17 passed, 0 failed, 2 skipped. |
 | `git diff --check`; check links and heading anchors in the changed Markdown | Passed. |
 
-Further work requires the remaining M1.2 coverage and R1–R5 resolution before
-M1.3's claim-truth, artifact-class and exposure freeze. The applicable-check/cost matrix, baselines, scored
+M1.2 remains incomplete. The next task is to qualify the remaining distinct
+base problems against its provisional coverage target, or explicitly revise
+that target later. Before M1.3 label freeze, resolve the R1–R5 prerequisites
+for artifact classes, compatible explanations and decision tolerances at each
+admitted claim scope. The applicable-check/cost matrix, baselines, scored
 reviewer pilot, optional human comparison, CAD/FEA host work and publication
 retain their separate prerequisites and approvals.
