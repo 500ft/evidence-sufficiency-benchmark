@@ -1,0 +1,53 @@
+{
+  "status": "prospective_public_development_numerical_investigation",
+  "parent_commit": "bf96ef251535ad83f5a3babb2cac1f54f13b528a",
+  "seed": null,
+  "domain": "Exactly the 96 inherited cylinder failures pinned in inputs.json, plus nominal, zero-pressure and equal-pressure controls. Retained results selected after the prior completed study; no held-out claim or new independent problems.",
+  "convention": "Linear isotropic pressure-only cylinder, sigma_z=0 and free axial strain; no end-cap resultant, body force, rotation or geometric nonlinearity. Original inch/psi units and declared observables preserved.",
+  "levels": [
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024,
+    2048,
+    4096
+  ],
+  "budget_relative": "1/1000000",
+  "scales": "S_u=a*max(pi,po)/E and S_stress=max(pi,po). Energy scale a^2*P^2/E; integral-equilibrium scale a*P. Zero load requires exact zero outputs and balances.",
+  "new_resolution_gate": {
+    "minimum_levels": 3,
+    "order_interval": [
+      3.5,
+      4.5
+    ],
+    "estimate": "D_N=max_j abs(y_N-y_(N/2))/S_j. Order=log2(D_(N/2)/D_N). Conditional finest error estimate=2*D_N/15 for fourth-order RK4, with safety factor two. Not a certified bound.",
+    "allocation_fraction": "1/4",
+    "roundoff_floor": "128*binary64_epsilon*max(1,max_j abs(y_N/S_j)); both last differences must lie below this floor for a roundoff-limited control instead of a claimed order. Floor must also fit the allocation.",
+    "balances": "Absolute Simpson integral-equilibrium and energy/work residuals, traction errors, and twice the Simpson versus subsampled-Simpson difference/15 must each fit one quarter of the unchanged characteristic budget.",
+    "truth_audit": "Only after resolution selection, compare every selected numerical claim to the separate exact rational closed form with the original full budget. A mismatch fails qualification; no truth-based resolution retuning. Original 32/64/128 gate outcomes remain untouched."
+  },
+  "conditioning": "Record dimensionless fundamental-matrix infinity-norm condition number, shooting boundary sensitivity and normalized cancellation. Diagnose floating arithmetic with separate 50-digit dimensionless Decimal RK4 at 32 steps for the prior first and worst failures and nominal control. Decimal uses the same numerical equations, not a new independent physical reference.",
+  "decimal_diagnostic_ids": [
+    "prior_153",
+    "prior_210",
+    "nominal"
+  ],
+  "pilot_ids": [
+    "prior_153",
+    "prior_210",
+    "nominal",
+    "zero_pressure",
+    "equal_pressure_prior_196"
+  ],
+  "resources": {
+    "workers": 1,
+    "numerical_threads": 1,
+    "max_seconds": 14400,
+    "max_bytes": 5368709120,
+    "max_rss_bytes": 2147483648
+  },
+  "stopping": "Measure pilot first; then process remaining inputs once, reuse completed pilot entries, checkpoint each input. Stop each specimen at first convergence-qualified resolution or max level. Preserve failures and exception details. Stop whole campaign at resource caps and leave next-index checkpoint.",
+  "exposure": "Public development only. No bending/wall reruns, new faults, policy baselines, humans, host work or reserved outcomes. No physical validation or admission inferred."
+}
