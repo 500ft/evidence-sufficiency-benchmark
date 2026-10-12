@@ -35,8 +35,12 @@ M1.1 now separates claim correctness from evidence sufficiency in a
 the same observed stress resolves stress agreement but leaves deflection
 agreement ambiguous across the declared implementation explanations. See the
 [claim contract and independent derivation](studies/evidence_sufficiency/claims/README.md).
-The next step is independently qualified problems and review. The historical
-full-tuple example retains abstract check tokens; setup/execution costs and
+M1.2 now has [development reference candidates](reports/reference-qualification/matrix.md)
+for axial response, distributed-load bending, thick-cylinder elasticity and
+steady conduction, with
+independent computational cross-checks. Human review and admission remain
+unresolved. The historical full-tuple example retains abstract check tokens;
+setup/execution costs and
 reserved-family evaluation remain future work. The wild-capture campaign and
 its CLI entry point are retired.
 

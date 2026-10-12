@@ -1,0 +1,2755 @@
+{
+  "status": "development_candidates_pending_independent_human_review",
+  "coverage": {
+    "development_families": 4,
+    "admitted_problems": 0,
+    "independent_human_reviews": 0
+  },
+  "reused_axial": {
+    "family": "axial_response",
+    "contract": "studies/evidence_sufficiency/claims/spec.json",
+    "result": "reports/claim-sufficiency/results.json",
+    "derivation": "studies/evidence_sufficiency/claims/README.md",
+    "independent_check": "tests/test_evidence_sufficiency.py",
+    "counting": "One existing family; force/displacement configurations are not additional problems",
+    "case_ids": [
+      "bar_force",
+      "bar_displacement"
+    ],
+    "claim_ids": [
+      "stress",
+      "deflection"
+    ]
+  },
+  "qualification_rule": "Exact equality for rational stiffness/conduction routes; cylinder RK4 error within its declared characteristic-scale budget with refinement and traction/equilibrium regressions",
+  "numeric_claim_rule": "Exact-route output serialization: <= one binary64 ULP of the correctly rounded exact value; radial cylinder: <= declared characteristic-scale budget. All boundaries inclusive.",
+  "cases": [
+    {
+      "id": "cantilever_uniform_load",
+      "family": "beam_bending",
+      "controls": [
+        {
+          "control": "nominal",
+          "claims": [
+            {
+              "observable": "tip_deflection",
+              "unit": "m",
+              "meaning": "Signed transverse displacement w(L), positive with q",
+              "reference_exact": "243/500000",
+              "reference_binary64": 0.000486,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5.421010862427522e-20
+            },
+            {
+              "observable": "root_stress",
+              "unit": "Pa",
+              "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0",
+              "reference_exact": "5400000",
+              "reference_binary64": 5400000.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 9.313225746154785e-10
+            },
+            {
+              "observable": "support_force",
+              "unit": "N",
+              "meaning": "Signed support reaction along +w",
+              "reference_exact": "-6",
+              "reference_binary64": -6.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 8.881784197001252e-16
+            },
+            {
+              "observable": "support_moment",
+              "unit": "N*m",
+              "meaning": "Signed support couple, positive work-conjugate to slope dw/dx",
+              "reference_exact": "-9/5",
+              "reference_binary64": -1.8,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 2.220446049250313e-16
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/500000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/500000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "1377/8000000",
+                  "243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "189/200000",
+                  "27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/8",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/500000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "28593/2048000000",
+                  "1377/8000000",
+                  "41553/128000000",
+                  "243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "4563/12800000",
+                  "189/200000",
+                  "1701/1600000",
+                  "27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "zero_load",
+          "claims": [
+            {
+              "observable": "tip_deflection",
+              "unit": "m",
+              "meaning": "Signed transverse displacement w(L), positive with q",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5e-324
+            },
+            {
+              "observable": "root_stress",
+              "unit": "Pa",
+              "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5e-324
+            },
+            {
+              "observable": "support_force",
+              "unit": "N",
+              "meaning": "Signed support reaction along +w",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5e-324
+            },
+            {
+              "observable": "support_moment",
+              "unit": "N*m",
+              "meaning": "Signed support couple, positive work-conjugate to slope dw/dx",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5e-324
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "0",
+                "root_stress": "0",
+                "support_force": "0",
+                "support_moment": "0"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "0"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "0"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "0",
+                "root_stress": "0",
+                "support_force": "0",
+                "support_moment": "0"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/8",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "0",
+                "root_stress": "0",
+                "support_force": "0",
+                "support_moment": "0"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "reversed_load",
+          "claims": [
+            {
+              "observable": "tip_deflection",
+              "unit": "m",
+              "meaning": "Signed transverse displacement w(L), positive with q",
+              "reference_exact": "-243/500000",
+              "reference_binary64": -0.000486,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5.421010862427522e-20
+            },
+            {
+              "observable": "root_stress",
+              "unit": "Pa",
+              "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0",
+              "reference_exact": "5400000",
+              "reference_binary64": 5400000.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 9.313225746154785e-10
+            },
+            {
+              "observable": "support_force",
+              "unit": "N",
+              "meaning": "Signed support reaction along +w",
+              "reference_exact": "6",
+              "reference_binary64": 6.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 8.881784197001252e-16
+            },
+            {
+              "observable": "support_moment",
+              "unit": "N*m",
+              "meaning": "Signed support couple, positive work-conjugate to slope dw/dx",
+              "reference_exact": "9/5",
+              "reference_binary64": 1.8,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 2.220446049250313e-16
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "-243/500000",
+                "root_stress": "5400000",
+                "support_force": "6",
+                "support_moment": "9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "-243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "-27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "-243/500000",
+                "root_stress": "5400000",
+                "support_force": "6",
+                "support_moment": "9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "-1377/8000000",
+                  "-243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "-189/200000",
+                  "-27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/8",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "-243/500000",
+                "root_stress": "5400000",
+                "support_force": "6",
+                "support_moment": "9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "-28593/2048000000",
+                  "-1377/8000000",
+                  "-41553/128000000",
+                  "-243/500000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "-4563/12800000",
+                  "-189/200000",
+                  "-1701/1600000",
+                  "-27/25000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "double_modulus",
+          "claims": [
+            {
+              "observable": "tip_deflection",
+              "unit": "m",
+              "meaning": "Signed transverse displacement w(L), positive with q",
+              "reference_exact": "243/1000000",
+              "reference_binary64": 0.000243,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 2.710505431213761e-20
+            },
+            {
+              "observable": "root_stress",
+              "unit": "Pa",
+              "meaning": "Magnitude of extreme-fiber nominal normal bending stress at x=0",
+              "reference_exact": "5400000",
+              "reference_binary64": 5400000.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 9.313225746154785e-10
+            },
+            {
+              "observable": "support_force",
+              "unit": "N",
+              "meaning": "Signed support reaction along +w",
+              "reference_exact": "-6",
+              "reference_binary64": -6.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 8.881784197001252e-16
+            },
+            {
+              "observable": "support_moment",
+              "unit": "N*m",
+              "meaning": "Signed support couple, positive work-conjugate to slope dw/dx",
+              "reference_exact": "-9/5",
+              "reference_binary64": -1.8,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 2.220446049250313e-16
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/1000000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "243/1000000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "27/50000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/1000000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "1377/16000000",
+                  "243/1000000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "189/400000",
+                  "27/50000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/8",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "tip_deflection": "243/1000000",
+                "root_stress": "5400000",
+                "support_force": "-6",
+                "support_moment": "-9/5"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "tip_deflection": true,
+                "root_stress": true,
+                "support_force": true,
+                "support_moment": true
+              },
+              "diagnostics": {
+                "nodal_deflections_m": [
+                  "0",
+                  "28593/4096000000",
+                  "1377/16000000",
+                  "41553/256000000",
+                  "243/1000000"
+                ],
+                "nodal_slopes": [
+                  "0",
+                  "4563/25600000",
+                  "189/400000",
+                  "1701/3200000",
+                  "27/50000"
+                ],
+                "free_equilibrium_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        }
+      ],
+      "published_evidence": null
+    },
+    {
+      "id": "slab_dirichlet",
+      "family": "steady_heat_conduction",
+      "controls": [
+        {
+          "control": "nominal",
+          "claims": [
+            {
+              "observable": "midpoint_temperature",
+              "unit": "K",
+              "meaning": "Absolute temperature at x=L/2",
+              "reference_exact": "350",
+              "reference_binary64": 350.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5.684341886080802e-14
+            },
+            {
+              "observable": "heat_flux",
+              "unit": "W/m^2",
+              "meaning": "Signed axial heat flux, positive toward x=L",
+              "reference_exact": "100",
+              "reference_binary64": 100.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 1.4210854715202004e-14
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "100"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "350",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "100",
+                  "100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "100"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "375",
+                  "350",
+                  "325",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "100",
+                  "100",
+                  "100",
+                  "100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/10",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "100"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "390",
+                  "375",
+                  "350",
+                  "325",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "100",
+                  "100",
+                  "100",
+                  "100",
+                  "100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "equal_face_temperatures",
+          "claims": [
+            {
+              "observable": "midpoint_temperature",
+              "unit": "K",
+              "meaning": "Absolute temperature at x=L/2",
+              "reference_exact": "400",
+              "reference_binary64": 400.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5.684341886080802e-14
+            },
+            {
+              "observable": "heat_flux",
+              "unit": "W/m^2",
+              "meaning": "Signed axial heat flux, positive toward x=L",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5e-324
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "400",
+                "heat_flux": "0"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "400",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "400",
+                "heat_flux": "0"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "400",
+                  "400",
+                  "400",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/10",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "400",
+                "heat_flux": "0"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "400",
+                  "400",
+                  "400",
+                  "400",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "reversed_gradient",
+          "claims": [
+            {
+              "observable": "midpoint_temperature",
+              "unit": "K",
+              "meaning": "Absolute temperature at x=L/2",
+              "reference_exact": "350",
+              "reference_binary64": 350.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5.684341886080802e-14
+            },
+            {
+              "observable": "heat_flux",
+              "unit": "W/m^2",
+              "meaning": "Signed axial heat flux, positive toward x=L",
+              "reference_exact": "-100",
+              "reference_binary64": -100.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 1.4210854715202004e-14
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "-100"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "300",
+                  "350",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "-100",
+                  "-100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "-100"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "300",
+                  "325",
+                  "350",
+                  "375",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "-100",
+                  "-100",
+                  "-100",
+                  "-100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/10",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "-100"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "300",
+                  "310",
+                  "325",
+                  "350",
+                  "375",
+                  "400"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "-100",
+                  "-100",
+                  "-100",
+                  "-100",
+                  "-100"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "double_conductivity",
+          "claims": [
+            {
+              "observable": "midpoint_temperature",
+              "unit": "K",
+              "meaning": "Absolute temperature at x=L/2",
+              "reference_exact": "350",
+              "reference_binary64": 350.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5.684341886080802e-14
+            },
+            {
+              "observable": "heat_flux",
+              "unit": "W/m^2",
+              "meaning": "Signed axial heat flux, positive toward x=L",
+              "reference_exact": "200",
+              "reference_binary64": 200.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 2.842170943040401e-14
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "200"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "350",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "200",
+                  "200"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "200"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "375",
+                  "350",
+                  "325",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "200",
+                  "200",
+                  "200",
+                  "200"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/10",
+                "1/4",
+                "1/2",
+                "3/4",
+                "1"
+              ],
+              "output_exact": {
+                "midpoint_temperature": "350",
+                "heat_flux": "200"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "midpoint_temperature": true,
+                "heat_flux": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_K": [
+                  "400",
+                  "390",
+                  "375",
+                  "350",
+                  "325",
+                  "300"
+                ],
+                "segment_fluxes_W_per_m2": [
+                  "200",
+                  "200",
+                  "200",
+                  "200",
+                  "200"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        }
+      ],
+      "published_evidence": null
+    },
+    {
+      "id": "vm25_pressure_only",
+      "family": "thick_cylinder_elasticity",
+      "controls": [
+        {
+          "control": "nominal",
+          "claims": [
+            {
+              "observable": "inner_displacement",
+              "unit": "in",
+              "meaning": "Radial displacement at r=a",
+              "reference_exact": "59/7500",
+              "reference_binary64": 0.007866666666666666,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 4e-09
+            },
+            {
+              "observable": "inner_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=a",
+              "reference_exact": "-30000",
+              "reference_binary64": -30000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "inner_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=a",
+              "reference_exact": "50000",
+              "reference_binary64": 50000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "mid_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=(a+b)/2",
+              "reference_exact": "-70000/9",
+              "reference_binary64": -7777.777777777777,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "mid_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=(a+b)/2",
+              "reference_exact": "250000/9",
+              "reference_binary64": 27777.777777777777,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "outer_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=b",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "outer_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=b",
+              "reference_exact": "20000",
+              "reference_binary64": 20000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            }
+          ],
+          "cross_checks": [
+            {
+              "steps": 32,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.007866666379026832,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.99784270124,
+                "mid_radial_stress": -7777.777695623961,
+                "mid_hoop_stress": 27777.777250352225,
+                "outer_radial_stress": -3.637978807091713e-12,
+                "outer_hoop_stress": 19999.99968981351
+              },
+              "absolute_error": {
+                "inner_displacement": 2.87639833826403e-10,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.00215729876072146,
+                "mid_radial_stress": 8.215381603804417e-05,
+                "mid_hoop_stress": 0.0005274255527183414,
+                "outer_radial_stress": 3.637978807091713e-12,
+                "outer_hoop_stress": 0.00031018648951430805
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 4e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 32,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": -3.637978807091713e-12,
+                "integrated_equilibrium_residual_psi_in": -22.778685979312286,
+                "finite": true
+              }
+            },
+            {
+              "steps": 64,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.007866666648733022,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.999865497666,
+                "mid_radial_stress": -7777.777772592712,
+                "mid_hoop_stress": 27777.777744638028,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 19999.999980461904
+              },
+              "absolute_error": {
+                "inner_displacement": 1.7933644153034223e-11,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.00013450233382172883,
+                "mid_radial_stress": 5.185065674595535e-06,
+                "mid_hoop_stress": 3.3139749575639144e-05,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 1.953809623955749e-05
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 4e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 64,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": -5.696128325624159,
+                "finite": true
+              }
+            },
+            {
+              "steps": 128,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.007866666665547481,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.99999160611,
+                "mid_radial_stress": -7777.777777452306,
+                "mid_hoop_stress": 27777.777775701845,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 19999.999998774667
+              },
+              "absolute_error": {
+                "inner_displacement": 1.1191846061020527e-12,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 8.393886673729867e-06,
+                "mid_radial_stress": 3.254717739764601e-07,
+                "mid_hoop_stress": 2.07593257073313e-06,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 1.2253331078682095e-06
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 4e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 128,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": -1.4241232435888378,
+                "finite": true
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "zero_pressure",
+          "claims": [
+            {
+              "observable": "inner_displacement",
+              "unit": "in",
+              "meaning": "Radial displacement at r=a",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.0
+            },
+            {
+              "observable": "inner_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=a",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.0
+            },
+            {
+              "observable": "inner_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=a",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.0
+            },
+            {
+              "observable": "mid_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=(a+b)/2",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.0
+            },
+            {
+              "observable": "mid_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=(a+b)/2",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.0
+            },
+            {
+              "observable": "outer_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=b",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.0
+            },
+            {
+              "observable": "outer_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=b",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.0
+            }
+          ],
+          "cross_checks": [
+            {
+              "steps": 32,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": -0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "absolute_error": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 32,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": 0.0,
+                "finite": true
+              }
+            },
+            {
+              "steps": 64,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": -0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "absolute_error": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 64,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": 0.0,
+                "finite": true
+              }
+            },
+            {
+              "steps": 128,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": -0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "absolute_error": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 0.0,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.0,
+                "mid_radial_stress": 0.0,
+                "mid_hoop_stress": 0.0,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 0.0
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 128,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": 0.0,
+                "finite": true
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "half_modulus",
+          "claims": [
+            {
+              "observable": "inner_displacement",
+              "unit": "in",
+              "meaning": "Radial displacement at r=a",
+              "reference_exact": "59/3750",
+              "reference_binary64": 0.015733333333333332,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 8e-09
+            },
+            {
+              "observable": "inner_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=a",
+              "reference_exact": "-30000",
+              "reference_binary64": -30000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "inner_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=a",
+              "reference_exact": "50000",
+              "reference_binary64": 50000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "mid_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=(a+b)/2",
+              "reference_exact": "-70000/9",
+              "reference_binary64": -7777.777777777777,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "mid_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=(a+b)/2",
+              "reference_exact": "250000/9",
+              "reference_binary64": 27777.777777777777,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "outer_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=b",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "outer_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=b",
+              "reference_exact": "20000",
+              "reference_binary64": 20000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            }
+          ],
+          "cross_checks": [
+            {
+              "steps": 32,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.015733332758053664,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.99784270124,
+                "mid_radial_stress": -7777.777695623961,
+                "mid_hoop_stress": 27777.777250352225,
+                "outer_radial_stress": -3.637978807091713e-12,
+                "outer_hoop_stress": 19999.99968981351
+              },
+              "absolute_error": {
+                "inner_displacement": 5.75279667652806e-10,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.00215729876072146,
+                "mid_radial_stress": 8.215381603804417e-05,
+                "mid_hoop_stress": 0.0005274255527183414,
+                "outer_radial_stress": 3.637978807091713e-12,
+                "outer_hoop_stress": 0.00031018648951430805
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 8e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 32,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": -3.637978807091713e-12,
+                "integrated_equilibrium_residual_psi_in": -22.778685979312286,
+                "finite": true
+              }
+            },
+            {
+              "steps": 64,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.015733333297466044,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.999865497666,
+                "mid_radial_stress": -7777.777772592712,
+                "mid_hoop_stress": 27777.777744638028,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 19999.999980461904
+              },
+              "absolute_error": {
+                "inner_displacement": 3.5867288306068446e-11,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.00013450233382172883,
+                "mid_radial_stress": 5.185065674595535e-06,
+                "mid_hoop_stress": 3.3139749575639144e-05,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 1.953809623955749e-05
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 8e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 64,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": -5.696128325624159,
+                "finite": true
+              }
+            },
+            {
+              "steps": 128,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.015733333331094963,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.99999160611,
+                "mid_radial_stress": -7777.777777452306,
+                "mid_hoop_stress": 27777.777775701845,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 19999.999998774667
+              },
+              "absolute_error": {
+                "inner_displacement": 2.2383692122041055e-12,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 8.393886673729867e-06,
+                "mid_radial_stress": 3.254717739764601e-07,
+                "mid_hoop_stress": 2.07593257073313e-06,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 1.2253331078682095e-06
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 8e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 128,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": -1.4241232435888378,
+                "finite": true
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "zero_poisson",
+          "claims": [
+            {
+              "observable": "inner_displacement",
+              "unit": "in",
+              "meaning": "Radial displacement at r=a",
+              "reference_exact": "1/150",
+              "reference_binary64": 0.006666666666666667,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 4e-09
+            },
+            {
+              "observable": "inner_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=a",
+              "reference_exact": "-30000",
+              "reference_binary64": -30000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "inner_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=a",
+              "reference_exact": "50000",
+              "reference_binary64": 50000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "mid_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=(a+b)/2",
+              "reference_exact": "-70000/9",
+              "reference_binary64": -7777.777777777777,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "mid_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=(a+b)/2",
+              "reference_exact": "250000/9",
+              "reference_binary64": 27777.777777777777,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "outer_radial_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive radial stress at r=b",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            },
+            {
+              "observable": "outer_hoop_stress",
+              "unit": "psi",
+              "meaning": "Tension-positive hoop stress at r=b",
+              "reference_exact": "20000",
+              "reference_binary64": 20000.0,
+              "decision_rule": "characteristic-scale budget",
+              "absolute_tolerance": 0.03
+            }
+          ],
+          "cross_checks": [
+            {
+              "steps": 32,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.006666666454303382,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.998407275365,
+                "mid_radial_stress": -7777.777781804871,
+                "mid_hoop_stress": 27777.777653853802,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 19999.99998758705
+              },
+              "absolute_error": {
+                "inner_displacement": 2.1236328494322887e-10,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 0.0015927246349747293,
+                "mid_radial_stress": 4.0270933823194355e-06,
+                "mid_hoop_stress": 0.00012392397547955625,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 1.241295103682205e-05
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 4e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 32,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": -22.78035284942598,
+                "finite": true
+              }
+            },
+            {
+              "steps": 64,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.0066666666534022255,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.99990051669,
+                "mid_radial_stress": -7777.777777900248,
+                "mid_hoop_stress": 27777.777769530006,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 19999.99999882593
+              },
+              "absolute_error": {
+                "inner_displacement": 1.3264441628413337e-11,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 9.948330989573151e-05,
+                "mid_radial_stress": 1.2247073755133897e-07,
+                "mid_hoop_stress": 8.247770892921835e-06,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 1.1740703484974802e-06
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 4e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 64,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": -5.6962312397081405,
+                "finite": true
+              }
+            },
+            {
+              "steps": 128,
+              "rule": "absolute error within declared numerical budget",
+              "output_binary64": {
+                "inner_displacement": 0.006666666665838152,
+                "inner_radial_stress": -30000.0,
+                "inner_hoop_stress": 49999.999993786136,
+                "mid_radial_stress": -7777.777777781554,
+                "mid_hoop_stress": 27777.777777247295,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 19999.999999914653
+              },
+              "absolute_error": {
+                "inner_displacement": 8.285152078291169e-13,
+                "inner_radial_stress": 0.0,
+                "inner_hoop_stress": 6.213864253368229e-06,
+                "mid_radial_stress": 3.776222001761198e-09,
+                "mid_hoop_stress": 5.304827936924994e-07,
+                "outer_radial_stress": 0.0,
+                "outer_hoop_stress": 8.534698281437159e-08
+              },
+              "cross_method_absolute_tolerance": {
+                "inner_displacement": 4e-09,
+                "inner_radial_stress": 0.03,
+                "inner_hoop_stress": 0.03,
+                "mid_radial_stress": 0.03,
+                "mid_hoop_stress": 0.03,
+                "outer_radial_stress": 0.03,
+                "outer_hoop_stress": 0.03
+              },
+              "agreement": {
+                "inner_displacement": true,
+                "inner_radial_stress": true,
+                "inner_hoop_stress": true,
+                "mid_radial_stress": true,
+                "mid_hoop_stress": true,
+                "outer_radial_stress": true,
+                "outer_hoop_stress": true
+              },
+              "diagnostics": {
+                "steps": 128,
+                "inner_traction_error_psi": 0.0,
+                "outer_traction_error_psi": 0.0,
+                "integrated_equilibrium_residual_psi_in": -1.424129635677673,
+                "finite": true
+              }
+            }
+          ],
+          "qualified_numerically": true
+        }
+      ],
+      "published_evidence": {
+        "source": "ansys_vm25",
+        "rule": "Coarse consistency within one last displayed unit; not a qualification gate or an inferred rounding mode",
+        "comparisons": [
+          {
+            "observable": "inner_displacement",
+            "displayed": "0.0078666",
+            "display_unit": "0.0000001",
+            "derived_exact": "59/7500",
+            "absolute_difference": 6.666666666666667e-08,
+            "within_one_display_unit": true,
+            "within_half_display_unit": false
+          },
+          {
+            "observable": "inner_radial_stress",
+            "displayed": "-30000",
+            "display_unit": "1",
+            "derived_exact": "-30000",
+            "absolute_difference": 0.0,
+            "within_one_display_unit": true,
+            "within_half_display_unit": true
+          },
+          {
+            "observable": "mid_radial_stress",
+            "displayed": "-7778",
+            "display_unit": "1",
+            "derived_exact": "-70000/9",
+            "absolute_difference": 0.2222222222222222,
+            "within_one_display_unit": true,
+            "within_half_display_unit": true
+          },
+          {
+            "observable": "outer_radial_stress",
+            "displayed": "0",
+            "display_unit": "1",
+            "derived_exact": "0",
+            "absolute_difference": 0.0,
+            "within_one_display_unit": true,
+            "within_half_display_unit": true
+          },
+          {
+            "observable": "inner_hoop_stress",
+            "displayed": "50000",
+            "display_unit": "1",
+            "derived_exact": "50000",
+            "absolute_difference": 0.0,
+            "within_one_display_unit": true,
+            "within_half_display_unit": true
+          },
+          {
+            "observable": "mid_hoop_stress",
+            "displayed": "27778",
+            "display_unit": "1",
+            "derived_exact": "250000/9",
+            "absolute_difference": 0.2222222222222222,
+            "within_one_display_unit": true,
+            "within_half_display_unit": true
+          },
+          {
+            "observable": "outer_hoop_stress",
+            "displayed": "20000",
+            "display_unit": "1",
+            "derived_exact": "20000",
+            "absolute_difference": 0.0,
+            "within_one_display_unit": true,
+            "within_half_display_unit": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "vm92_layered_wall",
+      "family": "steady_heat_conduction",
+      "controls": [
+        {
+          "control": "nominal",
+          "claims": [
+            {
+              "observable": "heat_rate",
+              "unit": "Btu/hr",
+              "meaning": "Signed outward total heat loss over specified area",
+              "reference_exact": "46720/91",
+              "reference_binary64": 513.4065934065934,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 1.1368683772161603e-13
+            },
+            {
+              "observable": "inner_surface_temperature",
+              "unit": "degF",
+              "meaning": "Hot-side material face temperature",
+              "reference_exact": "807320/273",
+              "reference_binary64": 2957.2161172161173,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 4.547473508864641e-13
+            },
+            {
+              "observable": "interface_temperature",
+              "unit": "degF",
+              "meaning": "Temperature at perfect-contact layer interface",
+              "reference_exact": "96560/39",
+              "reference_binary64": 2475.897435897436,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 4.547473508864641e-13
+            },
+            {
+              "observable": "outer_surface_temperature",
+              "unit": "degF",
+              "meaning": "Cold-side material face temperature",
+              "reference_exact": "30640/91",
+              "reference_binary64": 336.7032967032967,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5.684341886080802e-14
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "46720/91",
+                "inner_surface_temperature": "807320/273",
+                "interface_temperature": "96560/39",
+                "outer_surface_temperature": "30640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "807320/273",
+                  "96560/39",
+                  "30640/91",
+                  "80"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "46720/91",
+                "inner_surface_temperature": "807320/273",
+                "interface_temperature": "96560/39",
+                "outer_surface_temperature": "30640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "807320/273",
+                  "741620/273",
+                  "96560/39",
+                  "383920/273",
+                  "30640/91",
+                  "80"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "46720/91",
+                "inner_surface_temperature": "807320/273",
+                "interface_temperature": "96560/39",
+                "outer_surface_temperature": "30640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "807320/273",
+                  "774470/273",
+                  "741620/273",
+                  "96560/39",
+                  "176640/91",
+                  "383920/273",
+                  "30640/91",
+                  "80"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91",
+                  "46720/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "equal_fluid_temperatures",
+          "claims": [
+            {
+              "observable": "heat_rate",
+              "unit": "Btu/hr",
+              "meaning": "Signed outward total heat loss over specified area",
+              "reference_exact": "0",
+              "reference_binary64": 0.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5e-324
+            },
+            {
+              "observable": "inner_surface_temperature",
+              "unit": "degF",
+              "meaning": "Hot-side material face temperature",
+              "reference_exact": "3000",
+              "reference_binary64": 3000.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 4.547473508864641e-13
+            },
+            {
+              "observable": "interface_temperature",
+              "unit": "degF",
+              "meaning": "Temperature at perfect-contact layer interface",
+              "reference_exact": "3000",
+              "reference_binary64": 3000.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 4.547473508864641e-13
+            },
+            {
+              "observable": "outer_surface_temperature",
+              "unit": "degF",
+              "meaning": "Cold-side material face temperature",
+              "reference_exact": "3000",
+              "reference_binary64": 3000.0,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 4.547473508864641e-13
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "0",
+                "inner_surface_temperature": "3000",
+                "interface_temperature": "3000",
+                "outer_surface_temperature": "3000"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "0",
+                "inner_surface_temperature": "3000",
+                "interface_temperature": "3000",
+                "outer_surface_temperature": "3000"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "0",
+                "inner_surface_temperature": "3000",
+                "interface_temperature": "3000",
+                "outer_surface_temperature": "3000"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000",
+                  "3000"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "reversed_heat_flow",
+          "claims": [
+            {
+              "observable": "heat_rate",
+              "unit": "Btu/hr",
+              "meaning": "Signed outward total heat loss over specified area",
+              "reference_exact": "-46720/91",
+              "reference_binary64": -513.4065934065934,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 1.1368683772161603e-13
+            },
+            {
+              "observable": "inner_surface_temperature",
+              "unit": "degF",
+              "meaning": "Hot-side material face temperature",
+              "reference_exact": "33520/273",
+              "reference_binary64": 122.78388278388279,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 1.4210854715202004e-14
+            },
+            {
+              "observable": "interface_temperature",
+              "unit": "degF",
+              "meaning": "Temperature at perfect-contact layer interface",
+              "reference_exact": "23560/39",
+              "reference_binary64": 604.1025641025641,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 1.1368683772161603e-13
+            },
+            {
+              "observable": "outer_surface_temperature",
+              "unit": "degF",
+              "meaning": "Cold-side material face temperature",
+              "reference_exact": "249640/91",
+              "reference_binary64": 2743.296703296703,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 4.547473508864641e-13
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "-46720/91",
+                "inner_surface_temperature": "33520/273",
+                "interface_temperature": "23560/39",
+                "outer_surface_temperature": "249640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "80",
+                  "33520/273",
+                  "23560/39",
+                  "249640/91",
+                  "3000"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "-46720/91",
+                "inner_surface_temperature": "33520/273",
+                "interface_temperature": "23560/39",
+                "outer_surface_temperature": "249640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "80",
+                  "33520/273",
+                  "99220/273",
+                  "23560/39",
+                  "456920/273",
+                  "249640/91",
+                  "3000"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "-46720/91",
+                "inner_surface_temperature": "33520/273",
+                "interface_temperature": "23560/39",
+                "outer_surface_temperature": "249640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "80",
+                  "33520/273",
+                  "66370/273",
+                  "99220/273",
+                  "23560/39",
+                  "103640/91",
+                  "456920/273",
+                  "249640/91",
+                  "3000"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91",
+                  "-46720/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        },
+        {
+          "control": "double_area",
+          "claims": [
+            {
+              "observable": "heat_rate",
+              "unit": "Btu/hr",
+              "meaning": "Signed outward total heat loss over specified area",
+              "reference_exact": "93440/91",
+              "reference_binary64": 1026.8131868131868,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 2.2737367544323206e-13
+            },
+            {
+              "observable": "inner_surface_temperature",
+              "unit": "degF",
+              "meaning": "Hot-side material face temperature",
+              "reference_exact": "807320/273",
+              "reference_binary64": 2957.2161172161173,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 4.547473508864641e-13
+            },
+            {
+              "observable": "interface_temperature",
+              "unit": "degF",
+              "meaning": "Temperature at perfect-contact layer interface",
+              "reference_exact": "96560/39",
+              "reference_binary64": 2475.897435897436,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 4.547473508864641e-13
+            },
+            {
+              "observable": "outer_surface_temperature",
+              "unit": "degF",
+              "meaning": "Cold-side material face temperature",
+              "reference_exact": "30640/91",
+              "reference_binary64": 336.7032967032967,
+              "decision_rule": "one binary64 ULP",
+              "absolute_tolerance": 5.684341886080802e-14
+            }
+          ],
+          "cross_checks": [
+            {
+              "partition": [
+                "0",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "93440/91",
+                "inner_surface_temperature": "807320/273",
+                "interface_temperature": "96560/39",
+                "outer_surface_temperature": "30640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "807320/273",
+                  "96560/39",
+                  "30640/91",
+                  "80"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "93440/91",
+                "inner_surface_temperature": "807320/273",
+                "interface_temperature": "96560/39",
+                "outer_surface_temperature": "30640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "807320/273",
+                  "741620/273",
+                  "96560/39",
+                  "383920/273",
+                  "30640/91",
+                  "80"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            },
+            {
+              "partition": [
+                "0",
+                "1/4",
+                "1/2",
+                "1"
+              ],
+              "output_exact": {
+                "heat_rate": "93440/91",
+                "inner_surface_temperature": "807320/273",
+                "interface_temperature": "96560/39",
+                "outer_surface_temperature": "30640/91"
+              },
+              "rule": "exact rational equality",
+              "agreement": {
+                "heat_rate": true,
+                "inner_surface_temperature": true,
+                "interface_temperature": true,
+                "outer_surface_temperature": true
+              },
+              "diagnostics": {
+                "nodal_temperatures_F": [
+                  "3000",
+                  "807320/273",
+                  "774470/273",
+                  "741620/273",
+                  "96560/39",
+                  "176640/91",
+                  "383920/273",
+                  "30640/91",
+                  "80"
+                ],
+                "edge_heat_rates_Btu_per_hr": [
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91",
+                  "93440/91"
+                ],
+                "internal_heat_balance_residual": "0"
+              }
+            }
+          ],
+          "qualified_numerically": true
+        }
+      ],
+      "published_evidence": {
+        "source": "ansys_vm92",
+        "rule": "Coarse consistency within one last displayed unit; not a qualification gate or an inferred rounding mode",
+        "comparisons": [
+          {
+            "observable": "heat_rate",
+            "displayed": "513",
+            "display_unit": "1",
+            "derived_exact": "46720/91",
+            "absolute_difference": 0.4065934065934066,
+            "within_one_display_unit": true,
+            "within_half_display_unit": true
+          },
+          {
+            "observable": "inner_surface_temperature",
+            "displayed": "2957",
+            "display_unit": "1",
+            "derived_exact": "807320/273",
+            "absolute_difference": 0.21611721611721613,
+            "within_one_display_unit": true,
+            "within_half_display_unit": true
+          },
+          {
+            "observable": "outer_surface_temperature",
+            "displayed": "336",
+            "display_unit": "1",
+            "derived_exact": "30640/91",
+            "absolute_difference": 0.7032967032967034,
+            "within_one_display_unit": true,
+            "within_half_display_unit": false
+          }
+        ]
+      }
+    }
+  ],
+  "all_new_controls_qualify": true,
+  "provenance": {
+    "studies/reference_qualification/assembled.py": "4c10700266b9ad368e01a1a0ca083e043cf51682d5f71beb71e78162c1b46594",
+    "studies/reference_qualification/radial.py": "61830b8bf5701bf60b3f009c21f921adb111c8b54742e2aa1cabf74eff12d5cc",
+    "studies/reference_qualification/reference.py": "6eedcb47c2f1b0755b0c3be8c0071911ce33a580af19b8bc4b40e4d971ea565e",
+    "studies/reference_qualification/run.py": "5e601e80ae29733244ff89c21f3714df9bdd5344933efaab5858d154ff934a94",
+    "studies/reference_qualification/spec.json": "d0ffbed2d51153dca29851f6e939679d989f9c180c1972b987d6996c89709144",
+    "studies/reference_qualification/sources.json": "91f9791efa765267e6127804a9186542994847439633040fb5b0c1aae17eea6b",
+    "reports/claim-sufficiency/results.json": "09cedad894e03c128b57d00a978cfeb5111774c29a809e67f08642cbddff1992",
+    "studies/evidence_sufficiency/claims/spec.json": "de43966b2014a782bcf54fb1a803715fbbd30b2f69be9077a1bfa22ecb516678"
+  }
+}
