@@ -44,7 +44,7 @@ source scope and reuse rights, the derivation separately from its computational
 cross-check, observable locations and units, decision tolerance, controls and
 excluded physics. Record an explicit case-by-case disposition and any resolved
 discrepancy before admitting a problem. Four families remain development
-candidates, with zero admitted problems; loading and parameter variants do not
+candidates, with none admitted; loading and parameter variants do not
 increase the independent-problem count.
 
 - **Axial response:** Read the [claim contract](../evidence_sufficiency/claims/spec.json),
@@ -53,11 +53,12 @@ increase the independent-problem count.
   [separate compliance artifact](../evidence_sufficiency/artifact.py) and
   [stiffness regressions](../../tests/test_evidence_sufficiency.py). Check the
   fixed-left bar under prescribed force and, separately, prescribed end
-  displacement. Confirm stress in MPa, deflection in mm, the inclusive
-  absolute tolerance of 1e-8 MPa for stress and 1e-8 mm for deflection,
-  with observed stress also at 1e-8 MPa, and the force-controlled modulus null
-  space with opposite deflection decisions. Admit this family only if those
-  assumptions, independent answer and finite explanation boundary support the
+  displacement. Confirm stress in MPa and deflection in mm against the inclusive
+  decision and observation tolerances in the claim contract's
+  [`claims[*].absolute_tolerance` and `observations[*].absolute_tolerance`](../evidence_sufficiency/claims/spec.json)
+  fields. Check the force-controlled modulus null space with opposite
+  deflection decisions. Admit this family only if those assumptions,
+  independent answer and finite explanation boundary support the
   stated claims; the historical full-response tuple has a different scope.
 - **Distributed-load bending:** Read the [beam case](spec.json),
   [continuum derivation](reference.py), [Hermite stiffness and reaction route](assembled.py)
@@ -65,20 +66,24 @@ increase the independent-problem count.
   uniform transverse dead load on the full span, an ideal left clamp, free
   right tip, rectangular section and nominal root stress without a local clamp
   concentration. Confirm tip deflection in m, root stress in Pa, reaction in N
-  and couple in N*m. Rational nodal/action agreement is exact; one binary64
-  ULP applies only to serialized values. Decide whether the observable and
-  omitted shear, geometric nonlinearity and local stress effects permit the
+  and couple in N*m. Check rational nodal/action agreement and serialized-value
+  decisions against [`qualification_rule` and `numeric_claim_rule`](spec.json).
+  Decide whether the observable and omitted shear, geometric nonlinearity and
+  local stress effects permit the
   proposed claim before admission.
 - **Pressure-only thick cylinder:** Read the [VM25-derived case](spec.json),
   [Lamé reference](reference.py), [independent radial BVP](radial.py),
   [wider-domain result](../../reports/development-compute/matrix.md) and
-  [registered convergence investigation](../cylinder_convergence/README.md).
+  [frozen convergence manifest](../cylinder_convergence/manifest.json) and
+  [registered investigation](../cylinder_convergence/README.md).
   Check internal/external radial tractions, zero axial end resultant, free
   axial strain, tension-positive stresses and displacement in inch, with no
-  rotation or end-cap pressure. The inherited numerical budget is one part
-  per million of pressure for psi stresses and of a*pressure/E for displacement.
-  Earlier 32/64/128-step failures stay failed; selected finer resolutions have
-  a separate convergence and energy audit. Decide which stated input domain
+  rotation or end-cap pressure. Confirm the psi stress units and the inherited
+  [case `qualification` fields](spec.json) `relative_scale_budget`,
+  `stress_scale` and `displacement_scale`, then the manifest's
+  `budget_relative`, `scales` and `new_resolution_gate`. Earlier coarse-step
+  failures stay failed; selected finer resolutions have a separate convergence
+  and energy audit. Decide which stated input domain
   and numerical rule can support admission without treating the conditional
   error estimate as a certified bound or using a plane-strain/closed-end value.
 - **Steady conduction:** Read the [VM92 wall and MFiX slab cases](spec.json),
@@ -87,8 +92,9 @@ increase the independent-problem count.
   Check prescribed slab face temperatures with insulated remaining faces,
   and, separately, wall fluid films, two layers, perfect contact and no
   generation or radiation. Confirm K and W/m² for slab values; degF and Btu/hr
-  for wall values, with Fahrenheit used through differences. Independent
-  rational heat balances require exact equality; one ULP covers serialization.
+  for wall values, with Fahrenheit used through differences. Check the
+  independent rational heat balances and serialized-value decisions against
+  [`qualification_rule` and `numeric_claim_rule`](spec.json).
   Resolve the VM92 displayed outer-wall value versus the exact-input value in
   the linked source comparison, which lies outside a nearest-unit rounding
   interval, or explicitly confine the display to coarse supporting evidence
