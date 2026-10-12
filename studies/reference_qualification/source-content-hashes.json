@@ -1,9 +1,9 @@
 {
-  "method_version": "ansys-visible-text-v1",
+  "method_version": "ansys-visible-text-v2",
   "method_file": "reports/reference-admission/source_text_hash.py",
   "source_urls_and_historical_raw_hashes": "studies/reference_qualification/sources.json",
   "verified_on": "2026-10-12",
-  "scope": "Full visible text of each linked Ansys HTML page after removing script and style blocks; no vendor page is redistributed",
+  "scope": "Full visible text of each linked Ansys HTML page after case-insensitive removal of script and style blocks; no vendor page is redistributed",
   "sources": {
     "ansys_vm25": {
       "canonical_sha256": "f8cc834eba2f5df59992850a4bdc25f73523a07244ba23418b12df4a09dfc1dc",
