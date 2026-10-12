@@ -38,18 +38,22 @@ agreement ambiguous across the declared implementation explanations. See the
 M1.2 now has [development reference candidates](reports/reference-qualification/matrix.md)
 for axial response, distributed-load bending, thick-cylinder elasticity and
 steady conduction, with
-independent computational cross-checks. Human review and admission remain
-unresolved. The [executed development sweep](reports/development-compute/matrix.md)
+independent computational cross-checks. The owner has authorized Claude AI
+technical review for current case admission; its reports and admission
+decisions remain pending. The
+[executed development sweep](reports/development-compute/matrix.md)
 retains cylinder numerical-gate failures, reports conditional fault-detection
 boundaries, and finds no eligible Richardson/GCI estimate in the retained FEA.
 A [focused cylinder investigation](reports/cylinder-convergence/matrix.md) now
 qualifies finer numerical resolutions for the previously failing inputs while
-preserving the original coarse failures and tolerance. The [independent review
-scope](studies/reference_qualification/README.md#independent-admission-review-scope)
-is the next gate. After case-by-case admission, claim truth and reserved families
-must be frozen before executing the check/cost matrix and cost-matched baselines.
+preserving the original coarse failures and tolerance. The [Claude AI technical
+review scope](studies/reference_qualification/README.md#claude-ai-technical-review-scope)
+is the next gate. Each case needs a pinned report, findings and reconciled
+disposition before admission. After case-by-case admission, claim truth and
+reserved families must be frozen before executing the check/cost matrix and
+cost-matched baselines.
 The existing synthetic fault study is reusable within its declared assumptions;
-no human case is admitted. The historical full-tuple example retains abstract
+no case is admitted. The historical full-tuple example retains abstract
 check tokens; setup/execution costs and reserved-family evaluation remain future
 work. The wild-capture campaign and its CLI entry point are retired.
 

@@ -4,9 +4,9 @@ The [executed matrix](../../reports/reference-qualification/matrix.md) compares
 closed-form answers with independent stiffness and heat-balance solutions.
 It extends the existing axial foundation with beam bending, thick-cylinder
 elasticity and steady heat conduction, giving four distinct development families.
-All problems are development candidates pending independent human
-review. M1.2 remains incomplete; this is no admission or reviewer-performance
-result.
+All problems are development candidates pending Claude AI technical review
+reports and case-specific resolutions. M1.2 remains incomplete; this is no
+admission or reviewer-performance result.
 
 ## Contracts and coverage
 
@@ -36,10 +36,12 @@ fifth family. These families do not satisfy the provisional target of ten
 qualified problems. VM142 and the proposed connector witness remain outside
 this task.
 
-## Independent admission review scope
+## Claude AI technical review scope
 
-The owner selected independent mechanics/heat-transfer review as the next gate.
-Use the existing public specifications and results below. Review the reference
+The owner authorized Claude AI technical review for this current admission gate.
+The existing reviewers have been assigned; their reports are not yet available.
+Human review is not a prerequisite for this scoped development review. Use the
+existing public specifications and results below. Review the reference
 source scope and reuse rights, the derivation separately from its computational
 cross-check, observable locations and units, decision tolerance, controls and
 excluded physics. Record an explicit case-by-case disposition and any resolved
@@ -101,15 +103,22 @@ increase the independent-problem count.
   before treating it as a published-reference problem.
   The slab is a control within this family, not another admitted base problem.
 
-The reviewer should return the specification/claim scope accepted, the
-independence and budget rationale checked, each discrepancy with its resolution,
-and any exclusion or revision needed. An unreviewed row remains a candidate.
+Each report must pin its reviewed commit and source hashes, record model and
+session provenance where known, disclose prior exposure to expected answers,
+and preserve independently derived checks before comparison with repository
+references. Distinguish another AI session from an independent calculation.
+The reviewer should return per-claim findings and dispositions, the
+specification/claim scope supported, the independence and budget rationale,
+and each discrepancy with its proposed resolution or exclusion. Repository
+authors must reconcile findings and record case-specific resolutions before
+declaring admission. An assignment or unresolved report leaves the case a
+candidate. This review is not an external peer review or scored reviewer pilot.
 The completed [synthetic fault-detectability result](../../reports/development-compute/matrix.md)
 can inform later control design only within its declared bounded-error model;
 it does not supply admission or empirical reviewer sensitivity. The retained
 [FEA records](../../reports/fea-interpretation.json) have no eligible GCI.
-The person, availability and review outcome are unresolved. No named referral
-or signature is assumed.
+The report findings, resolutions and admission outcomes remain unresolved. No
+human reviewer or signature is implied.
 
 ## Bending derivation and independent route
 
@@ -279,7 +288,8 @@ modulus scaling, equal face temperatures, reversed heat flow and conductivity
 scaling. They check exact fields/balances and reject an injected bad deflection
 without changing the stress result. Control identifiers do not define truth.
 The local Gaussian solver also has a coupled-system and singular-system check.
-Software route independence does not constitute independent human review.
+Software route independence alone does not complete the Claude AI technical
+review or establish human review.
 
 ## Reproduction and remaining qualification
 
@@ -301,11 +311,12 @@ redistribution; the source records preserve that unresolved rights boundary.
 The beam parameters are locally authored; the cylinder and thermal definitions
 use published continuum setups. No candidate is an admitted benchmark problem.
 
-Independent human review must examine the problem definitions, source scope,
-derivations, observable choices, tolerance suitability and implementation
-independence before admission. The suggested external title,
+The Claude AI technical review and finding reconciliation must examine the
+problem definitions, source scope, derivations, observable choices, tolerance
+suitability and implementation independence before admission. The suggested
+external title,
 Evidence Sufficiency for Engineering Verification,
 and a Gupta reviewer referral were historical recommendations. The owner
-has different independent reviewer candidates in mind, with no appointment
+has different candidates in mind for any later human review, with no appointment
 or contact yet. No naming change has been adopted. No reserved families, new
 defect campaign, reviewer pilot or CAD/FEA host run was added.

@@ -8,9 +8,8 @@ claim within a stated budget?
 
 This is the only active plan. The [owner decision](docs/OPEN_QUESTIONS.md)
 authorizes its adoption, repository cleanup, the completed M1.1 implementation
-and bounded M1.2 development qualification. Model spending, recruitment,
-host experiments and publication
-require separate authorization.
+and bounded M1.2 development qualification. Further model spending,
+recruitment, host experiments and publication require separate authorization.
 
 The core finish line is a reproducible, independently labeled benchmark with
 claim-specific decisions, executed check outcomes, cost-matched non-LLM
@@ -43,15 +42,18 @@ Claim definition -> qualified references and controls -> frozen truth and
 reserved families -> full applicable-check matrix -> non-LLM baselines and
 verified discriminating checks -> authorized reviewer pilot -> scoped write-up.
 
-The owner has adopted this order for the next work: independent mechanics/heat-transfer
-reference admission, then frozen claim truth and compatible-explanation
-witnesses with reserved whole families, then the complete applicable-check and
+The owner has adopted this order for the next work: case-by-case
+mechanics/heat-transfer reference admission, then frozen claim truth and
+compatible-explanation witnesses with reserved whole families, then the
+complete applicable-check and
 setup/execution/shared-cost matrix, then baselines at matched cost and decision
 coverage. [AUD-6](docs/OPEN_QUESTIONS.md#aud-6-adopted-admission-order-2026-10-12)
-records the decision and the [review scope](studies/reference_qualification/README.md#independent-admission-review-scope)
+records the order; [AUD-7](docs/OPEN_QUESTIONS.md#aud-7-claude-ai-technical-review-for-current-admission)
+records the owner-authorized Claude AI technical review protocol. The
+[review scope](studies/reference_qualification/README.md#claude-ai-technical-review-scope)
 bounds the immediate gate. The synthetic fault-detectability result is already
-executed and remains reusable within its declared assumptions. No case has
-human admission yet.
+executed and remains reusable within its declared assumptions. No case is
+admitted yet.
 
 Freezing reserved families precedes reviewer or selection-policy tuning.
 Extensions depend on the base result and a separate frozen evaluation design.
@@ -97,9 +99,10 @@ explicit numerical budgets and step-refinement evidence. The layered-wall
 reference separates published display precision from numerical agreement. The
 [contracts and derivations](studies/reference_qualification/README.md) record
 source scope, assumptions, boundaries and task-specific output tolerances.
-All candidates remain pending independent human review; none is admitted.
-The immediate step is a case-by-case review of the existing contracts and
-discrepancies, not another parameter sweep.
+All candidates remain pending Claude AI technical review reports and
+case-specific finding resolution; none is admitted. Human review is not a
+prerequisite for this scoped development admission. The immediate step is to
+reconcile the assigned review of existing contracts and discrepancies.
 The published thermal HTML equation discrepancy is resolved against its PDF
 and boundary conditions. This completes only the bounded development task.
 
@@ -109,7 +112,7 @@ inputs. The cylinder's inherited coarse-step gate fails for part of the wider
 domain; finer diagnostic runs preserve those failures and no failed specimen
 enters downstream checks. Eligible nominal specimens have synthetic bounded-error
 detectability results. Retained FEA stress and displacement both lack Richardson/GCI
-eligibility. These results extend numerical qualification only; the human admission,
+eligibility. These results extend numerical qualification only; case admission,
 reviewed labels and outcome/cost matrix needed for policy baselines remain absent.
 The original published wall-display discrepancy remains unresolved at its last digit.
 The [focused cylinder convergence investigation](reports/cylinder-convergence/matrix.md)
@@ -128,9 +131,11 @@ solver adequacy is established only for these declared equations and inputs.
   rights. A NAFEMS or Code_Aster candidate needs its exact geometry, load,
   constraints, observable and convention; no isolated published stress value
   is an answer key for an unspecified case.
-- Arrange an independent collaborator review with scope and discrepancies
-  recorded. Reviewer availability is an unresolved input. Resolve disagreements
-  before admitting a problem or evaluating policies.
+- Pin the Claude AI technical review report to the reviewed commit. Record
+  model/session provenance where known, prior exposure, independently derived
+  checks, per-claim findings and dispositions, and resolutions. Resolve
+  substantive discrepancies before admitting a problem or evaluating policies.
+  Assignment alone does not complete review.
 
 **Completion evidence:** admitted problem specifications, derivations, independent
 cross-checks and review records, with exclusions and actual coverage stated.
@@ -204,9 +209,10 @@ Identical observations with opposite truth require abstention, not guessing.
 
 ## M3. Reviewer pilot: future, authorization and review gates unresolved
 
-**Prerequisites:** M1–M2 complete, independent label review, frozen reviewer
+**Prerequisites:** M1–M2 complete, reconciled case labels, frozen reviewer
 exposure and scoring protocol, and owner authorization for the model run and
-its resources. The present task authorizes no model calls.
+its resources. The current technical reference review does not authorize this
+scored pilot.
 
 - Implement a claim-and-evidence interface that reveals only purchased checks;
   hide mutation descriptions, filenames and reference answers.
@@ -267,7 +273,7 @@ scoped benchmark and baseline write-up.
   owner authorization, resources and recruitment protocol before recruitment.
   Completion evidence would be an authorized study and its scoped analysis.
 
-No hardware readiness, funding, purchase, reviewer availability, naming or
-publication decision is inferred from this plan. The next gate is independent
-reference review for M1.2; pilot and physical-study gates remain unresolved in
+No hardware readiness, funding, purchase, naming or publication decision is
+inferred from this plan. The next gate is the completed and reconciled Claude AI
+technical review for M1.2; pilot and physical-study gates remain unresolved in
 [open questions](docs/OPEN_QUESTIONS.md).

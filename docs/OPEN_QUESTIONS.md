@@ -90,12 +90,14 @@ no naming change, reviewer appointment or contact is recorded.
 The owner adopted independent reference admission as the next gate after the
 merged [development qualification](../reports/reference-qualification/matrix.md)
 and [cylinder investigation](../reports/cylinder-convergence/matrix.md).
-The [family-specific review scope](../studies/reference_qualification/README.md#independent-admission-review-scope)
+The [family-specific review scope](../studies/reference_qualification/README.md#claude-ai-technical-review-scope)
 names the contracts, independent methods, loading conventions and numerical
 budgets that an independent mechanics/heat-transfer reviewer must assess.
 Review and discrepancy resolution are required case by case before a problem
-is admitted. The owner has different reviewer candidates in mind; no person
+is admitted. The owner has different human reviewer candidates in mind; none
 is appointed or contacted, and zero problems are admitted today.
+AUD-7 changes the reviewer type while retaining this dependency order and
+case-specific scope.
 
 After admission, freeze claim truth, compatible-explanation witnesses and
 reserved whole families. Then execute the applicable-check matrix with setup,
@@ -111,14 +113,39 @@ arranged space can satisfy an access route once the actual setup is qualified.
 University lab membership is not a prerequisite. This supplies no equipment,
 site, operating procedure, budget or permission for a physical run.
 
+## AUD-7: Claude AI technical review for current admission
+
+The owner authorized Claude AI technical review to satisfy the current
+reference-admission review gate. This changes the reviewer requirement in
+AUD-6: independent human review is deferred and is not a prerequisite for this
+scoped development admission. The existing Claude reviewers are researching,
+but their completed reports are not available. Assignment is not completion;
+no case is admitted. The [family review scope](../studies/reference_qualification/README.md#claude-ai-technical-review-scope)
+states the case-specific questions.
+
+Before admission, each Claude AI technical review needs a pinned report with
+reviewed commit and source hashes, model/session provenance where known, prior
+exposure, independently derived checks, per-claim findings and dispositions.
+Repository authors must reconcile findings, document resolutions and exclusions,
+and decide admission case by case. A second AI session and an independently
+derived calculation are different evidence; neither is called human review or
+external peer review. The existing specification's historical review-status
+field and generated numerical reports remain unchanged to preserve their
+provenance; this decision record and roadmap state the current gate.
+
+This technical reference review is separate from the future scored reviewer
+pilot and optional human-comparison study. Their funding, exposure, recruitment
+and authorization gates remain. No new model campaign, baseline study, reserved
+data access, hardware run or publication follows from this decision.
+
 ## Remaining inputs and decisions
 
 - Next uncompleted technical step: M1.2's independently qualified problems and
   review. The bounded M1.2 work adds development candidates and computational
   cross-checks; no problem is admitted and no reviewer pilot was executed.
-- An available independent mechanics/heat-transfer reviewer must assess the
-  specified families and resolve the documented discrepancies case by case.
-  Stiffness and numerical cross-checks do not supply human review.
+- The assigned Claude AI technical reviewers' pinned reports, case-specific
+  findings and reconciled resolutions are needed before admission. Human
+  review is not required for this current gate.
 - Model pilot execution and resources require separate owner authorization.
 - Human comparison is optional and requires the institution's determination
   and separate authorization before recruitment.
