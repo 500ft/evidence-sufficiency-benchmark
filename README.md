@@ -44,10 +44,14 @@ retains cylinder numerical-gate failures, reports conditional fault-detection
 boundaries, and finds no eligible Richardson/GCI estimate in the retained FEA.
 A [focused cylinder investigation](reports/cylinder-convergence/matrix.md) now
 qualifies finer numerical resolutions for the previously failing inputs while
-preserving the original coarse failures and tolerance. Policy baselines remain blocked on human admission. The historical full-tuple example retains abstract check tokens;
-setup/execution costs and
-reserved-family evaluation remain future work. The wild-capture campaign and
-its CLI entry point are retired.
+preserving the original coarse failures and tolerance. The [independent review
+scope](studies/reference_qualification/README.md#independent-admission-review-scope)
+is the next gate. After case-by-case admission, claim truth and reserved families
+must be frozen before executing the check/cost matrix and cost-matched baselines.
+The existing synthetic fault study is reusable within its declared assumptions;
+no human case is admitted. The historical full-tuple example retains abstract
+check tokens; setup/execution costs and reserved-family evaluation remain future
+work. The wild-capture campaign and its CLI entry point are retired.
 
 ## Prior work and positioning (2026-10-09)
 

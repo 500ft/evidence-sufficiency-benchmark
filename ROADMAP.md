@@ -43,6 +43,16 @@ Claim definition -> qualified references and controls -> frozen truth and
 reserved families -> full applicable-check matrix -> non-LLM baselines and
 verified discriminating checks -> authorized reviewer pilot -> scoped write-up.
 
+The owner has adopted this order for the next work: independent mechanics/heat-transfer
+reference admission, then frozen claim truth and compatible-explanation
+witnesses with reserved whole families, then the complete applicable-check and
+setup/execution/shared-cost matrix, then baselines at matched cost and decision
+coverage. [AUD-6](docs/OPEN_QUESTIONS.md#aud-6-adopted-admission-order-2026-10-12)
+records the decision and the [review scope](studies/reference_qualification/README.md#independent-admission-review-scope)
+bounds the immediate gate. The synthetic fault-detectability result is already
+executed and remains reusable within its declared assumptions. No case has
+human admission yet.
+
 Freezing reserved families precedes reviewer or selection-policy tuning.
 Extensions depend on the base result and a separate frozen evaluation design.
 The M1.1 implementation reuses public development inputs; later milestones
@@ -88,6 +98,8 @@ reference separates published display precision from numerical agreement. The
 [contracts and derivations](studies/reference_qualification/README.md) record
 source scope, assumptions, boundaries and task-specific output tolerances.
 All candidates remain pending independent human review; none is admitted.
+The immediate step is a case-by-case review of the existing contracts and
+discrepancies, not another parameter sweep.
 The published thermal HTML equation discrepancy is resolved against its PDF
 and boundary conditions. This completes only the bounded development task.
 
@@ -256,5 +268,6 @@ scoped benchmark and baseline write-up.
   Completion evidence would be an authorized study and its scoped analysis.
 
 No hardware readiness, funding, purchase, reviewer availability, naming or
-publication decision is inferred from this plan. Next work is M1.2; pilot and
-physical-study gates remain unresolved in [open questions](docs/OPEN_QUESTIONS.md).
+publication decision is inferred from this plan. The next gate is independent
+reference review for M1.2; pilot and physical-study gates remain unresolved in
+[open questions](docs/OPEN_QUESTIONS.md).

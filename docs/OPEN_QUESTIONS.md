@@ -79,18 +79,46 @@ The [executed candidates](../reports/reference-qualification/matrix.md) reuse
 the axial foundation and add bending, cylinder and conduction specifications with
 independent computational routes. This authorization covers development
 qualification only. No problem has been admitted and no independent human
-review has taken place. The research supplement suggests the external title
+review has taken place. The research supplement suggested the external title
 "Evidence Sufficiency for Engineering Verification" and a Gupta referral for
-independent review. Both remain recommendations: no naming change, reviewer
-appointment or recruitment/contact approval is recorded.
+independent review. They are historical recommendations, not approvals. AUD-6
+records the later owner decision to consider different reviewer candidates;
+no naming change, reviewer appointment or contact is recorded.
+
+## AUD-6: adopted admission order, 2026-10-12
+
+The owner adopted independent reference admission as the next gate after the
+merged [development qualification](../reports/reference-qualification/matrix.md)
+and [cylinder investigation](../reports/cylinder-convergence/matrix.md).
+The [family-specific review scope](../studies/reference_qualification/README.md#independent-admission-review-scope)
+names the contracts, independent methods, loading conventions and numerical
+budgets that an independent mechanics/heat-transfer reviewer must assess.
+Review and discrepancy resolution are required case by case before a problem
+is admitted. The owner has different reviewer candidates in mind; no person
+is appointed or contacted, and zero problems are admitted today.
+
+After admission, freeze claim truth, compatible-explanation witnesses and
+reserved whole families. Then execute the applicable-check matrix with setup,
+execution and shared costs. Only a reviewed matrix and cost model permit the
+cost-matched rule table, checklist, random, sensitivity and greedy baselines.
+The completed [synthetic fault-detectability study](../reports/development-compute/matrix.md)
+is reusable within its stated error model; it is not a reviewer result. The
+retained FEA evidence remains ineligible for Richardson/GCI. No model or
+human pilot is approved by this decision.
+
+For a conditional physical extension, self-funded equipment and independently
+arranged space can satisfy an access route once the actual setup is qualified.
+University lab membership is not a prerequisite. This supplies no equipment,
+site, operating procedure, budget or permission for a physical run.
 
 ## Remaining inputs and decisions
 
 - Next uncompleted technical step: M1.2's independently qualified problems and
   review. The bounded M1.2 work adds development candidates and computational
   cross-checks; no problem is admitted and no reviewer pilot was executed.
-- Independent collaborator review and reviewer availability remain unresolved.
-  Stiffness cross-checks are software verification, not a second human review.
+- An available independent mechanics/heat-transfer reviewer must assess the
+  specified families and resolve the documented discrepancies case by case.
+  Stiffness and numerical cross-checks do not supply human review.
 - Model pilot execution and resources require separate owner authorization.
 - Human comparison is optional and requires the institution's determination
   and separate authorization before recruitment.

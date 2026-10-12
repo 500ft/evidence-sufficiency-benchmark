@@ -36,6 +36,75 @@ fifth family. These families do not satisfy the provisional target of ten
 qualified problems. VM142 and the proposed connector witness remain outside
 this task.
 
+## Independent admission review scope
+
+The owner selected independent mechanics/heat-transfer review as the next gate.
+Use the existing public specifications and results below. Review the reference
+source scope and reuse rights, the derivation separately from its computational
+cross-check, observable locations and units, decision tolerance, controls and
+excluded physics. Record an explicit case-by-case disposition and any resolved
+discrepancy before admitting a problem. Four families remain development
+candidates, with zero admitted problems; loading and parameter variants do not
+increase the independent-problem count.
+
+- **Axial response:** Read the [claim contract](../evidence_sufficiency/claims/spec.json),
+  [force/displacement and geometry inputs](../evidence_sufficiency/spec.json),
+  [analytic reference](../evidence_sufficiency/reference.py),
+  [separate compliance artifact](../evidence_sufficiency/artifact.py) and
+  [stiffness regressions](../../tests/test_evidence_sufficiency.py). Check the
+  fixed-left bar under prescribed force and, separately, prescribed end
+  displacement. Confirm stress in MPa, deflection in mm, the inclusive
+  absolute tolerance of 1e-8 MPa for stress and 1e-8 mm for deflection,
+  with observed stress also at 1e-8 MPa, and the force-controlled modulus null
+  space with opposite deflection decisions. Admit this family only if those
+  assumptions, independent answer and finite explanation boundary support the
+  stated claims; the historical full-response tuple has a different scope.
+- **Distributed-load bending:** Read the [beam case](spec.json),
+  [continuum derivation](reference.py), [Hermite stiffness and reaction route](assembled.py)
+  and [regressions](../../tests/test_reference_qualification.py). Check signed
+  uniform transverse dead load on the full span, an ideal left clamp, free
+  right tip, rectangular section and nominal root stress without a local clamp
+  concentration. Confirm tip deflection in m, root stress in Pa, reaction in N
+  and couple in N*m. Rational nodal/action agreement is exact; one binary64
+  ULP applies only to serialized values. Decide whether the observable and
+  omitted shear, geometric nonlinearity and local stress effects permit the
+  proposed claim before admission.
+- **Pressure-only thick cylinder:** Read the [VM25-derived case](spec.json),
+  [Lamé reference](reference.py), [independent radial BVP](radial.py),
+  [wider-domain result](../../reports/development-compute/matrix.md) and
+  [registered convergence investigation](../cylinder_convergence/README.md).
+  Check internal/external radial tractions, zero axial end resultant, free
+  axial strain, tension-positive stresses and displacement in inch, with no
+  rotation or end-cap pressure. The inherited numerical budget is one part
+  per million of pressure for psi stresses and of a*pressure/E for displacement.
+  Earlier 32/64/128-step failures stay failed; selected finer resolutions have
+  a separate convergence and energy audit. Decide which stated input domain
+  and numerical rule can support admission without treating the conditional
+  error estimate as a certified bound or using a plane-strain/closed-end value.
+- **Steady conduction:** Read the [VM92 wall and MFiX slab cases](spec.json),
+  [resistance/Fourier references](reference.py), [local heat-balance route](assembled.py)
+  and [source comparison](../../reports/reference-qualification/matrix.md).
+  Check prescribed slab face temperatures with insulated remaining faces,
+  and, separately, wall fluid films, two layers, perfect contact and no
+  generation or radiation. Confirm K and W/m² for slab values; degF and Btu/hr
+  for wall values, with Fahrenheit used through differences. Independent
+  rational heat balances require exact equality; one ULP covers serialization.
+  Resolve the VM92 displayed outer-wall value versus the exact-input value in
+  the linked source comparison, which lies outside a nearest-unit rounding
+  interval, or explicitly confine the display to coarse supporting evidence
+  before treating it as a published-reference problem.
+  The slab is a control within this family, not another admitted base problem.
+
+The reviewer should return the specification/claim scope accepted, the
+independence and budget rationale checked, each discrepancy with its resolution,
+and any exclusion or revision needed. An unreviewed row remains a candidate.
+The completed [synthetic fault-detectability result](../../reports/development-compute/matrix.md)
+can inform later control design only within its declared bounded-error model;
+it does not supply admission or empirical reviewer sensitivity. The retained
+[FEA records](../../reports/fea-interpretation.json) have no eligible GCI.
+The person, availability and review outcome are unresolved. No named referral
+or signature is assumed.
+
 ## Bending derivation and independent route
 
 Let x run from the clamp to the free tip, w be positive in the applied load
@@ -230,7 +299,7 @@ Independent human review must examine the problem definitions, source scope,
 derivations, observable choices, tolerance suitability and implementation
 independence before admission. The suggested external title,
 Evidence Sufficiency for Engineering Verification,
-and a Gupta reviewer referral remain recommendations awaiting owner decisions.
-No naming change, reviewer appointment or contact is authorized by this
-supplement. No reserved families, new defect campaign, reviewer pilot or
-CAD/FEA host run was added.
+and a Gupta reviewer referral were historical recommendations. The owner
+has different independent reviewer candidates in mind, with no appointment
+or contact yet. No naming change has been adopted. No reserved families, new
+defect campaign, reviewer pilot or CAD/FEA host run was added.
