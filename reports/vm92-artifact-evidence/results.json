@@ -1,0 +1,62 @@
+{
+  "scope": "VM92 nominal derived development reference; no new case, label or solver run",
+  "later_edition_source_review": {
+    "title": "Principles of Heat Transfer",
+    "authors": "Frank Kreith and Mark S. Bohn",
+    "edition": "Fourth Edition",
+    "copyright_year": 1986,
+    "supplied_pdf_sha256": "3c4f5bfa8fb6f0c4f22b5fb21e44e7ee129afeab056b18e5f69d911058f96c85",
+    "inspected_printed_pages": [
+      28,
+      29,
+      32
+    ],
+    "scope": "Different one-layer SI example on pp. 28-29; p. 32 does not establish the cited 1959 display rule"
+  },
+  "provenance_sha256": {
+    "studies/reference_qualification/spec.json": "d0ffbed2d51153dca29851f6e939679d989f9c180c1972b987d6996c89709144",
+    "reports/reference-qualification/results.json": "326b8074fd0ec0798c69299d712559a7db89ff3c8fe7070fa7a40e04a0fa1087",
+    "studies/vm92_artifact_evidence.py": "10b1b9dfef7d34aac15e9e3cf0197355d1be4f89ef30d08fd9f164da4e82b095",
+    "studies/artifact_evidence.py": "4df7c3a15febe847ee0ece7ad6cbc46f8fb16b50b4dd63f9bb395cb383708cda"
+  },
+  "observable": "outer_surface_temperature",
+  "unit": "degF",
+  "resistance_exact_hr_F_per_Btu": "91/16",
+  "heat_rate_exact_Btu_per_hr": "46720/91",
+  "reference_exact_F": "30640/91",
+  "numerical_reference_error_F": "0",
+  "claim_acceptance_error_F": "1/17592186044416",
+  "exact_control_decision": "accept",
+  "published_display_F": "336",
+  "display_unit_F": "1",
+  "rounding_convention": "unreported by the cited source",
+  "possible_display_conventions": {
+    "nearest_half_away_from_zero": {
+      "interval": {
+        "low": "671/2",
+        "high": "673/2",
+        "low_closed": true,
+        "high_closed": false
+      },
+      "exact_reference_compatible": false,
+      "claim_decision_if_this_were_an_artifact": "reject"
+    },
+    "truncate_toward_zero": {
+      "interval": {
+        "low": "336",
+        "high": "337",
+        "low_closed": true,
+        "high_closed": false
+      },
+      "exact_reference_compatible": true,
+      "claim_decision_if_this_were_an_artifact": "ambiguous"
+    }
+  },
+  "unknown_convention_source_compatibility": "ambiguous",
+  "illustrative_solver": {
+    "reported_binary64_F": "336.7032967032967",
+    "assumed_output_error_F": "1/17592186044416",
+    "decision": "ambiguous",
+    "status": "conditional bound on a binary64 projection of exact assembly; no numerical-solver qualification"
+  }
+}

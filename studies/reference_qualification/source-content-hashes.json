@@ -1,0 +1,31 @@
+{
+  "method_version": "ansys-visible-text-v3",
+  "method_file": "reports/reference-admission/source_text_hash.py",
+  "source_urls_and_historical_raw_hashes": "studies/reference_qualification/sources.json",
+  "verified_on": "2026-10-12",
+  "scope": "Full visible text of each linked Ansys HTML page, with script/style content omitted by HTMLParser and remaining tags replaced with spaces; no vendor page is redistributed",
+  "sources": {
+    "ansys_vm25": {
+      "canonical_sha256": "f8cc834eba2f5df59992850a4bdc25f73523a07244ba23418b12df4a09dfc1dc",
+      "fresh_raw_sha256": [
+        "e128c612fe8275efd8b375133ff57dcee651a5e97687e8433a65b80668a76108",
+        "6fb5e5160c2a01b884e6ed371c3fa1893a4733f8ce0f9c157ab5a5b91fcf1e2c"
+      ]
+    },
+    "ansys_vm25_input": {
+      "canonical_sha256": "c3ebb3769226066a35a44bd2db0a98b0c75ab2fe31b364b645ce03e4d5fb87dc",
+      "fresh_raw_sha256": [
+        "c02879e661c11d2ead3661d555658b9b7381118a514cbb84539bed9a5156ca9f",
+        "50aa31a333bb084d255f15b62f32cfe6dbe22a2d8a6f1f7148b271336f61943a"
+      ]
+    },
+    "ansys_vm92": {
+      "canonical_sha256": "88851250266544b7e6b57a3a467d2346fb15845f7e24d918da99d386e3b8a6ae",
+      "fresh_raw_sha256": [
+        "9d9a3dd35f7b4be6672adba7d89293200d94fe9f1e61e99099cb123f5a3953ec",
+        "8b63d24706bcf9a324f16e7a3f48d5e4965f085c1d4130564f8cd0973b6595b9"
+      ]
+    }
+  },
+  "interpretation": "Two fresh fetches per page had different raw bytes but matching canonical text, also matching the completed reviewer record. This does not establish future hash stability or license redistribution."
+}

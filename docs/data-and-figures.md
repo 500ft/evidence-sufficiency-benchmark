@@ -117,7 +117,9 @@ M1.2 reference cross-checks. The axial foundation is reused unchanged.
 Bending and conduction controls have separate exact stiffness or conservation
 solutions. The pressure-only cylinder has an independent radial solution with
 step refinement and a declared numerical budget. Published VM25/VM92 display
-precision is reported separately; independent human review remains pending.
+precision is reported separately; the later case-specific decisions are in the
+[admission record](../reports/reference-admission/README.md). The matrix and
+numeric source retain their earlier development status as provenance.
 [Contracts, sources and derivations](../studies/reference_qualification/README.md)
 define their scope and output tolerances. Regenerate the new outputs with
 `python -m studies.reference_qualification.run`.

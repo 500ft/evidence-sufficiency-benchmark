@@ -4,9 +4,10 @@ The [executed matrix](../../reports/reference-qualification/matrix.md) compares
 closed-form answers with independent stiffness and heat-balance solutions.
 It extends the existing axial foundation with beam bending, thick-cylinder
 elasticity and steady heat conduction, giving four distinct development families.
-All problems are development candidates pending independent human
-review. M1.2 remains incomplete; this is no admission or reviewer-performance
-result.
+The [Claude AI technical review reconciliation](../../reports/reference-admission/README.md)
+admits the base reference problems at specified development scopes.
+The generated matrix below remains the earlier, unchanged development snapshot.
+M1.2 coverage is incomplete, and this is no reviewer-performance result.
 
 ## Contracts and coverage
 
@@ -15,8 +16,10 @@ geometry, loading, claim locations, units, assumptions, controls and partitions.
 The retained beam/slab use SI; VM25 uses inch/psi and VM92 uses foot/Btu/hour
 and Fahrenheit temperature differences, explicitly named in every parameter.
 Decimal strings represent exact specified model inputs, not measured precision.
-[source records](sources.json) pin the inspected references by URL, section and
-SHA-256. The references support the continuum equations and boundaries; the
+[source records](sources.json) retain raw as-fetched SHA-256 pins by URL and
+section. [Canonical-text hashes](source-content-hashes.json) with a versioned
+[method](../../reports/reference-admission/source_text_hash.py) support current content comparison for dynamic
+Ansys pages. The references support the continuum equations and boundaries; the
 local implementations and calculations were written separately.
 
 | Family | Definition and reference | Separate route | Qualification boundary |
@@ -35,6 +38,89 @@ separate assembled route. The retained slab is a supporting conduction control a
 fifth family. These families do not satisfy the provisional target of ten
 qualified problems. VM142 and the proposed connector witness remain outside
 this task.
+
+## Claude AI technical review scope
+
+The owner authorized Claude AI technical review for this admission gate. The
+completed report and case-specific resolutions are recorded in the
+[admission record](../../reports/reference-admission/README.md). Human review
+is not a prerequisite for these scoped development admissions. The review used
+the existing public specifications and results below. It examined the reference
+source scope and reuse rights, the derivation separately from its computational
+cross-check, observable locations and units, decision tolerance, controls and
+excluded physics. Record an explicit case-by-case disposition and any resolved
+discrepancy before admitting a problem. Loading and parameter variants do not
+increase the independent-problem count.
+
+- **Axial response:** Read the [claim contract](../evidence_sufficiency/claims/spec.json),
+  [force/displacement and geometry inputs](../evidence_sufficiency/spec.json),
+  [analytic reference](../evidence_sufficiency/reference.py),
+  [separate compliance artifact](../evidence_sufficiency/artifact.py) and
+  [stiffness regressions](../../tests/test_evidence_sufficiency.py). Check the
+  fixed-left bar under prescribed force and, separately, prescribed end
+  displacement. Confirm stress in MPa and deflection in mm against the inclusive
+  decision and observation tolerances in the claim contract's
+  [`claims[*].absolute_tolerance` and `observations[*].absolute_tolerance`](../evidence_sufficiency/claims/spec.json)
+  fields. Check the force-controlled modulus null space with opposite
+  deflection decisions. Admit this family only if those assumptions,
+  independent answer and finite explanation boundary support the
+  stated claims; the historical full-response tuple has a different scope.
+- **Distributed-load bending:** Read the [beam case](spec.json),
+  [continuum derivation](reference.py), [Hermite stiffness and reaction route](assembled.py)
+  and [regressions](../../tests/test_reference_qualification.py). Check signed
+  uniform transverse dead load on the full span, an ideal left clamp, free
+  right tip, rectangular section and nominal root stress without a local clamp
+  concentration. Confirm tip deflection in m, root stress in Pa, reaction in N
+  and couple in N*m. Check rational nodal/action agreement and serialized-value
+  decisions against [`qualification_rule` and `numeric_claim_rule`](spec.json).
+  Decide whether the observable and omitted shear, geometric nonlinearity and
+  local stress effects permit the
+  proposed claim before admission.
+- **Pressure-only thick cylinder:** Read the [VM25-derived case](spec.json),
+  [Lamé reference](reference.py), [independent radial BVP](radial.py),
+  [wider-domain result](../../reports/development-compute/matrix.md) and
+  [frozen convergence manifest](../cylinder_convergence/manifest.json) and
+  [registered investigation](../cylinder_convergence/README.md).
+  Check internal/external radial tractions, zero axial end resultant, free
+  axial strain, tension-positive stresses and displacement in inch, with no
+  rotation or end-cap pressure. Confirm the psi stress units and the inherited
+  [case `qualification` fields](spec.json) `relative_scale_budget`,
+  `stress_scale` and `displacement_scale`, then the manifest's
+  `budget_relative`, `scales` and `new_resolution_gate`. Earlier coarse-step
+  failures stay failed; selected finer resolutions have a separate convergence
+  and energy audit. Decide which stated input domain
+  and numerical rule can support admission without treating the conditional
+  error estimate as a certified bound or using a plane-strain/closed-end value.
+- **Steady conduction:** Read the [VM92 wall and MFiX slab cases](spec.json),
+  [resistance/Fourier references](reference.py), [local heat-balance route](assembled.py)
+  and [source comparison](../../reports/reference-qualification/matrix.md).
+  Check prescribed slab face temperatures with insulated remaining faces,
+  and, separately, wall fluid films, two layers, perfect contact and no
+  generation or radiation. Confirm K and W/m² for slab values; degF and Btu/hr
+  for wall values, with Fahrenheit used through differences. Check the
+  independent rational heat balances and serialized-value decisions against
+  [`qualification_rule` and `numeric_claim_rule`](spec.json).
+  The [reconciliation](../../reports/reference-admission/README.md) excludes
+  the disputed VM92 printed outer-wall value from published corroboration and
+  admits the wall as a derived problem using its exact-input equations.
+  The slab is a control within this family, not another admitted base problem.
+
+Each report must pin its reviewed commit and source hashes, record model and
+session provenance where known, disclose prior exposure to expected answers,
+and preserve independently derived checks before comparison with repository
+references. Distinguish another AI session from an independent calculation.
+The reviewer should return per-claim findings and dispositions, the
+specification/claim scope supported, the independence and budget rationale,
+and each discrepancy with its proposed resolution or exclusion. Repository
+authors must reconcile findings and record case-specific resolutions before
+declaring admission. An assignment or unresolved report leaves the case a
+candidate. This review is not an external peer review or scored reviewer pilot.
+The completed [synthetic fault-detectability result](../../reports/development-compute/matrix.md)
+can inform later control design only within its declared bounded-error model;
+it does not supply admission or empirical reviewer sensitivity. The retained
+[FEA records](../../reports/fea-interpretation.json) have no eligible GCI.
+The [reconciled findings](../../reports/reference-admission/README.md) support
+the scoped admissions; no human reviewer or signature is implied.
 
 ## Bending derivation and independent route
 
@@ -105,7 +191,10 @@ define the source scope. The pinned input couples one end's axial displacement
 while leaving its resultant free; no end-cap pressure is applied. Thus the
 homogeneous solution has sigma_z = 0 and a uniform free axial strain.
 Constraining that strain to zero or applying closed-end pressure changes radial
-displacement. Rotation is a separate published case and is excluded here.
+displacement. Rotation is a separate published load step with a different axial
+constraint in the [VM25 input listing](https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM25TXT.html)
+and is excluded here. Its printed rotation targets are not pressure-only
+long-cylinder reference claims.
 The source's exterior printout pressure is recorded as a numerical dummy; a
 regression checks its effect against the local numerical budget. No vendor
 input file or figure is redistributed.
@@ -132,7 +221,12 @@ s' = E*u/r² - (1-nu)*s/r
 Two RK4 trajectories and a scalar shooting solve enforce both radial tractions.
 Step doubling checks the output error against the exact reference. A separate
 trapezoid integral checks [r*sigma_r] = integral sigma_theta dr. Its second-order
-residual is retained, separate from the fourth-order displacement error.
+residual is retained, separate from the fourth-order displacement error. The
+[review reproduction](../../reports/reference-admission/reproduction.json) shows
+that the nominal residual is largely present even on the exact field, so it is
+a quadrature-dominated sanity check, not an isolated RK4 error measure. The
+[registered Simpson and energy checks](../cylinder_convergence/README.md)
+provide separate equilibrium and energy evidence.
 Tests cover zero pressure, modulus scaling and zero Poisson ratio, and reject
 closed-end and plane-strain displacement as answers to this contract.
 
@@ -171,12 +265,23 @@ balances determine the reference from inputs. The generated source comparison
 shows the displayed target, derived value, difference, and half-/whole-display-unit
 consistency. The outer target is outside a nearest-unit rounding interval even
 though it is within a full display unit. The source does not specify a rounding
-mode that resolves this last-digit discrepancy. Therefore the display is coarse
-support only; it is never an acceptance target at 1e-8 or at serialization precision.
+mode that resolves this last-digit discrepancy. The current
+[admission record](../../reports/reference-admission/README.md) counts this as a
+derived problem: the heat-rate and inner-face displays are coarse corroboration,
+and the outer printed target is excluded. No display value is an acceptance
+target at claim or serialization precision.
 The exact value and other source comparisons are in the generated matrix rather
 than a second hand-maintained numeric table. Source precision is not uncertainty
 in a physical measurement, and no evidence-sufficiency label is inferred from
 this coarse comparison.
+
+The [artifact-class execution](../../reports/vm92-artifact-evidence/matrix.md)
+tests exact, rounded-display and conditional numerical-solver representations
+with claim acceptance error and numerical reference error kept separate. The
+supplied Kreith and Bohn Fourth Edition is later than the printing cited by
+VM92. Its inspected series-wall example and printed p. 32 do not establish the
+VM92 display convention. The disputed target remains excluded; this check
+does not add a case or freeze a label.
 
 ## Decisions, tolerances and checks
 
@@ -204,7 +309,8 @@ modulus scaling, equal face temperatures, reversed heat flow and conductivity
 scaling. They check exact fields/balances and reject an injected bad deflection
 without changing the stress result. Control identifiers do not define truth.
 The local Gaussian solver also has a coupled-system and singular-system check.
-Software route independence does not constitute independent human review.
+Software route independence alone does not complete the Claude AI technical
+review or establish human review.
 
 ## Reproduction and remaining qualification
 
@@ -224,13 +330,15 @@ redistributed. No third-party figures, prose, solver code or output datasets
 are bundled. Public accessibility does not establish permission for later
 redistribution; the source records preserve that unresolved rights boundary.
 The beam parameters are locally authored; the cylinder and thermal definitions
-use published continuum setups. No candidate is an admitted benchmark problem.
+use published continuum setups. The current scoped admissions and coverage
+limits are in the [admission record](../../reports/reference-admission/README.md).
 
-Independent human review must examine the problem definitions, source scope,
-derivations, observable choices, tolerance suitability and implementation
-independence before admission. The suggested external title,
+The Claude AI technical review and finding reconciliation must examine the
+problem definitions, source scope, derivations, observable choices, tolerance
+suitability and implementation independence before admission. The suggested
+external title,
 Evidence Sufficiency for Engineering Verification,
-and a Gupta reviewer referral remain recommendations awaiting owner decisions.
-No naming change, reviewer appointment or contact is authorized by this
-supplement. No reserved families, new defect campaign, reviewer pilot or
-CAD/FEA host run was added.
+and a Gupta reviewer referral were historical recommendations. The owner
+has different candidates in mind for any later human review, with no appointment
+or contact yet. No naming change has been adopted. No reserved families, new
+defect campaign, reviewer pilot or CAD/FEA host run was added.

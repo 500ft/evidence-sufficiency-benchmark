@@ -79,18 +79,110 @@ The [executed candidates](../reports/reference-qualification/matrix.md) reuse
 the axial foundation and add bending, cylinder and conduction specifications with
 independent computational routes. This authorization covers development
 qualification only. No problem has been admitted and no independent human
-review has taken place. The research supplement suggests the external title
+review has taken place. The research supplement suggested the external title
 "Evidence Sufficiency for Engineering Verification" and a Gupta referral for
-independent review. Both remain recommendations: no naming change, reviewer
-appointment or recruitment/contact approval is recorded.
+independent review. They are historical recommendations, not approvals. AUD-6
+records the later owner decision to consider different reviewer candidates;
+no naming change, reviewer appointment or contact is recorded.
+
+## AUD-6: adopted admission order, 2026-10-12
+
+The owner adopted independent reference admission as the next gate after the
+merged [development qualification](../reports/reference-qualification/matrix.md)
+and [cylinder investigation](../reports/cylinder-convergence/matrix.md).
+The [family-specific review scope](../studies/reference_qualification/README.md#claude-ai-technical-review-scope)
+names the contracts, independent methods, loading conventions and numerical
+budgets that an independent mechanics/heat-transfer reviewer must assess.
+Review and discrepancy resolution are required case by case before a problem
+is admitted. The owner has different human reviewer candidates in mind; none
+is appointed or contacted, and zero problems are admitted today.
+AUD-7 changes the reviewer type while retaining this dependency order and
+case-specific scope.
+
+After admission, freeze claim truth, compatible-explanation witnesses and
+reserved whole families. Then execute the applicable-check matrix with setup,
+execution and shared costs. Only a reviewed matrix and cost model permit the
+cost-matched rule table, checklist, random, sensitivity and greedy baselines.
+The completed [synthetic fault-detectability study](../reports/development-compute/matrix.md)
+is reusable within its stated error model; it is not a reviewer result. The
+retained FEA evidence remains ineligible for Richardson/GCI. No model or
+human pilot is approved by this decision.
+
+For a conditional physical extension, self-funded equipment and independently
+arranged space can satisfy an access route once the actual setup is qualified.
+University lab membership is not a prerequisite. This supplies no equipment,
+site, operating procedure, budget or permission for a physical run.
+
+## AUD-7: Claude AI technical review for current admission
+
+The owner authorized Claude AI technical review to satisfy the current
+reference-admission review gate. This changes the reviewer requirement in
+AUD-6: independent human review is deferred and is not a prerequisite for this
+scoped development admission. The existing Claude reviewers are researching,
+but their completed reports are not available. Assignment is not completion;
+no case is admitted. The [family review scope](../studies/reference_qualification/README.md#claude-ai-technical-review-scope)
+states the case-specific questions.
+
+Before admission, each Claude AI technical review needs a pinned report with
+reviewed commit and source hashes, model/session provenance where known, prior
+exposure, independently derived checks, per-claim findings and dispositions.
+Repository authors must reconcile findings, document resolutions and exclusions,
+and decide admission case by case. A second AI session and an independently
+derived calculation are different evidence; neither is called human review or
+external peer review. The existing specification's historical review-status
+field and generated numerical reports remain unchanged to preserve their
+provenance; this decision record and roadmap state the current gate.
+
+This technical reference review is separate from the future scored reviewer
+pilot and optional human-comparison study. Their funding, exposure, recruitment
+and authorization gates remain. No new model campaign, baseline study, reserved
+data access, hardware run or publication follows from this decision.
+
+## AUD-8: reconciled Claude AI technical review, 2026-10-12
+
+The completed [case-by-case admission record](../reports/reference-admission/README.md)
+reconciles the owner's supplied non-blind Claude AI technical report and
+focused reproductions. It records the admitted development reference problems
+and their published-reference count. VM92 is admitted as derived; its disputed
+printed outer-wall target is excluded from published corroboration. M1.2
+remains incomplete against its provisional target. This decision supersedes
+the pending-admission status in AUD-6 and AUD-7. Their text and the generated
+development report remain historical snapshots.
+
+The original report hash, reviewed commit, model/session provenance, prior
+exposure, separate calculation and finding dispositions are in the admission
+record. Raw source hashes remain as-fetched history; a versioned canonical-text
+method now documents the dynamic Ansys pages. R1–R5 remain prerequisites for
+label freeze, with the proposed observation-tolerance shortcut rejected as a
+general remedy. This admits reference problems only. It authorizes no labels,
+cost matrix, baselines, scored reviewer pilot, human comparison or physical work.
+
+## AUD-9: VM92 artifact-class rule
+
+The owner authorized a bounded implementation of artifact-class and tolerance
+rules on the existing derived VM92 wall before any new case. The
+[executed result](../reports/vm92-artifact-evidence/matrix.md) keeps exact
+control output, rounded source display and conditional numerical-solver output
+distinct. It treats claim acceptance error, evidence precision and numerical
+reference error as separate inputs. The source does not state a rounding
+convention; the result records the conflicting conditional interpretations
+without choosing one. The supplied later Kreith and Bohn edition did not
+establish the cited earlier printing's display rule in the inspected passages.
+
+The result does not alter the four scoped admissions, numerical budgets,
+historical results or the disputed display exclusion. R1 has an executed VM92
+example, while artifact classes and explanation sets for other claims remain
+unfrozen. R2's broader compatible explanations need claim-specific witnesses;
+R3's beam exclusions, R4's cylinder zero-load rule and R5's cylinder input
+domain remain at their recorded scopes. M1.3 label freeze, new base problems,
+policy costs and any pilot still require their own prerequisites.
 
 ## Remaining inputs and decisions
 
-- Next uncompleted technical step: M1.2's independently qualified problems and
-  review. The bounded M1.2 work adds development candidates and computational
-  cross-checks; no problem is admitted and no reviewer pilot was executed.
-- Independent collaborator review and reviewer availability remain unresolved.
-  Stiffness cross-checks are software verification, not a second human review.
+- M1.2 still needs distinct qualified problems to meet its provisional
+  coverage target. The current admitted count and scope are in AUD-8.
+- R1–R5 in the admission record require resolution before M1.3 label freeze.
+  The current admissions need no additional human-review gate.
 - Model pilot execution and resources require separate owner authorization.
 - Human comparison is optional and requires the institution's determination
   and separate authorization before recruitment.

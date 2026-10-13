@@ -58,9 +58,11 @@ JSONL and qualification report. They permit reproduction without redistributing
 large raw files. Field integration is necessary to obtain the new energy and
 equilibrium diagnostics, which were absent from the retained observables.
 Only failed inputs and the named controls are processed. Parameter variants do
-not create new families, human-reviewed labels or qualified benchmark problems.
-The source precision discrepancy for the layered wall and all human-admission,
-policy, reserved-data and physical-validity gates remain unchanged.
+not create new families, reviewed labels or qualified benchmark problems.
+The investigation itself made no case-admission decision. The later
+[Claude AI technical review reconciliation](../../reports/reference-admission/README.md)
+admits the pressure-only reference within its declared inputs and selected
+resolutions. Policy, reserved-data and physical-validity gates remain unchanged.
 
 ## Executed result and reproduction
 
