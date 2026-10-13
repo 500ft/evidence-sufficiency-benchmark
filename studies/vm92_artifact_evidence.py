@@ -13,6 +13,7 @@ from studies.reference_qualification import assembled
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = ROOT / "studies/reference_qualification/spec.json"
 HISTORICAL = ROOT / "reports/reference-qualification/results.json"
+EARLY_SOURCES = ROOT / "studies/vm92_early_sources.json"
 OUT = ROOT / "reports/vm92-artifact-evidence"
 LATER_BOOK = {
     "title": "Principles of Heat Transfer",
@@ -27,7 +28,12 @@ LATER_BOOK = {
 
 def build():
     spec = json.loads(SPEC.read_text())
+    early_sources = json.loads(EARLY_SOURCES.read_text())
     case = next(c for c in spec["cases"] if c["id"] == "vm92_layered_wall")
+    assert early_sources["case_id"] == case["id"]
+    targets = {c["observable"] for c in case["published_evidence"]["targets"]}
+    assert all(set(copy["printed_targets_match_spec_for"]) == targets
+               for copy in early_sources["copies"])
     old = next(c for c in json.loads(HISTORICAL.read_text())["cases"]
                if c["id"] == case["id"])
     p = {key: F(value) for key, value in case["parameters"].items()}
@@ -69,8 +75,9 @@ def build():
     return {
         "scope": "VM92 nominal derived development reference; no new case, label or solver run",
         "later_edition_source_review": LATER_BOOK,
+        "early_source_review": early_sources,
         "provenance_sha256": {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
-                              for path in (SPEC, HISTORICAL, Path(__file__),
+                              for path in (SPEC, HISTORICAL, EARLY_SOURCES, Path(__file__),
                                            ROOT / "studies/artifact_evidence.py")},
         "observable": "outer_surface_temperature",
         "unit": "degF",
@@ -128,12 +135,18 @@ def table(result):
               "measurement or a new admission. Reference error, output uncertainty and",
               "claim acceptance error remain separate inputs. No VM92 explanation set is",
               "frozen, so these are claim classifications, not evidence-sufficiency labels.", "",
+              "[Two inspected early Kreith copies](../../studies/vm92_early_sources.json)",
+              "both print the specified furnace-wall targets on Example 2-5, printed",
+              "p. 32: a 1958-copyright copy with no identified printing and the",
+              "explicit August 1960 third printing. This traces the printed outer",
+              "target to the early textbook lineage, but neither page explains the",
+              "final-value rounding rule. The exact 1959 second printing cited by",
+              "Ansys remains uninspected, and the exact-input discrepancy remains.",
               "The owner-reported 336.54 degF has no verified source and is not an input.",
               f'The supplied {result["later_edition_source_review"]["authors"]}',
               f'{result["later_edition_source_review"]["edition"]} ({result["later_edition_source_review"]["copyright_year"]}) contains a different',
               "one-layer SI wall example at printed pp. 28-29; its inspected printed p. 32",
-              "does not establish the VM92 display rule. The VM92 citation is to an earlier",
-              "1959 printing, which was not obtained. The supplied PDF SHA-256 is",
+              "does not establish the VM92 display rule. The supplied PDF SHA-256 is",
               f'`{result["later_edition_source_review"]["supplied_pdf_sha256"]}`;',
               "no book pages are redistributed.", "",
               "Reproduce: `python -m studies.vm92_artifact_evidence`."]

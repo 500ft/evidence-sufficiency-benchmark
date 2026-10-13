@@ -29,12 +29,18 @@ measurement or a new admission. Reference error, output uncertainty and
 claim acceptance error remain separate inputs. No VM92 explanation set is
 frozen, so these are claim classifications, not evidence-sufficiency labels.
 
+[Two inspected early Kreith copies](../../studies/vm92_early_sources.json)
+both print the specified furnace-wall targets on Example 2-5, printed
+p. 32: a 1958-copyright copy with no identified printing and the
+explicit August 1960 third printing. This traces the printed outer
+target to the early textbook lineage, but neither page explains the
+final-value rounding rule. The exact 1959 second printing cited by
+Ansys remains uninspected, and the exact-input discrepancy remains.
 The owner-reported 336.54 degF has no verified source and is not an input.
 The supplied Frank Kreith and Mark S. Bohn
 Fourth Edition (1986) contains a different
 one-layer SI wall example at printed pp. 28-29; its inspected printed p. 32
-does not establish the VM92 display rule. The VM92 citation is to an earlier
-1959 printing, which was not obtained. The supplied PDF SHA-256 is
+does not establish the VM92 display rule. The supplied PDF SHA-256 is
 `3c4f5bfa8fb6f0c4f22b5fb21e44e7ee129afeab056b18e5f69d911058f96c85`;
 no book pages are redistributed.
 

@@ -1,0 +1,37 @@
+{
+  "scope": "Visual inspection of two HathiTrust scans of Kreith's early Principles of Heat Transfer; no scan pages redistributed",
+  "target_home": "studies/reference_qualification/spec.json",
+  "case_id": "vm92_layered_wall",
+  "copies": [
+    {
+      "id": "kreith_1958_copyright_copy",
+      "copyright_year": 1958,
+      "printing": "not identified on inspected copyright page",
+      "copyright_page": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015049110755&seq=6",
+      "example_page": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015049110755&seq=46",
+      "printed_page": 32,
+      "example": "2-5",
+      "printed_targets_match_spec_for": [
+        "heat_rate",
+        "inner_surface_temperature",
+        "outer_surface_temperature"
+      ]
+    },
+    {
+      "id": "kreith_1960_third_printing",
+      "copyright_year": 1958,
+      "printing": "third printing, August 1960",
+      "copyright_page": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015000491327&seq=12",
+      "example_page": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015000491327&seq=52",
+      "printed_page": 32,
+      "example": "2-5",
+      "printed_targets_match_spec_for": [
+        "heat_rate",
+        "inner_surface_temperature",
+        "outer_surface_temperature"
+      ]
+    }
+  ],
+  "finding": "Both inspected early copies print the VM92 furnace-wall targets, including the disputed outer target; neither states the final-value rounding convention or prints a 336.54 F intermediate",
+  "limit": "The exact 1959 second printing cited by Ansys has not been inspected; agreement between the two copies does not prove its contents or resolve the exact-input numerical discrepancy"
+}

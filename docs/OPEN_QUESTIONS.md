@@ -177,6 +177,18 @@ R3's beam exclusions, R4's cylinder zero-load rule and R5's cylinder input
 domain remain at their recorded scopes. M1.3 label freeze, new base problems,
 policy costs and any pilot still require their own prerequisites.
 
+## AUD-10: early Kreith source check
+
+[Two visually inspected early Kreith copies](../studies/vm92_early_sources.json)
+print the VM92 furnace-wall Example 2-5 and its disputed outer target. The
+1958-copyright copy has no identified printing; the other explicitly states
+third printing, August 1960. This improves provenance of the printed target.
+Neither inspected page gives the final-value rounding convention or the
+owner-reported intermediate value. The exact 1959 second printing cited by
+Ansys remains uninspected. The [artifact-class result](../reports/vm92-artifact-evidence/matrix.md)
+and derived-only admission retain the exact-input discrepancy, original
+tolerances and exclusion from published corroboration.
+
 ## Remaining inputs and decisions
 
 - M1.2 still needs distinct qualified problems to meet its provisional

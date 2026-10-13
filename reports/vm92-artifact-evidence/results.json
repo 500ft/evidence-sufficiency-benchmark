@@ -13,10 +13,48 @@
     ],
     "scope": "Different one-layer SI example on pp. 28-29; p. 32 does not establish the cited 1959 display rule"
   },
+  "early_source_review": {
+    "scope": "Visual inspection of two HathiTrust scans of Kreith's early Principles of Heat Transfer; no scan pages redistributed",
+    "target_home": "studies/reference_qualification/spec.json",
+    "case_id": "vm92_layered_wall",
+    "copies": [
+      {
+        "id": "kreith_1958_copyright_copy",
+        "copyright_year": 1958,
+        "printing": "not identified on inspected copyright page",
+        "copyright_page": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015049110755&seq=6",
+        "example_page": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015049110755&seq=46",
+        "printed_page": 32,
+        "example": "2-5",
+        "printed_targets_match_spec_for": [
+          "heat_rate",
+          "inner_surface_temperature",
+          "outer_surface_temperature"
+        ]
+      },
+      {
+        "id": "kreith_1960_third_printing",
+        "copyright_year": 1958,
+        "printing": "third printing, August 1960",
+        "copyright_page": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015000491327&seq=12",
+        "example_page": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015000491327&seq=52",
+        "printed_page": 32,
+        "example": "2-5",
+        "printed_targets_match_spec_for": [
+          "heat_rate",
+          "inner_surface_temperature",
+          "outer_surface_temperature"
+        ]
+      }
+    ],
+    "finding": "Both inspected early copies print the VM92 furnace-wall targets, including the disputed outer target; neither states the final-value rounding convention or prints a 336.54 F intermediate",
+    "limit": "The exact 1959 second printing cited by Ansys has not been inspected; agreement between the two copies does not prove its contents or resolve the exact-input numerical discrepancy"
+  },
   "provenance_sha256": {
     "studies/reference_qualification/spec.json": "d0ffbed2d51153dca29851f6e939679d989f9c180c1972b987d6996c89709144",
     "reports/reference-qualification/results.json": "326b8074fd0ec0798c69299d712559a7db89ff3c8fe7070fa7a40e04a0fa1087",
-    "studies/vm92_artifact_evidence.py": "10b1b9dfef7d34aac15e9e3cf0197355d1be4f89ef30d08fd9f164da4e82b095",
+    "studies/vm92_early_sources.json": "ecf055e25a2ae3cbaf9468734d1ecd20822c680318596b0744c5dd8f243b3c39",
+    "studies/vm92_artifact_evidence.py": "399d8ead84f3f7989e027645479ea72055963396ab0b78175e9eece077f00863",
     "studies/artifact_evidence.py": "4df7c3a15febe847ee0ece7ad6cbc46f8fb16b50b4dd63f9bb395cb383708cda"
   },
   "observable": "outer_surface_temperature",
