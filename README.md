@@ -40,6 +40,9 @@ across axial response, distributed-load bending, thick-cylinder elasticity and
 steady conduction. VM25 is the one firm published-reference problem; VM92 is
 admitted as derived, with its disputed printed outer-face value excluded from
 published corroboration. The provisional coverage target remains incomplete.
+The [VM92 artifact-class result](reports/vm92-artifact-evidence/matrix.md)
+separates source display precision from claim and numerical-reference error;
+its unresolved display convention does not change admission scope.
 The earlier [development matrix](reports/reference-qualification/matrix.md)
 is retained as a historical numerical snapshot. The
 [executed development sweep](reports/development-compute/matrix.md)

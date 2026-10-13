@@ -157,6 +157,26 @@ label freeze, with the proposed observation-tolerance shortcut rejected as a
 general remedy. This admits reference problems only. It authorizes no labels,
 cost matrix, baselines, scored reviewer pilot, human comparison or physical work.
 
+## AUD-9: VM92 artifact-class rule
+
+The owner authorized a bounded implementation of artifact-class and tolerance
+rules on the existing derived VM92 wall before any new case. The
+[executed result](../reports/vm92-artifact-evidence/matrix.md) keeps exact
+control output, rounded source display and conditional numerical-solver output
+distinct. It treats claim acceptance error, evidence precision and numerical
+reference error as separate inputs. The source does not state a rounding
+convention; the result records the conflicting conditional interpretations
+without choosing one. The supplied later Kreith and Bohn edition did not
+establish the cited earlier printing's display rule in the inspected passages.
+
+The result does not alter the four scoped admissions, numerical budgets,
+historical results or the disputed display exclusion. R1 has an executed VM92
+example, while artifact classes and explanation sets for other claims remain
+unfrozen. R2's broader compatible explanations need claim-specific witnesses;
+R3's beam exclusions, R4's cylinder zero-load rule and R5's cylinder input
+domain remain at their recorded scopes. M1.3 label freeze, new base problems,
+policy costs and any pilot still require their own prerequisites.
+
 ## Remaining inputs and decisions
 
 - M1.2 still needs distinct qualified problems to meet its provisional

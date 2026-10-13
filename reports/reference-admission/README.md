@@ -77,6 +77,12 @@ selection-policy benchmark. Claim tolerances are serialization or numerical
 solver budgets, not engineering allowables. Published display precision is
 separate from those budgets.
 
+The later [VM92 artifact-class demonstration](../vm92-artifact-evidence/matrix.md)
+applies an explicit interval rule to exact output, declared display conventions
+and a conditional numerical-solver bound. It does not change this admission:
+the source's rounding convention is unverified, and the printed outer target
+remains excluded from published corroboration.
+
 ## Finding resolution and boundaries
 
 | Finding | Reconciliation |

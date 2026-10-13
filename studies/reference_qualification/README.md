@@ -275,6 +275,14 @@ than a second hand-maintained numeric table. Source precision is not uncertainty
 in a physical measurement, and no evidence-sufficiency label is inferred from
 this coarse comparison.
 
+The [artifact-class execution](../../reports/vm92-artifact-evidence/matrix.md)
+tests exact, rounded-display and conditional numerical-solver representations
+with claim acceptance error and numerical reference error kept separate. The
+supplied Kreith and Bohn Fourth Edition is later than the printing cited by
+VM92. Its inspected series-wall example and printed p. 32 do not establish the
+VM92 display convention. The disputed target remains excluded; this check
+does not add a case or freeze a label.
+
 ## Decisions, tolerances and checks
 
 For beam and conduction controls, qualification requires **exact equality** of
