@@ -127,8 +127,10 @@ solver adequacy is established only for these declared equations and inputs.
 The [VM92 artifact-class result](reports/vm92-artifact-evidence/matrix.md)
 now separates exact output, a rounded source display and a conditional
 numerical-solver bound. Claim acceptance error, display precision and numerical
-reference error remain distinct. The cited display convention is unknown, so
-the outer printed value remains excluded from published corroboration. This
+reference error remain distinct. [Inspected early Kreith copies](studies/vm92_early_sources.json)
+both print the disputed target, but the cited 1959 printing and display
+convention remain unverified. The outer printed value remains excluded from
+published corroboration. This
 resolves an artifact-rule demonstration for this derived case only; it adds no
 case, label or solver qualification. M1.2 coverage and the remaining R1–R5
 scope questions still gate M1.3 label freeze.

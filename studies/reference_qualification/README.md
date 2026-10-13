@@ -283,6 +283,13 @@ VM92. Its inspected series-wall example and printed p. 32 do not establish the
 VM92 display convention. The disputed target remains excluded; this check
 does not add a case or freeze a label.
 
+[Two inspected early Kreith copies](../vm92_early_sources.json) contain the
+specified Example 2-5 on printed p. 32 and print the disputed outer target.
+The 1958-copyright copy has no identified printing; the other explicitly says
+third printing, August 1960. Neither inspected page states a final-value
+rounding rule. The exact 1959 second printing remains uninspected, and the
+exact-input discrepancy and derived-only admission are unchanged.
+
 ## Decisions, tolerances and checks
 
 For beam and conduction controls, qualification requires **exact equality** of
