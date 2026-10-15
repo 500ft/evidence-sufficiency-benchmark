@@ -1,0 +1,125 @@
+{
+  "status": "development witnesses only; no new case, frozen label or solver run",
+  "axial": {
+    "force_stress_known_load": {
+      "compatible": [
+        "nominal",
+        "soft_E"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "soft_E": "accept"
+      },
+      "status": "accept"
+    },
+    "force_deflection_known_load": {
+      "compatible": [
+        "nominal",
+        "soft_E"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "soft_E": "reject"
+      },
+      "status": "ambiguous"
+    },
+    "force_stress_unknown_area_with_force_only": {
+      "compatible": [
+        "nominal",
+        "half_area"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "half_area": "reject"
+      },
+      "status": "ambiguous"
+    },
+    "displacement_stress": {
+      "compatible": [
+        "nominal",
+        "soft_E"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "soft_E": "reject"
+      },
+      "status": "ambiguous"
+    },
+    "displacement_deflection": {
+      "compatible": [
+        "nominal",
+        "soft_E"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "soft_E": "accept"
+      },
+      "status": "accept"
+    }
+  },
+  "beam": {
+    "root_stress_given_nominal_stress": {
+      "compatible": [
+        "nominal",
+        "soft_E"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "soft_E": "accept"
+      },
+      "status": "accept"
+    },
+    "tip_deflection_given_nominal_stress": {
+      "compatible": [
+        "nominal",
+        "soft_E"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "soft_E": "reject"
+      },
+      "status": "ambiguous"
+    }
+  },
+  "slab": {
+    "midpoint_temperature_from_same_boundaries": {
+      "compatible": [
+        "nominal",
+        "half_k"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "half_k": "accept"
+      },
+      "status": "accept"
+    },
+    "heat_flux_from_same_temperature": {
+      "compatible": [
+        "nominal",
+        "half_k"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "half_k": "reject"
+      },
+      "status": "ambiguous"
+    }
+  },
+  "cylinder_zero": {
+    "exact_control": "accept",
+    "exact_nonzero": "reject",
+    "conditional_roundoff": "ambiguous"
+  },
+  "cylinder_registered_inputs": 99,
+  "cylinder_selected_steps_example": {
+    "id": "prior_153",
+    "steps": 128
+  },
+  "vm92_regression": {
+    "exact": "accept",
+    "constructed_negative": "reject",
+    "unknown_display": "ambiguous",
+    "nearest_display": "reject",
+    "truncate_display": "ambiguous"
+  }
+}
