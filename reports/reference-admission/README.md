@@ -97,6 +97,8 @@ remains excluded from published corroboration.
 | **R4, cylinder zero-load budget:** scoped control | The declared zero-load control has exact-zero output and budget. No absolute floor is added to the preserved specification. A later artifact class with roundoff at zero needs a separately justified rule before label freeze. |
 | **R5, cylinder domain:** scoped exclusion | The [registered convergence result](../cylinder-convergence/matrix.md) supports only its declared inputs and selected resolutions. Observed order is not a uniform error guarantee; original coarse failures remain failed. Any new input domain requires its own qualification. |
 
+The later [public artifact-rule witnesses](../artifact-rule-witnesses/matrix.md) execute R1–R5 boundaries for the admitted development scopes. This does not retroactively change the review findings or freeze final labels; any broader explanation class or application tolerance still needs its own declaration and review.
+
 The reviewer's statement that the trapezoid percentage can be attributed to
 quadrature is narrowed here: the two residuals can partially cancel, so their
 ratio is not a rigorous error decomposition. Its suggested universal remedy
