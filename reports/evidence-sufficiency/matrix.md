@@ -10,9 +10,9 @@ Source: [results.json](results.json). Configuration: [spec.json](../../studies/e
 Downloads: [outcomes.csv](outcomes.csv), [policies.csv](policies.csv).
 Values below are rounded for display; downloads retain stored precision.
 
-![Six panels compare control and half-modulus stress, extension and reaction under force and displacement loading; each point names its check outcome.](boundary-condition.png)
+![Six panels compare control and half-modulus stress, extension and reaction under force and displacement loading; marker fill shows each check outcome.](boundary-condition.png)
 
-[Vector figure](boundary-condition.svg). Both half-modulus artifacts fail the full tuple,
+[Vector figure](boundary-condition.svg), [caption](boundary-condition.caption.md). Both half-modulus artifacts fail the full tuple,
 but different observable checks detect the fault under each loading convention.
 
 ## Prescribed force

@@ -16,11 +16,19 @@ and a separately assembled stiffness model.
 
 ![Seeded axial-bar development example: stress, extension and reaction checks for control and half-modulus artifacts under force and displacement loading](reports/evidence-sufficiency/boundary-condition.png)
 
-Verification example, not physical validation. Circles mark controls and squares
-mark half-modulus artifacts; dashed lines show specification references. Each
-point labels its observable check result, and each row title names the checks
-that detect the fault under that loading. Both half-modulus artifacts fail the
-full response tuple. [SVG](reports/evidence-sufficiency/boundary-condition.svg).
+Seeded development example, not physical validation. Six panels show the stored
+stress [MPa], extension [mm] and reaction [N] for the control (circles) and the
+half-modulus artifact (squares). Panels (a) to (c): prescribed force, 1000 N.
+Panels (d) to (f): prescribed displacement, 0.025 mm. The dashed line is the
+independent specification reference. A filled marker means the panel's check
+passes against that reference; a hollow marker means it fails. Under prescribed
+force only the extension check detects the fault; under prescribed displacement
+the stress and reaction checks detect the fault. Both half-modulus artifacts
+fail the full response tuple. Uniform axial bar, 100 mm long, 20 mm² section;
+one deterministic artifact per point, so there are no error bars. Values:
+matrix.md. Sources: results.json and spec.json.
+[SVG](reports/evidence-sufficiency/boundary-condition.svg),
+[caption file](reports/evidence-sufficiency/boundary-condition.caption.md).
 The figure reads the executed
 [results](reports/evidence-sufficiency/results.json); dimensions, units, loads,
 perturbations and check costs live in the [specification](studies/evidence_sufficiency/spec.json).
