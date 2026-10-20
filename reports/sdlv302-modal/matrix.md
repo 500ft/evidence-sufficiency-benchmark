@@ -1,48 +1,56 @@
-# SDLV302 analytical modal reference, pending scoped review
+# SDLV302 analytical modal reference
 
-The [registered specification](../../studies/sdlv302_modal/spec.json) extracts one
-published-reference claim from the official Code_Aster [problem](https://code-aster.org/doc/v17/manuals/man_v/v2/v2.04.302/Probl_me_de_r_f_rence.html)
+The [registered specification](../../studies/sdlv302_modal/spec.json) extracts
+one claim from the official Code_Aster [problem](https://code-aster.org/doc/v17/manuals/man_v/v2/v2.04.302/Probl_me_de_r_f_rence.html)
 and [solution](https://code-aster.org/doc/v17/manuals/man_v/v2/v2.04.302/Solution_de_r_f_rence.html):
-the first flexural cyclic frequency of a simply supported, uniform Timoshenko
-beam. This is a dynamic shear and rotary-inertia problem, distinct from the
-repository's static Euler-Bernoulli cantilever. The claim is for the ideal
-one-dimensional beam. The manual's 3D HEXA20 validation model is an approximate
-comparison with that analytical reference; no 3D solve or convergence result
-is asserted here.
+the first XY-plane flexural cyclic frequency of a simply supported, uniform
+Timoshenko beam. Its shear deformation, rotary inertia, modal observable and
+support conditions distinguish it from this repository's static
+Euler-Bernoulli cantilever. The claim concerns the ideal one-dimensional beam.
+The manual's 3D HEXA20 validation model is an approximate comparison; no 3D
+solve or convergence result is asserted here.
 
-The [executed results](results.json) are the sole numeric output source. The
+The [executed results](results.json) are the numeric output source. The
 source's dimensionless expression and a separately derived stiffness-mass
-determinant agree at the registered flexural modes. The first result lies in
-the source's printed display interval. An axial extension mode, mode ordering,
-matrix residual and Euler-Bernoulli limiting check provide controls. These
-are numerical reproduction and reporting-precision checks, not an engineering
-acceptance tolerance or benchmark artifact label.
+determinant agree at the registered flexural modes. They solve the same modal
+quadratic, so this chiefly checks transcription. The first result falls in
+the source's printed display interval. The generator checks flexural order,
+matrix residual and the Euler-Bernoulli limit, and computes an axial frequency.
+It does not gate the registered scaling or global-mode-order controls. The
+[non-blind Claude AI reviewer checker](claude-review/independent_check.py)
+executes those controls and independently discretizes the beam. These are
+numerical reproduction and reporting-precision checks; no engineering
+acceptance tolerance or benchmark artifact label is inferred.
 
-There are two visible source discrepancies. The manual prints a section
-second moment that disagrees with the stated dimensions and its own formula;
-using that printed number misses the first printed frequency. We use the
-dimensionally correct expression and retain the alternative computation in
-`results.json`. The fourth printed flexural frequency also lies outside its
-nearest-tenth display interval when the published formula and exact geometric
-expression are used. That higher mode is diagnostic only; it is not the
-specified first-mode claim. No tolerance was widened to absorb either
-discrepancy. The historical first execution and the subsequent source
-correction remain separate Git commits.
+The manual's displayed second moment disagrees with its dimensions and
+formula. It approximately equals the weak-axis moment from swapping width
+and height. The manual also omits unit exponents for both area and inertia.
+Using the printed inertia number misses the first printed frequency. We use
+the stated geometry and formula, and retain the alternative calculation in
+`results.json`. The fourth printed flexural frequency falls outside
+nearest-tenth rounding of the derived value but inside four-significant-figure
+rounding. The source does not state a display convention. The result's
+fourth-mode flag tests nearest-tenth only; that mode is outside this claim.
+The original execution and later source-description correction remain in Git
+history. Neither finding changed the first-mode gate or computation.
 
-The official manual is published under the documentation repository's
-[GNU FDL 1.3 licence](https://gitlab.com/codeaster/doc/docaster/-/blob/main/LICENSE.txt).
-The separate Code_Aster [source repository](https://gitlab.com/codeaster/src/-/blob/main/LICENSE)
-uses GPL v3, and its SDLV302 command file has a GPL v3-or-later header. We
-inspected that deck only to distinguish the code terms; it is not reproduced.
-The manual cites a Samtech report as theoretical provenance, but that
-third-party report has not been inspected and no rights in it are inferred.
-This repository links to the official pages and independently writes its
-specification and implementation; it copies no vendor text, figures or deck.
-The manual's source-page URLs, retrieved HTML hashes and the two repository
-heads at audit are in the specification. Raw downloaded pages remain local
-scratch material.
+The official manual's repository carries a [GNU FDL 1.3 licence](https://gitlab.com/codeaster/doc/docaster/-/blob/v17/LICENSE.txt)
+and identifies GNU FDL in its build configuration. The rendered page shows
+only a copyright footer. The separate Code_Aster [source repository](https://gitlab.com/codeaster/src/-/blob/main/LICENSE)
+uses GPL v3; its SDLV302 command file has a GPL v3-or-later header. We
+inspected that deck but do not reproduce it. The manual cites a Samtech report
+as theoretical provenance. That report was unavailable and no rights in it
+are inferred. The manual calls its values analytical, while the deck marks
+the corresponding test reference type as undefined. The manual supports the
+narrow analytical claim here. We link to the official pages, independently
+write the specification and implementation, and copy no vendor text, figure
+or deck. The specification pins the v17 source and retrieved page hashes;
+downloaded pages remain local scratch material.
 
-Reproduce from the repository root with `python3 -m studies.sdlv302_modal.run`
-and run `pytest -q tests/test_sdlv302_modal.py`. This public development
-result is awaiting a pinned, reconciled Claude AI technical review. It does
-not yet increase the admitted count or open labels, costs or a pilot.
+The [reconciled review](claude-review/README.md) supports admission of this
+first XY-plane analytical frequency only. The printed display interval is
+neither an acceptance band for the 3D model nor a physical/application
+tolerance. No labels, costs, baselines or reviewer pilot follow from this
+admission. Reproduce from the repository root with
+`python3 -m studies.sdlv302_modal.run` and
+`pytest -q tests/test_sdlv302_modal.py`.

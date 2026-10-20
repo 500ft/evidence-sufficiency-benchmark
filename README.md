@@ -43,9 +43,11 @@ M1.1 now separates claim correctness from evidence sufficiency in a
 the same observed stress resolves stress agreement but leaves deflection
 agreement ambiguous across the declared implementation explanations. See the
 [claim contract and independent derivation](studies/evidence_sufficiency/claims/README.md).
-M1.2 has [five admitted development reference problems](reports/reference-admission/README.md)
+M1.2 has [six admitted development reference problems](reports/reference-admission/README.md)
 across axial response, distributed-load bending, thick-cylinder elasticity,
-steady conduction and the [derived Kirsch holed plate](reports/kirsch-reference/matrix.md). VM25 is the one firm published-reference problem; VM92 is
+steady conduction, the [derived Kirsch holed plate](reports/kirsch-reference/matrix.md)
+and the [SDLV302 analytical beam mode](reports/sdlv302-modal/matrix.md). VM25
+and the scoped SDLV302 first mode are the firm published-reference problems; VM92 is
 admitted as derived, with its disputed printed outer-face value excluded from
 published corroboration. The provisional coverage target remains incomplete.
 The [VM92 artifact-class result](reports/vm92-artifact-evidence/matrix.md)
