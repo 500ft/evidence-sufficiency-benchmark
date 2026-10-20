@@ -56,6 +56,6 @@
     "printed_numeric_value_m4_if_reinterpreted": 1.66e-05,
     "printed_value_matches_derived_section": false
   },
-  "spec_sha256": "eb87886ec88258afa331d26f7234023551187e857475ce8f5b42da6331a787d5",
+  "spec_sha256": "e12f7dcfa996c93762a539c9220baa5eeb74378b635bb81c60adcfa47ad2f9b7",
   "status": "executed analytical development reference awaiting scoped Claude technical review"
 }
