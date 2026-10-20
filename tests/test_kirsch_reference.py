@@ -32,9 +32,28 @@ def test_exact_hole_and_nonuniform_outer_shear():
     assert airy_cartesian(1,0,1,0) == (0,0,0)
 
 
+def _same_result_with_binary64_roundoff(actual, committed):
+    if isinstance(actual, dict):
+        assert actual.keys() == committed.keys()
+        for key in actual:
+            _same_result_with_binary64_roundoff(actual[key], committed[key])
+    elif isinstance(actual, list):
+        assert len(actual) == len(committed)
+        for left, right in zip(actual, committed):
+            _same_result_with_binary64_roundoff(left, right)
+    elif isinstance(actual, float):
+        # libm trig results differ by tiny amounts across Linux/macOS. This
+        # serialization check is tighter than the independent science gates;
+        # build() still requires every registered gate to pass unchanged.
+        assert isclose(actual, committed, rel_tol=1e-12, abs_tol=1e-12)
+    else:
+        assert actual == committed
+
+
 def test_committed_result_and_pilot_failure_are_preserved():
     results = build()
-    assert results == json.loads((ROOT/"reports/kirsch-reference/results.json").read_text())
+    _same_result_with_binary64_roundoff(
+        results, json.loads((ROOT/"reports/kirsch-reference/results.json").read_text()))
     pilot = json.loads((ROOT/"reports/kirsch-reference/pilot-failures.json").read_text())
     assert not pilot["cases"][1]["checks"]["free_body_force"]
     assert all(all(row["checks"].values()) for row in results["cases"])
