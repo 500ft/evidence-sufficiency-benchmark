@@ -132,8 +132,10 @@ both print the disputed target, but the cited 1959 printing and display
 convention remain unverified. The outer printed value remains excluded from
 published corroboration. This
 resolves an artifact-rule demonstration for this derived case only; it adds no
-case, label or solver qualification. M1.2 coverage and the remaining R1–R5
-scope questions still gate M1.3 label freeze.
+case, label or solver qualification. M1.2 coverage and the application of R1–R5 to final artifact classes and
+explanation sets still gate M1.3 label freeze.
+
+The [executed artifact-rule witnesses](reports/artifact-rule-witnesses/matrix.md) now make the R1–R5 development boundaries testable across the admitted families. They separate exact, serialized, solver-bounded and printed-display artifacts, with positive, negative and ambiguous decisions and counterexamples to broader sufficiency. A focused source/licence audit found no fifth fully specified, independently checked and reviewed base reference to admit. Coverage remains at the existing admitted set; the witness result does not freeze labels or open M1.3. The retained detectability sweep was not rerun.
 
 - Select distinct problems across applicable axial, bending, pressure-vessel,
   holed-plate and conduction physics. Parameter variants and loading variants
@@ -286,7 +288,7 @@ scoped benchmark and baseline write-up.
   Completion evidence would be an authorized study and its scoped analysis.
 
 No hardware readiness, funding, purchase, naming or publication decision is
-inferred from this plan. M1.2 coverage remains incomplete; R1–R5 in the
-[admission record](reports/reference-admission/README.md) must be addressed
-before label freeze. Pilot and physical-study gates remain unresolved in
+inferred from this plan. M1.2 coverage remains incomplete; the executed R1–R5 development rules must
+be applied to any final artifact classes, explanation sets and application
+budgets before label freeze. Pilot and physical-study gates remain unresolved in
 [open questions](docs/OPEN_QUESTIONS.md).
