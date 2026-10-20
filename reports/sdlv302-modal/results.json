@@ -1,0 +1,56 @@
+{
+  "axial_control_Hz": 648.5931520784635,
+  "checks": {
+    "eigen_residual_all_modes": true,
+    "first_display_precision": true,
+    "positive_ordered_modes": true,
+    "route_agreement_all_modes": true,
+    "shear_and_rotary_lower_than_eb": true
+  },
+  "derived_section": {
+    "area_m2": 0.020000000000000004,
+    "second_moment_m4": 6.666666666666668e-05,
+    "shear_modulus_Pa": 80769230769.23077
+  },
+  "euler_bernoulli_first_mode_limit_Hz": 117.64178468865845,
+  "flexural_modes": [
+    {
+      "eigen_residual_relative": 1.1164441030302723e-16,
+      "flexural_n": 1,
+      "independent_energy_matrix_Hz": 115.70929292854218,
+      "route_difference_Hz": 4.973799150320701e-13,
+      "source_expression_Hz": 115.70929292854268
+    },
+    {
+      "eigen_residual_relative": 0.0,
+      "flexural_n": 2,
+      "independent_energy_matrix_Hz": 442.1715556760653,
+      "route_difference_Hz": 2.8421709430404007e-13,
+      "source_expression_Hz": 442.17155567606557
+    },
+    {
+      "eigen_residual_relative": 1.653782218960478e-16,
+      "flexural_n": 3,
+      "independent_energy_matrix_Hz": 931.5735753288527,
+      "route_difference_Hz": 2.2737367544323206e-13,
+      "source_expression_Hz": 931.5735753288525
+    },
+    {
+      "eigen_residual_relative": 0.0,
+      "flexural_n": 4,
+      "independent_energy_matrix_Hz": 1533.6479257411859,
+      "route_difference_Hz": 2.2737367544323206e-13,
+      "source_expression_Hz": 1533.647925741186
+    }
+  ],
+  "fourth_display_interval_excludes_derived": true,
+  "published_displays_Hz": {
+    "first_axial": 648.6,
+    "first_flexural": 115.7,
+    "fourth_flexural": 1534.0,
+    "second_flexural": 442.2,
+    "third_flexural": 931.6
+  },
+  "spec_sha256": "269a3b685c21391caaf3f1c63ef2fed9488ccc89873633c40bffc77d7c3ccf2a",
+  "status": "executed analytical development reference awaiting scoped Claude technical review"
+}
