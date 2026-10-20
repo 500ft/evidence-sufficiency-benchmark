@@ -1,0 +1,130 @@
+{
+  "spec_sha256": "d251d562c105bf2f46a67c01b4c43f6a91753e06e9456eae858f9d1667a9d6c5",
+  "status": "registered 64/128/256-panel pilot; coarse free-body gates failed; no admission",
+  "cases": [
+    {
+      "id": "nominal",
+      "free_body_by_panels_force_MPa_m_and_moment_MPa_m2": {
+        "64": [
+          0.00013864647336220748,
+          -0.0001587233901787628,
+          -0.00014952719129695575
+        ],
+        "128": [
+          8.837053647601876e-06,
+          -1.0104796530219487e-05,
+          -9.480219517309895e-06
+        ],
+        "256": [
+          5.550899716015357e-07,
+          -6.345302947244822e-07,
+          -5.946766627799878e-07
+        ]
+      },
+      "checks": {
+        "stress_routes": true,
+        "hole_and_symmetry": true,
+        "outer_boundary": true,
+        "equilibrium": true,
+        "compatibility": true,
+        "free_body_force": false,
+        "free_body_moment": false,
+        "claim": true,
+        "far_field_limit": true
+      }
+    },
+    {
+      "id": "scaled_geometry",
+      "free_body_by_panels_force_MPa_m_and_moment_MPa_m2": {
+        "64": [
+          0.006456156534103373,
+          -0.007432667517434792,
+          -0.014286651897008375
+        ],
+        "128": [
+          0.0004413937205951037,
+          -0.000505452950619723,
+          -0.0009543104658838318
+        ],
+        "256": [
+          2.8275023557516553e-05,
+          -3.233079755155031e-05,
+          -6.072718019547619e-05
+        ]
+      },
+      "checks": {
+        "stress_routes": true,
+        "hole_and_symmetry": true,
+        "outer_boundary": true,
+        "equilibrium": true,
+        "compatibility": true,
+        "free_body_force": false,
+        "free_body_moment": false,
+        "claim": true,
+        "far_field_limit": true
+      }
+    },
+    {
+      "id": "reversed_load",
+      "free_body_by_panels_force_MPa_m_and_moment_MPa_m2": {
+        "64": [
+          -9.705253135350084e-05,
+          0.00011110637312598511,
+          0.0001046690339307112
+        ],
+        "128": [
+          -6.185937553436791e-06,
+          7.073357572599229e-06,
+          6.63615364227584e-06
+        ],
+        "256": [
+          -3.885629800934466e-07,
+          4.441711991589875e-07,
+          4.1627366391314943e-07
+        ]
+      },
+      "checks": {
+        "stress_routes": true,
+        "hole_and_symmetry": true,
+        "outer_boundary": true,
+        "equilibrium": true,
+        "compatibility": true,
+        "free_body_force": false,
+        "free_body_moment": false,
+        "claim": true,
+        "far_field_limit": true
+      }
+    },
+    {
+      "id": "zero_load",
+      "free_body_by_panels_force_MPa_m_and_moment_MPa_m2": {
+        "64": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "128": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "256": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "checks": {
+        "stress_routes": true,
+        "hole_and_symmetry": true,
+        "outer_boundary": true,
+        "equilibrium": true,
+        "compatibility": true,
+        "free_body_force": true,
+        "free_body_moment": true,
+        "claim": true,
+        "far_field_limit": true
+      }
+    }
+  ]
+}

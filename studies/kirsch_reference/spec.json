@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "status": "prospective_amendment_after_preserved_coarse_quadrature_failure",
+  "source": {
+    "id": "opengeosys_kirsch_6_5_7",
+    "url": "https://www.opengeosys.org/6.5.7/docs/benchmarks/small-deformations/kirsch/",
+    "scope": "Published infinite-plane polar stress equations for remote y-axis loading only. This repository authors its own finite exact-restriction problem, calculations and text. The source's uniform finite-edge FE example is not an exact finite-boundary reference."
+  },
+  "model": "Homogeneous, isotropic, linear-elastic infinitesimal plane stress, no body force, no initial stress, no thermal strain",
+  "geometry": "Quarter domain 0<=x<=B, 0<=y<=B, x^2+y^2>=a^2; circular traction-free hole centered at origin; unit-thickness in-plane stress balance",
+  "boundary_conditions": {
+    "hole": "zero traction at r=a, outward normal -e_r",
+    "right": "full nonuniform Kirsch traction sigma(x=B,y) dot (1,0), including shear",
+    "top": "full nonuniform Kirsch traction sigma(x,y=B) dot (0,1), including shear",
+    "left_symmetry": "u_x=0 at x=0, a<=y<=B; tangential traction is zero",
+    "bottom_symmetry": "u_y=0 at y=0, a<=x<=B; tangential traction is zero",
+    "rigid_modes": "The two intersecting symmetry constraints exclude both translations and in-plane rotation; the origin itself is removed by the hole"
+  },
+  "loading": "Remote positive sigma is tension along +y; theta=atan2(y,x) is measured counterclockwise from +x. Positive sigma_xy follows traction t=sigma dot n. The y-loaded Kirsch source convention is used without rotating its angle.",
+  "claim": {
+    "location": "hole boundary x=a,y=0 (theta=0)",
+    "observable": "circumferential normal stress sigma_theta_theta",
+    "unit": "MPa",
+    "exact_reference": "3*sigma",
+    "artifact_class": "exact analytic reference and separately differentiated Airy potential evaluated in binary64",
+    "decision_error": "No physical/application acceptance error is set. Numerical comparison budget below is only for reference-route reproduction."
+  },
+  "cases": [
+    {
+      "id": "nominal",
+      "a_m": 1,
+      "B_m": 5,
+      "remote_sigma_MPa": 10,
+      "E_MPa": 200000,
+      "nu": 0.3
+    },
+    {
+      "id": "scaled_geometry",
+      "a_m": 2,
+      "B_m": 20,
+      "remote_sigma_MPa": 10,
+      "E_MPa": 200000,
+      "nu": 0.3
+    },
+    {
+      "id": "reversed_load",
+      "a_m": 1,
+      "B_m": 5,
+      "remote_sigma_MPa": -7,
+      "E_MPa": 200000,
+      "nu": 0.3
+    },
+    {
+      "id": "zero_load",
+      "a_m": 1,
+      "B_m": 5,
+      "remote_sigma_MPa": 0,
+      "E_MPa": 200000,
+      "nu": 0.3
+    }
+  ],
+  "samples": {
+    "radius_over_a": [
+      1,
+      1.2,
+      2,
+      4
+    ],
+    "theta_degrees": [
+      0,
+      30,
+      45,
+      60,
+      90
+    ],
+    "interior_equilibrium_radius_over_a": [
+      1.2,
+      2
+    ],
+    "boundary_quadrature_panels": [
+      64,
+      128,
+      256,
+      512,
+      1024
+    ]
+  },
+  "budgets": {
+    "stress_route_abs_MPa": "1e-9*max(1,abs(remote_sigma_MPa))",
+    "hole_and_symmetry_traction_abs_MPa": "1e-9*max(1,abs(remote_sigma_MPa))",
+    "outer_boundary_traction_abs_MPa": "1e-9*max(1,abs(remote_sigma_MPa))",
+    "interior_divergence_abs_MPa_per_m": "1e-6*max(1,abs(remote_sigma_MPa))/a_m",
+    "interior_compatibility_abs_MPa_per_m2": "1e-4*max(1,abs(remote_sigma_MPa))/a_m^2",
+    "free_body_force_abs_MPa_m": "1e-7*max(1,abs(remote_sigma_MPa))*B_m",
+    "free_body_moment_abs_MPa_m2": "1e-7*max(1,abs(remote_sigma_MPa))*B_m^2",
+    "note": "Inclusive numerical reproduction gates only. No FE approximation or engineering allowable. No tolerance inferred from a rounded published target.",
+    "free_body_qualification_rule": "Evaluate every registered level and retain failures; require the finest level to meet the original unchanged force and moment budgets. Refinement assesses integration only, not FE stress convergence.",
+    "geometry_roundoff_guard": "The implementation allows relative 1e-14 below r=a only when evaluating trigonometric coordinates on the exact hole circle; this is a floating-coordinate domain guard, not a stress or physical tolerance."
+  },
+  "hypotheses": [
+    "Polar Kirsch and independent Airy second derivatives agree at every registered sample",
+    "Hole and symmetry tractions vanish within numerical gates",
+    "All four quarter-domain boundary tractions close net force and moment at the registered quadrature levels",
+    "Divergence and plane-stress compatibility residuals fit prospective finite-difference gates"
+  ],
+  "exposure": "Public development only; no frozen labels, reserved cases, FE host run, pilot or policy tuning",
+  "amendment": "The initial registered 64/128/256 Simpson pilot failed the free-body gates for loaded cases; see reports/kirsch-reference/pilot-failures.json. Add 512/1024 before their results, retain all old levels and original budgets."
+}

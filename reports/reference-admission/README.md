@@ -1,8 +1,8 @@
 # Claude AI technical review reconciliation
 
-This is the current case-admission record. **Four base reference problems are
+This is the current case-admission record. **Five base reference problems are
 admitted at the scopes below; one is a firm published-reference problem
-(VM25). M1.2 remains incomplete at 4/10 against its provisional coverage
+(VM25). M1.2 remains incomplete at 5/10 against its provisional coverage
 target, including 1/2 published-reference problems.** The generated
 [reference qualification](../reference-qualification/matrix.md),
 [development compute](../development-compute/matrix.md) and
@@ -70,6 +70,7 @@ rights. No vendor page bytes are committed.
 | Distributed-load bending | **Admitted**, one repository-authored Euler-Bernoulli cantilever with uniform dead load, ideal clamp, nominal root stress and the specified tip/reaction observables. Exact-arithmetic reference and consistent-load stiffness route; excluded shear, gravity, local clamp stress and nonlinear behavior are outside the claims. | No |
 | Pressure-only thick cylinder | **Admitted**, one VM25 published-reference problem. Open-end, zero axial end resultant and free uniform axial strain; specified radial/hoop stress locations and radial displacement in inch/psi. The RK4 qualification covers only declared inputs at their qualified resolutions. Original coarse failures remain failed. Rotation and end-cap loading are excluded. | Yes |
 | Steady conduction | **Admitted as a derived problem**, one VM92-parameter wall with convection films, perfect contact and exact-input heat balance; the MFiX slab is a control within this family. The published VM92 heat-rate and inner-face displays provide coarse corroboration. The disputed printed outer-face target is excluded from published corroboration and from the published-reference count. Exact equations and values are unchanged. | No |
+| Holed-plate elasticity | **Admitted as a derived problem** after a separate [non-blind Claude AI technical review](../kirsch-reference/claude-review/README.md), one ideal plane-stress quarter-square exact restriction of the remote-y Kirsch field. Full position-dependent traction, including shear, is applied on both artificial outer edges. The traction-free hole and symmetry constraints support the specified hoop-stress claim at the +x hole point. The initial all-level quadrature hypothesis failed; a postpilot finer-level decision rule passes at the registered inputs. No finite-edge uniform-load or LE1 published target is admitted. | No |
 
 These admissions qualify the stated **development reference problems**. They
 do not freeze defect labels, validate physical artifacts or establish a
@@ -82,6 +83,8 @@ applies an explicit interval rule to exact output, declared display conventions
 and a conditional numerical-solver bound. It does not change this admission:
 the source's rounding convention is unverified, and the printed outer target
 remains excluded from published corroboration.
+
+The Kirsch review is a separate later admission. The provenance and verification section above documents the original four-family review only; the [Kirsch record](../kirsch-reference/claude-review/README.md) pins its own reviewed commit, exposed model/session, independent calculations and finding dispositions. Its admission changes coverage, not the historical hashes or dispositions below.
 
 ## Finding resolution and boundaries
 

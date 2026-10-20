@@ -1,0 +1,314 @@
+{
+  "status": "executed derived development reference awaiting scoped Claude technical review; no admission or labels",
+  "spec_sha256": "d4cb8e3c4d4646fdc3e26fe5b672ecc2bc1b5df6bb74d6bdb46e50679f47a3fc",
+  "cases": [
+    {
+      "id": "nominal",
+      "claim_sigma_theta_MPa": 30.0,
+      "independent_claim_sigma_yy_MPa": 30.0,
+      "max_route_difference_MPa": 3.552713678800501e-15,
+      "max_hole_traction_MPa": 0.0,
+      "max_symmetry_shear_MPa": 0.0,
+      "max_outer_traction_difference_MPa": 3.552713678800501e-15,
+      "max_outer_shear_MPa": 0.4444767012154019,
+      "max_divergence_MPa_per_m": 2.1649348980190553e-11,
+      "max_compatibility_trace_laplacian_MPa_per_m2": 2.8421709430404007e-06,
+      "free_body_by_panels_force_MPa_m_and_moment_MPa_m2": {
+        "64": [
+          0.00013864647336220748,
+          -0.0001587233901787628,
+          -0.00014952719129695575
+        ],
+        "128": [
+          8.837053647601876e-06,
+          -1.0104796530219487e-05,
+          -9.480219517309895e-06
+        ],
+        "256": [
+          5.550899716015357e-07,
+          -6.345302947244822e-07,
+          -5.946766627799878e-07
+        ],
+        "512": [
+          3.473684582801491e-08,
+          -3.97051065467548e-08,
+          -3.720128845403748e-08
+        ],
+        "1024": [
+          2.1717366812598923e-09,
+          -2.4822950097019345e-09,
+          -2.3255772096181283e-09
+        ]
+      },
+      "free_body_gate_by_panels": {
+        "64": {
+          "force": false,
+          "moment": false
+        },
+        "128": {
+          "force": false,
+          "moment": true
+        },
+        "256": {
+          "force": true,
+          "moment": true
+        },
+        "512": {
+          "force": true,
+          "moment": true
+        },
+        "1024": {
+          "force": true,
+          "moment": true
+        }
+      },
+      "far_field_at_100a_MPa": [
+        0.0014998500000001913,
+        10.000500149999993,
+        -0.0
+      ],
+      "checks": {
+        "stress_routes": true,
+        "hole_and_symmetry": true,
+        "outer_boundary": true,
+        "equilibrium": true,
+        "compatibility": true,
+        "free_body_force": true,
+        "free_body_moment": true,
+        "claim": true,
+        "far_field_limit": true
+      }
+    },
+    {
+      "id": "scaled_geometry",
+      "claim_sigma_theta_MPa": 30.0,
+      "independent_claim_sigma_yy_MPa": 30.0,
+      "max_route_difference_MPa": 3.552713678800501e-15,
+      "max_hole_traction_MPa": 0.0,
+      "max_symmetry_shear_MPa": 0.0,
+      "max_outer_traction_difference_MPa": 3.552713678800501e-15,
+      "max_outer_shear_MPa": 0.11454618192725204,
+      "max_divergence_MPa_per_m": 1.0824674490095276e-11,
+      "max_compatibility_trace_laplacian_MPa_per_m2": 7.105427357601002e-07,
+      "free_body_by_panels_force_MPa_m_and_moment_MPa_m2": {
+        "64": [
+          0.006456156534103373,
+          -0.007432667517434792,
+          -0.014286651897008375
+        ],
+        "128": [
+          0.0004413937205951037,
+          -0.000505452950619723,
+          -0.0009543104658838318
+        ],
+        "256": [
+          2.8275023557516553e-05,
+          -3.233079755155031e-05,
+          -6.072718019547619e-05
+        ],
+        "512": [
+          1.7784023384712963e-06,
+          -2.0327235570543815e-06,
+          -3.812945576004361e-06
+        ],
+        "1024": [
+          1.1132728184136415e-07,
+          -1.2723546611002824e-07,
+          -2.385852410344014e-07
+        ]
+      },
+      "free_body_gate_by_panels": {
+        "64": {
+          "force": false,
+          "moment": false
+        },
+        "128": {
+          "force": false,
+          "moment": false
+        },
+        "256": {
+          "force": false,
+          "moment": true
+        },
+        "512": {
+          "force": true,
+          "moment": true
+        },
+        "1024": {
+          "force": true,
+          "moment": true
+        }
+      },
+      "far_field_at_100a_MPa": [
+        0.0014998500000001913,
+        10.000500149999993,
+        -0.0
+      ],
+      "checks": {
+        "stress_routes": true,
+        "hole_and_symmetry": true,
+        "outer_boundary": true,
+        "equilibrium": true,
+        "compatibility": true,
+        "free_body_force": true,
+        "free_body_moment": true,
+        "claim": true,
+        "far_field_limit": true
+      }
+    },
+    {
+      "id": "reversed_load",
+      "claim_sigma_theta_MPa": -21.0,
+      "independent_claim_sigma_yy_MPa": -21.0,
+      "max_route_difference_MPa": 3.552713678800501e-15,
+      "max_hole_traction_MPa": 0.0,
+      "max_symmetry_shear_MPa": 0.0,
+      "max_outer_traction_difference_MPa": 2.6645352591003757e-15,
+      "max_outer_shear_MPa": 0.31113369085078135,
+      "max_divergence_MPa_per_m": 1.2582601627286749e-11,
+      "max_compatibility_trace_laplacian_MPa_per_m2": 1.1842378926374408e-06,
+      "free_body_by_panels_force_MPa_m_and_moment_MPa_m2": {
+        "64": [
+          -9.705253135350084e-05,
+          0.00011110637312598511,
+          0.0001046690339307112
+        ],
+        "128": [
+          -6.185937553436791e-06,
+          7.073357572599229e-06,
+          6.63615364227584e-06
+        ],
+        "256": [
+          -3.885629800934466e-07,
+          4.441711991589875e-07,
+          4.1627366391314943e-07
+        ],
+        "512": [
+          -2.4315792372304174e-08,
+          2.7793575261151614e-08,
+          2.6040907597249047e-08
+        ],
+        "1024": [
+          -1.5202154325467775e-09,
+          1.7376107663103541e-09,
+          1.6279097199697668e-09
+        ]
+      },
+      "free_body_gate_by_panels": {
+        "64": {
+          "force": false,
+          "moment": false
+        },
+        "128": {
+          "force": false,
+          "moment": true
+        },
+        "256": {
+          "force": true,
+          "moment": true
+        },
+        "512": {
+          "force": true,
+          "moment": true
+        },
+        "1024": {
+          "force": true,
+          "moment": true
+        }
+      },
+      "far_field_at_100a_MPa": [
+        -0.001049895000000134,
+        -7.000350104999995,
+        -0.0
+      ],
+      "checks": {
+        "stress_routes": true,
+        "hole_and_symmetry": true,
+        "outer_boundary": true,
+        "equilibrium": true,
+        "compatibility": true,
+        "free_body_force": true,
+        "free_body_moment": true,
+        "claim": true,
+        "far_field_limit": true
+      }
+    },
+    {
+      "id": "zero_load",
+      "claim_sigma_theta_MPa": 0.0,
+      "independent_claim_sigma_yy_MPa": 0.0,
+      "max_route_difference_MPa": 0.0,
+      "max_hole_traction_MPa": 0.0,
+      "max_symmetry_shear_MPa": 0.0,
+      "max_outer_traction_difference_MPa": 0.0,
+      "max_outer_shear_MPa": 0.0,
+      "max_divergence_MPa_per_m": 0.0,
+      "max_compatibility_trace_laplacian_MPa_per_m2": 0.0,
+      "free_body_by_panels_force_MPa_m_and_moment_MPa_m2": {
+        "64": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "128": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "256": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "512": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "1024": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "free_body_gate_by_panels": {
+        "64": {
+          "force": true,
+          "moment": true
+        },
+        "128": {
+          "force": true,
+          "moment": true
+        },
+        "256": {
+          "force": true,
+          "moment": true
+        },
+        "512": {
+          "force": true,
+          "moment": true
+        },
+        "1024": {
+          "force": true,
+          "moment": true
+        }
+      },
+      "far_field_at_100a_MPa": [
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "checks": {
+        "stress_routes": true,
+        "hole_and_symmetry": true,
+        "outer_boundary": true,
+        "equilibrium": true,
+        "compatibility": true,
+        "free_body_force": true,
+        "free_body_moment": true,
+        "claim": true,
+        "far_field_limit": true
+      }
+    }
+  ]
+}
