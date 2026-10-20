@@ -192,7 +192,7 @@ tolerances and exclusion from published corroboration.
 ## Remaining inputs and decisions
 
 - M1.2 still needs distinct qualified problems to meet its provisional
-  coverage target. The current admitted count and scope are in AUD-8.
+  coverage target. The current admitted count and scope are in the [admission ledger](../reports/reference-admission/README.md); AUD-8 remains the historical four-family decision.
 - R1–R5 in the admission record require resolution before M1.3 label freeze.
   The current admissions need no additional human-review gate.
 - Model pilot execution and resources require separate owner authorization.
