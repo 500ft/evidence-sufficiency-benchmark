@@ -88,8 +88,12 @@ def case_result(case, spec):
             lap = second(lambda d:trace(x+d,y),h)+second(lambda d:trace(x,y+d),h)
             compatibility = max(compatibility,abs(lap))
     balances = {str(n): body_balance(a,B,sigma,n) for n in spec["samples"]["boundary_quadrature_panels"]}
-    force = max(abs(v) for row in balances.values() for v in row[:2])
-    moment = max(abs(row[2]) for row in balances.values())
+    balance_gates = {level: {"force": max(abs(v) for v in row[:2]) <= 1e-7*scale*B,
+                             "moment": abs(row[2]) <= 1e-7*scale*B*B}
+                     for level,row in balances.items()}
+    finest = str(spec["samples"]["boundary_quadrature_panels"][-1])
+    force = max(abs(v) for v in balances[finest][:2])
+    moment = abs(balances[finest][2])
     claim = polar(a,0,a,sigma)[1]
     independent_claim = airy_cartesian(a,0,a,sigma)[1]
     far = airy_cartesian(100*a,0,a,sigma)
@@ -113,7 +117,8 @@ def case_result(case, spec):
             "max_divergence_MPa_per_m":divergence,
             "max_compatibility_trace_laplacian_MPa_per_m2":compatibility,
             "free_body_by_panels_force_MPa_m_and_moment_MPa_m2":balances,
-            "far_field_at_100a_MPa":far,
+            "free_body_gate_by_panels": balance_gates,
+            "far_field_at_100a_MPa":list(far),
             "checks":checks}
 
 

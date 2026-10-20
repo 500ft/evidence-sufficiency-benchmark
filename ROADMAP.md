@@ -137,6 +137,8 @@ explanation sets still gate M1.3 label freeze.
 
 The [executed artifact-rule witnesses](reports/artifact-rule-witnesses/matrix.md) now make the R1–R5 development boundaries testable across the admitted families. They separate exact, serialized, solver-bounded and printed-display artifacts, with positive, negative and ambiguous decisions and counterexamples to broader sufficiency. A focused source/licence audit found no fifth fully specified, independently checked and reviewed base reference to admit. Coverage remains at the existing admitted set; the witness result does not freeze labels or open M1.3. The retained detectability sweep was not rerun.
 
+The [Kirsch exact-restriction result](reports/kirsch-reference/matrix.md) adds a separately derived holed-plate development candidate with an Airy-derivative cross-check and retained coarse quadrature failures. Its claim and numerical gates were committed before execution. The final registered quadrature and local checks pass at the declared samples, but the candidate is awaiting its own scoped Claude AI technical review and is not admitted or counted toward M1.2 coverage. The [conditional LE1 audit](reports/kirsch-reference/le1-audit.md) excludes that benchmark pending complete authorized source specification, extraction convention, convergence and review.
+
 - Select distinct problems across applicable axial, bending, pressure-vessel,
   holed-plate and conduction physics. Parameter variants and loading variants
   do not by themselves create independent problems.
