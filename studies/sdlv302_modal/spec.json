@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "prospective_public_development_reference_pending_execution_and_scoped_review",
+  "source": {
+    "id": "code_aster_v17_sdlv302",
+    "problem_url": "https://code-aster.org/doc/v17/manuals/man_v/v2/v2.04.302/Probl_me_de_r_f_rence.html",
+    "answer_url": "https://code-aster.org/doc/v17/manuals/man_v/v2/v2.04.302/Solution_de_r_f_rence.html",
+    "document_license_url": "https://gitlab.com/codeaster/doc/docaster/-/blob/main/LICENSE.txt",
+    "code_license_url": "https://gitlab.com/codeaster/src/-/blob/main/LICENSE",
+    "scope": "Code_Aster SDLV302's published analytical Timoshenko-beam reference, first flexural frequency only. Its 3D HEXA20 solve is an approximate comparison, not this exact reference. No source deck, document text or figure is redistributed. The manual cites Robert, Samtech report 121 (1996); that report has not been obtained."
+  },
+  "model": "Undamped, uniform, isotropic Timoshenko beam with transverse shear and rotary inertia; bending in XY, x along beam; no axial/transverse coupling, gravity, prestress or 3D correction",
+  "geometry_and_material": {
+    "L_m": 2.0,
+    "h_m": 0.2,
+    "b_m": 0.1,
+    "area_m2": "b*h",
+    "second_moment_m4": "b*h^3/12, exact from dimensions rather than the source's rounded display",
+    "E_Pa": 210000000000.0,
+    "nu": 0.3,
+    "rho_kg_per_m3": 7800.0,
+    "shear_factor": "5/6",
+    "G_Pa": "E/[2*(1+nu)]"
+  },
+  "boundary_and_mode": "Simple supports: transverse displacement w(0)=w(L)=0; zero end bending moment EI*phi'(0)=EI*phi'(L)=0. First nonzero flexural mode w=W*sin(pi*x/L), section rotation phi=P*cos(pi*x/L). Rigid and axial modes excluded from this flexural claim.",
+  "claim": {
+    "observable": "first flexural cyclic eigenfrequency",
+    "unit": "Hz",
+    "published_display_Hz": 115.7,
+    "published_display_interval_Hz": "[115.65,115.75) under nearest-tenth display; this is a reporting-precision check, not an application tolerance",
+    "artifact_class": "ideal one-dimensional analytical beam reference",
+    "decision_error": "No physical/application decision tolerance is declared"
+  },
+  "independent_routes": [
+    "Directly evaluate the source's dimensionless Timoshenko first-flexural-root expression",
+    "Independently derive and solve det(K(k)-omega^2 M)=0 from shear/bending energies and rotary/transverse kinetic energies, with k=pi/L"
+  ],
+  "registered_controls": [
+    "n=1,2,3 flexural modal roots with positive frequencies and increasing order",
+    "axial extension frequency as separate mode-order control only",
+    "Euler-Bernoulli slender/shear-rigid limiting frequency exceeds Timoshenko first frequency",
+    "zero-density and zero-stiffness limits checked by scaling, not evaluated as physical cases"
+  ],
+  "budgets": {
+    "route_absolute_Hz": 1e-8,
+    "eigen_residual_relative": 1e-11,
+    "published_comparison": "First flexural frequency must lie in the registered display interval; higher printed modes are diagnostics and cannot be made to pass by widening this interval",
+    "note": "Numerical reproduction and printed precision are separate from any artifact or application tolerance"
+  },
+  "exposure": "Public development, no reserved/final cases, 3D FE host, labels, cost matrix or reviewer pilot"
+}
