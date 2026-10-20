@@ -146,8 +146,9 @@ Admission covers only the first XY-plane flexural frequency of the ideal
 one-dimensional Timoshenko beam. The manual's printed inertia conflicts with
 its geometry and equation, so that printed input is excluded; the first
 printed answer agrees with independent calculations. Higher modes and the 3D
-comparison are outside admission. M1.2 now stands at 6/10 total and 2/2 firm
-published references. It remains incomplete against the total coverage target.
+comparison are outside admission. The published-reference subtarget is now met,
+but M1.2 remains incomplete against the total coverage target. The
+[admission ledger](reports/reference-admission/README.md) owns the current counts.
 The conditional LE1 exclusion and all retained failures remain in force. No
 label freeze, cost matrix, baseline or reviewer pilot follows from admission.
 
