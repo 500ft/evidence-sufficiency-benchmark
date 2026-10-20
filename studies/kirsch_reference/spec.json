@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "prospective_public_development_reference_pending_execution_and_scoped_claude_review",
+  "status": "prospective_amendment_after_preserved_coarse_quadrature_failure",
   "source": {
     "id": "opengeosys_kirsch_6_5_7",
     "url": "https://www.opengeosys.org/6.5.7/docs/benchmarks/small-deformations/kirsch/",
@@ -26,12 +26,65 @@
     "decision_error": "No physical/application acceptance error is set. Numerical comparison budget below is only for reference-route reproduction."
   },
   "cases": [
-    {"id": "nominal", "a_m": 1, "B_m": 5, "remote_sigma_MPa": 10, "E_MPa": 200000, "nu": 0.3},
-    {"id": "scaled_geometry", "a_m": 2, "B_m": 20, "remote_sigma_MPa": 10, "E_MPa": 200000, "nu": 0.3},
-    {"id": "reversed_load", "a_m": 1, "B_m": 5, "remote_sigma_MPa": -7, "E_MPa": 200000, "nu": 0.3},
-    {"id": "zero_load", "a_m": 1, "B_m": 5, "remote_sigma_MPa": 0, "E_MPa": 200000, "nu": 0.3}
+    {
+      "id": "nominal",
+      "a_m": 1,
+      "B_m": 5,
+      "remote_sigma_MPa": 10,
+      "E_MPa": 200000,
+      "nu": 0.3
+    },
+    {
+      "id": "scaled_geometry",
+      "a_m": 2,
+      "B_m": 20,
+      "remote_sigma_MPa": 10,
+      "E_MPa": 200000,
+      "nu": 0.3
+    },
+    {
+      "id": "reversed_load",
+      "a_m": 1,
+      "B_m": 5,
+      "remote_sigma_MPa": -7,
+      "E_MPa": 200000,
+      "nu": 0.3
+    },
+    {
+      "id": "zero_load",
+      "a_m": 1,
+      "B_m": 5,
+      "remote_sigma_MPa": 0,
+      "E_MPa": 200000,
+      "nu": 0.3
+    }
   ],
-  "samples": {"radius_over_a": [1, 1.2, 2, 4], "theta_degrees": [0, 30, 45, 60, 90], "interior_equilibrium_radius_over_a": [1.2, 2], "boundary_quadrature_panels": [64, 128, 256]},
+  "samples": {
+    "radius_over_a": [
+      1,
+      1.2,
+      2,
+      4
+    ],
+    "theta_degrees": [
+      0,
+      30,
+      45,
+      60,
+      90
+    ],
+    "interior_equilibrium_radius_over_a": [
+      1.2,
+      2
+    ],
+    "boundary_quadrature_panels": [
+      64,
+      128,
+      256,
+      512,
+      1024
+    ]
+  },
   "budgets": {
     "stress_route_abs_MPa": "1e-9*max(1,abs(remote_sigma_MPa))",
     "hole_and_symmetry_traction_abs_MPa": "1e-9*max(1,abs(remote_sigma_MPa))",
@@ -40,8 +93,16 @@
     "interior_compatibility_abs_MPa_per_m2": "1e-4*max(1,abs(remote_sigma_MPa))/a_m^2",
     "free_body_force_abs_MPa_m": "1e-7*max(1,abs(remote_sigma_MPa))*B_m",
     "free_body_moment_abs_MPa_m2": "1e-7*max(1,abs(remote_sigma_MPa))*B_m^2",
-    "note": "Inclusive numerical reproduction gates only. No FE approximation or engineering allowable. No tolerance inferred from a rounded published target."
+    "note": "Inclusive numerical reproduction gates only. No FE approximation or engineering allowable. No tolerance inferred from a rounded published target.",
+    "free_body_qualification_rule": "Evaluate every registered level and retain failures; require the finest level to meet the original unchanged force and moment budgets. Refinement assesses integration only, not FE stress convergence.",
+    "geometry_roundoff_guard": "The implementation allows relative 1e-14 below r=a only when evaluating trigonometric coordinates on the exact hole circle; this is a floating-coordinate domain guard, not a stress or physical tolerance."
   },
-  "hypotheses": ["Polar Kirsch and independent Airy second derivatives agree at every registered sample", "Hole and symmetry tractions vanish within numerical gates", "All four quarter-domain boundary tractions close net force and moment at the registered quadrature levels", "Divergence and plane-stress compatibility residuals fit prospective finite-difference gates"],
-  "exposure": "Public development only; no frozen labels, reserved cases, FE host run, pilot or policy tuning"
+  "hypotheses": [
+    "Polar Kirsch and independent Airy second derivatives agree at every registered sample",
+    "Hole and symmetry tractions vanish within numerical gates",
+    "All four quarter-domain boundary tractions close net force and moment at the registered quadrature levels",
+    "Divergence and plane-stress compatibility residuals fit prospective finite-difference gates"
+  ],
+  "exposure": "Public development only; no frozen labels, reserved cases, FE host run, pilot or policy tuning",
+  "amendment": "The initial registered 64/128/256 Simpson pilot failed the free-body gates for loaded cases; see reports/kirsch-reference/pilot-failures.json. Add 512/1024 before their results, retain all old levels and original budgets."
 }
