@@ -43,6 +43,11 @@ def build() -> dict:
     return {"status": "executed analytical development reference awaiting scoped Claude technical review",
             "spec_sha256": hashlib.sha256(raw).hexdigest(),
             "derived_section": {"area_m2": A, "second_moment_m4": I, "shear_modulus_Pa": G},
+            "source_display_inertia_diagnostic": {
+                "printed_numeric_value_m4_if_reinterpreted": 1.66e-5,
+                "first_mode_from_printed_numeric_value_Hz": source_formula_hz(1, L, A, 1.66e-5, E, G, rho, shear_factor),
+                "printed_value_matches_derived_section": abs(I-1.66e-5) <= 1e-7,
+            },
             "flexural_modes": rows,
             "axial_control_Hz": axial_control_hz(L, E, rho),
             "euler_bernoulli_first_mode_limit_Hz": eb,
