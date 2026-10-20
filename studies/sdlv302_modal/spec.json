@@ -5,8 +5,12 @@
     "id": "code_aster_v17_sdlv302",
     "problem_url": "https://code-aster.org/doc/v17/manuals/man_v/v2/v2.04.302/Probl_me_de_r_f_rence.html",
     "answer_url": "https://code-aster.org/doc/v17/manuals/man_v/v2/v2.04.302/Solution_de_r_f_rence.html",
+    "retrieved_problem_html_sha256": "da87fe286ae0ce5294a5291be5800ebc4ab4cca79e5d2b758f2d40c00cb595fa",
+    "retrieved_answer_html_sha256": "a609810a72e442adff8d9b2347b645333174e16b1045585b9eea4da5d2b1a475",
     "document_license_url": "https://gitlab.com/codeaster/doc/docaster/-/blob/main/LICENSE.txt",
+    "document_repository_head_at_audit": "9df3460dccaafd57d9d43dddf839feeafcd06edc",
     "code_license_url": "https://gitlab.com/codeaster/src/-/blob/main/LICENSE",
+    "code_repository_head_at_audit": "56f6e2be8f0e724900fa1edc60671246352875e6",
     "scope": "Code_Aster SDLV302's published analytical Timoshenko-beam reference, first flexural frequency only. Its 3D HEXA20 solve is an approximate comparison, not this exact reference. No source deck, document text or figure is redistributed. The manual cites Robert, Samtech report 121 (1996); that report has not been obtained."
   },
   "model": "Undamped, uniform, isotropic Timoshenko beam with transverse shear and rotary inertia; bending in XY, x along beam; no axial/transverse coupling, gravity, prestress or 3D correction",
@@ -36,7 +40,7 @@
     "Independently derive and solve det(K(k)-omega^2 M)=0 from shear/bending energies and rotary/transverse kinetic energies, with k=pi/L"
   ],
   "registered_controls": [
-    "n=1,2,3 flexural modal roots with positive frequencies and increasing order",
+    "n=1,2,3 flexural modal roots with positive frequencies and increasing order; n=4 is a diagnostic of the source's separately printed higher-mode display, not part of the first-mode claim",
     "axial extension frequency as separate mode-order control only",
     "Euler-Bernoulli slender/shear-rigid limiting frequency exceeds Timoshenko first frequency",
     "zero-density and zero-stiffness limits checked by scaling, not evaluated as physical cases"
