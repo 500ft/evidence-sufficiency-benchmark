@@ -36,9 +36,13 @@ history. Neither finding changed the first-mode gate or computation.
 
 The official manual's repository carries a [GNU FDL 1.3 licence](https://gitlab.com/codeaster/doc/docaster/-/blob/v17/LICENSE.txt)
 and identifies GNU FDL in its build configuration. The rendered page shows
-only a copyright footer. The separate Code_Aster [source repository](https://gitlab.com/codeaster/src/-/blob/main/LICENSE)
+only a copyright footer. The GNU FDL requires retaining copyright and licence
+notices for verbatim copies and GNU FDL licensing for modified document copies.
+The separate Code_Aster [source repository](https://gitlab.com/codeaster/src/-/blob/main/LICENSE)
 uses GPL v3; its SDLV302 command file has a GPL v3-or-later header. We
-inspected that deck but do not reproduce it. The manual cites a Samtech report
+inspected that deck but do not reproduce it. The documentation licence does
+not establish rights in the cited third-party Samtech report or any separately
+owned material. The manual cites that report
 as theoretical provenance. That report was unavailable and no rights in it
 are inferred. The manual calls its values analytical, while the deck marks
 the corresponding test reference type as undefined. The manual supports the
