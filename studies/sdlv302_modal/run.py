@@ -30,7 +30,10 @@ def build() -> dict:
                      "route_difference_Hz": abs(source-energy),
                      "eigen_residual_relative": residual})
     first = rows[0]
-    lo, hi = 115.65, 115.75  # registered first-mode printed display interval
+    lo, hi = spec["claim"]["published_display_interval_Hz"]
+    display = spec["source_displays"]
+    printed_i = display["second_moment_numeric_if_m4"]
+    printed_fourth = display["fourth_flexural_Hz"]
     eb = euler_bernoulli_limit_hz(L, A, I, E, rho)
     checks = {
         "route_agreement_all_modes": all(r["route_difference_Hz"] <= spec["budgets"]["route_absolute_Hz"] for r in rows),
@@ -44,17 +47,19 @@ def build() -> dict:
             "spec_sha256": hashlib.sha256(raw).hexdigest(),
             "derived_section": {"area_m2": A, "second_moment_m4": I, "shear_modulus_Pa": G},
             "source_display_inertia_diagnostic": {
-                "printed_numeric_value_m4_if_reinterpreted": 1.66e-5,
-                "first_mode_from_printed_numeric_value_Hz": source_formula_hz(1, L, A, 1.66e-5, E, G, rho, shear_factor),
-                "printed_value_matches_derived_section": abs(I-1.66e-5) <= 1e-7,
+                "printed_numeric_value_m4_if_reinterpreted": printed_i,
+                "first_mode_from_printed_numeric_value_Hz": source_formula_hz(1, L, A, printed_i, E, G, rho, shear_factor),
+                "printed_value_matches_derived_section": I == printed_i,
             },
             "flexural_modes": rows,
             "axial_control_Hz": axial_control_hz(L, E, rho),
             "euler_bernoulli_first_mode_limit_Hz": eb,
-            "published_displays_Hz": {"first_flexural": 115.7, "second_flexural": 442.2,
-                                      "first_axial": 648.6, "third_flexural": 931.6,
-                                      "fourth_flexural": 1534.0},
-            "fourth_display_interval_excludes_derived": not (1533.95 <= rows[3]["independent_energy_matrix_Hz"] < 1534.05),
+            "published_displays_Hz": {"first_flexural": spec["claim"]["published_display_Hz"],
+                                      "second_flexural": display["second_flexural_Hz"],
+                                      "first_axial": display["first_axial_Hz"],
+                                      "third_flexural": display["third_flexural_Hz"],
+                                      "fourth_flexural": printed_fourth},
+            "fourth_display_interval_excludes_derived": not (printed_fourth-0.05 <= rows[3]["independent_energy_matrix_Hz"] < printed_fourth+0.05),
             "checks": checks}
 
 

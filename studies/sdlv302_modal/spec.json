@@ -31,9 +31,18 @@
     "observable": "first flexural cyclic eigenfrequency",
     "unit": "Hz",
     "published_display_Hz": 115.7,
-    "published_display_interval_Hz": "[115.65,115.75) under nearest-tenth display; this is a reporting-precision check, not an application tolerance",
+    "published_display_interval_Hz": [115.65, 115.75],
+    "published_display_interval_convention": "Inclusive lower, exclusive upper under nearest-tenth display; reporting precision only, not an application tolerance",
     "artifact_class": "ideal one-dimensional analytical beam reference",
     "decision_error": "No physical/application decision tolerance is declared"
+  },
+  "source_displays": {
+    "second_moment_as_printed": "1.66e-5 m (unit exponent omitted in manual)",
+    "second_moment_numeric_if_m4": 1.66e-5,
+    "second_flexural_Hz": 442.2,
+    "first_axial_Hz": 648.6,
+    "third_flexural_Hz": 931.6,
+    "fourth_flexural_Hz": 1534.0
   },
   "independent_routes": [
     "Directly evaluate the source's dimensionless Timoshenko first-flexural-root expression",
