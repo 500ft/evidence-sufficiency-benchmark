@@ -135,9 +135,22 @@ resolves an artifact-rule demonstration for this derived case only; it adds no
 case, label or solver qualification. M1.2 coverage and the application of R1–R5 to final artifact classes and
 explanation sets still gate M1.3 label freeze.
 
-The [executed artifact-rule witnesses](reports/artifact-rule-witnesses/matrix.md) now make the R1–R5 development boundaries testable across the admitted families. They separate exact, serialized, solver-bounded and printed-display artifacts, with positive, negative and ambiguous decisions and counterexamples to broader sufficiency. A focused source/licence audit at that time (#25, merged 2026-10-20) found no fifth fully specified, independently checked and reviewed base reference to admit; coverage stayed at the then-admitted set until the Kirsch admission below (#27, merged 2026-10-20). The witness result does not freeze labels or open M1.3. The retained detectability sweep was not rerun.
+The [executed artifact-rule witnesses](reports/artifact-rule-witnesses/matrix.md) make the R1–R5 development boundaries testable across the initially admitted families. They separate exact, serialized, solver-bounded and printed-display artifacts, with positive, negative and ambiguous decisions and counterexamples to broader sufficiency. That earlier source/licence audit found no additional fully specified reference to admit. The witness result does not freeze labels or open M1.3. The retained detectability sweep was not rerun.
 
-The [Kirsch exact-restriction result](reports/kirsch-reference/matrix.md) adds one admitted derived holed-plate base problem after a separate, non-blind [Claude AI technical review](reports/kirsch-reference/claude-review/README.md). The initial all-level quadrature hypothesis failed; a postpilot amendment kept the original failures and budgets while qualifying the finest registered level. Independent Airy and reviewer complex-potential calculations support the ideal claim. M1.2 now stands at 5/10 total and 1/2 firm published references. It remains incomplete. The [conditional LE1 audit](reports/kirsch-reference/le1-audit.md) excludes that benchmark pending complete authorized source specification, extraction convention, convergence and review. No label freeze or benchmark scoring follows from this admission.
+The [Kirsch exact-restriction result](reports/kirsch-reference/matrix.md) adds one admitted derived holed-plate base problem after a separate, non-blind [Claude AI technical review](reports/kirsch-reference/claude-review/README.md). The initial all-level quadrature hypothesis failed; a postpilot amendment kept the original failures and budgets while qualifying the finest registered level. Independent Airy and reviewer complex-potential calculations support the ideal claim. The [conditional LE1 audit](reports/kirsch-reference/le1-audit.md) excludes that benchmark pending complete authorized source specification, extraction convention, convergence and review. No label freeze or benchmark scoring follows from this admission.
+
+The [SDLV302 analytical modal result](reports/sdlv302-modal/matrix.md) adds one
+admitted published-reference base problem after a separate, non-blind
+[Claude AI technical review](reports/sdlv302-modal/claude-review/README.md).
+Admission covers only the first XY-plane flexural frequency of the ideal
+one-dimensional Timoshenko beam. The manual's printed inertia conflicts with
+its geometry and equation, so that printed input is excluded; the first
+printed answer agrees with independent calculations. Higher modes and the 3D
+comparison are outside admission. The published-reference subtarget is now met,
+but M1.2 remains incomplete against the total coverage target. The
+[admission ledger](reports/reference-admission/README.md) owns the current counts.
+The conditional LE1 exclusion and all retained failures remain in force. No
+label freeze, cost matrix, baseline or reviewer pilot follows from admission.
 
 - Select distinct problems across applicable axial, bending, pressure-vessel,
   holed-plate and conduction physics. Parameter variants and loading variants
