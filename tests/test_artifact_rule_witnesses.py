@@ -31,6 +31,24 @@ def test_admitted_family_witnesses_and_committed_result():
     assert result["vm92_regression"]["unknown_display"] == "ambiguous"
     assert result["vm92_regression"]["exact"] == "accept"
     assert result["vm92_regression"]["constructed_negative"] == "reject"
+    kirsch = result["kirsch"]
+    assert set(kirsch["exact_reference_by_case"].values()) == {"accept"}
+    assert kirsch["constructed_outside_route_budget"] == "reject"
+    assert kirsch["airy_route_bounded"] == "ambiguous"
+    hoop = kirsch["hoop_given_hoop_modulus_and_poisson_vary"]
+    assert hoop["compatible"] == ["nominal", "half_E", "nu_0"] and hoop["status"] == "accept"
+
+
+def test_kirsch_hoop_is_modulus_independent_but_load_dependent():
+    # Independent of the generator: the admitted polar route ignores E and nu,
+    # so a hoop observation cannot separate them; a halved load is incompatible
+    # with the same observation rather than a compatible explanation.
+    from studies.kirsch_reference.reference import polar
+    nominal = polar(1, 0, 1, 10)[1]
+    assert nominal == 30
+    assert explanation_decision(30, 0, {"nominal": (nominal, nominal), "half_load": (polar(1, 0, 1, 5)[1],) * 2},
+                                nominal, 0) == {"compatible": ["nominal"], "decisions": {"nominal": "accept"}, "status": "accept"}
+    assert polar(2, 0, 2, 10)[1] == nominal
 
 
 def test_cylinder_qualification_does_not_extrapolate():
