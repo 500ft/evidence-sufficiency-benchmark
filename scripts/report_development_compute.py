@@ -9,7 +9,33 @@ OUT = ROOT/'reports/development-compute'
 LABELS = {'cantilever_uniform_load': 'Cantilever', 'vm25_pressure_only': 'Pressure-only cylinder', 'vm92_layered_wall': 'Layered wall'}
 
 
-def table(r):
+def kirsch_section(k):
+    reproduced = all(k['retained_sweep']['boundaries_reproduced'].values())
+    lines = ['## Kirsch holed-plate detectability', '',
+             'Source: [kirsch-faults.json](kirsch-faults.json); registration: [faults.json](../../studies/kirsch_reference/faults.json).',
+             'The admitted nominal exact-restriction specimen enters under the same tolerance, bounded observation',
+             'error, magnitudes and bisection as above; the registered Kirsch route budget is its numerical error.',
+             'Each nominal and changed artifact passed every registered Kirsch gate. The three retained fault studies',
+             f'above were rerun in the same execution and {"reproduced" if reproduced else "did not reproduce"} their committed boundaries.', '',
+             '| Fault parameter | Exact signal null space | Exit guaranteed-pass boundary [reduction %] | Enter guaranteed-detection boundary [reduction %] |',
+             '| :--- | :---: | ---: | ---: |']
+    for f in k['faults']:
+        b = f['boundaries']
+        lines.append(f'| {f["parameter"]} | {"yes" if f["exact_null_space"] else "no"} | {bracket(b["leaves_guaranteed_pass"])} | {bracket(b["enters_guaranteed_detection"])} |')
+    lines += ['', 'Reduction applies to the named Kirsch input. The hoop claim at the artifact hole equals 3 sigma, so modulus,',
+              'Poisson ratio, hole radius and domain size have an exact null space under this claim; only the remote load',
+              'is detectable. A position-fixed observable would be a different claim and is not evaluated.',
+              f'Correct and nuisance controls passed; {k["evaluations"]} registered-gate evaluations were made.', '']
+    return lines
+
+
+def bracket(b):
+    if b['status'] != 'bracketed':
+        return 'No crossing in domain'
+    return f'{100*float(F(b["last_false"])):.8f} to {100*float(F(b["first_true"])):.8f}'
+
+
+def table(r, kirsch=None):
     lines = ['# Development compute results', '',
              '**Executed synthetic development study. Independent human admission remains pending.**', '',
              'Source: [results.json](results.json). [Frozen domain and reproduction](../../studies/development_compute/README.md).', '',
@@ -43,10 +69,6 @@ def table(r):
               'the outer-surface rise above ambient, avoiding a percentage of an affine absolute temperature.', '',
               '| Model / observable | Exit guaranteed-pass boundary [reduction %] | Enter guaranteed-detection boundary [reduction %] |',
               '| :--- | ---: | ---: |']
-    def bracket(b):
-        if b['status'] != 'bracketed':
-            return 'No crossing in domain'
-        return f'{100*float(F(b["last_false"])):.8f} to {100*float(F(b["first_true"])):.8f}'
     for f in r['faults']:
         for obs, b in f['boundaries'].items():
             lines.append(f'| {LABELS[f["case_id"]]} / {obs.replace("_", " ")} | {bracket(b["leaves_guaranteed_pass"])} | {bracket(b["enters_guaranteed_detection"])} |')
@@ -59,6 +81,7 @@ def table(r):
               'Correct, benign-refinement and nuisance controls passed their numerical checks.',
               'All grid magnitudes, exact signals, tolerances, correctness decisions and control outcomes',
               'are retained in JSON; no mutation name or selection policy supplies truth.', '',
+              *(kirsch_section(kirsch) if kirsch else []),
               '## Retained FEA eligibility', '',
               '| Record | Mesh count | Solver completed | Reference agrees | Retained stability status | Richardson / GCI |',
               '| :--- | ---: | :---: | :---: | :--- | :--- |']
@@ -89,4 +112,6 @@ def table(r):
 
 if __name__ == '__main__':
     result = json.loads((OUT/'results.json').read_text())
-    (OUT/'matrix.md').write_text(table(result))
+    kirsch_path = OUT/'kirsch-faults.json'
+    kirsch = json.loads(kirsch_path.read_text()) if kirsch_path.exists() else None
+    (OUT/'matrix.md').write_text(table(result, kirsch))

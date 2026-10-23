@@ -123,6 +123,7 @@ A prospectively registered resolution rule, independent energy/equilibrium
 checks and separate exact-reference audit qualify the affected inputs at finer
 steps without altering their original failure status or tolerance. Numerical
 solver adequacy is established only for these declared equations and inputs.
+The retained synthetic detectability sweep has been [rerun with the admitted Kirsch specimen added](reports/development-compute/matrix.md#kirsch-holed-plate-detectability) under the same registered budgets and the Kirsch route budget; the three retained fault boundaries reproduced and their result file is unchanged. Only a remote-load fault is detectable at the registered budget; modulus, Poisson-ratio, hole-radius and domain-size faults have an exact null space under the hole hoop-stress claim. This is numerical qualification of one claim, not a label, score or new admission.
 
 The [VM92 artifact-class result](reports/vm92-artifact-evidence/matrix.md)
 now separates exact output, a rounded source display and a conditional
