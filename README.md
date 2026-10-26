@@ -7,12 +7,12 @@ Formerly `engineering-audit`. The Python package and command-line tool keep that
 Can an automated reviewer recognize when passing evidence cannot verify a
 specific claim, and select the least-cost applicable checks that resolve it?
 
-The first executed evidence-sufficiency example covers a linear elastic axial
-bar under prescribed force and prescribed displacement. Stress is blind to an
-incorrect elastic modulus under force loading and sensitive under displacement
-loading. Correct controls, benign mesh partitions, a nuisance density change,
-and seeded parameter faults are checked against an independent analytic answer
-and a separately assembled stiffness model.
+The first development example uses a linear-elastic axial bar under prescribed
+force and prescribed displacement. With force prescribed, changing the modulus
+in the implementation leaves stress unchanged but changes deflection. With
+displacement prescribed, it changes stress and reaction. The example compares
+controls, benign mesh partitions, a density change and seeded parameter faults
+with an analytic answer and a separately assembled stiffness model.
 
 ![Seeded axial-bar development example: stress, extension and reaction checks for control and half-modulus artifacts under force and displacement loading](reports/evidence-sufficiency/boundary-condition.png)
 
@@ -37,36 +37,42 @@ and [derivation and evidence boundary](studies/evidence_sufficiency/README.md).
 This is one mechanics family with two loading configurations, not a completed
 multi-problem benchmark or evidence of general reviewer performance.
 
-The [active roadmap](ROADMAP.md) gives prerequisites and completion evidence.
-M1.1 now separates claim correctness from evidence sufficiency in a
-[claim-specific result](reports/claim-sufficiency/matrix.md). Under force control,
-the same observed stress resolves stress agreement but leaves deflection
-agreement ambiguous across the declared implementation explanations. See the
-[claim contract and independent derivation](studies/evidence_sufficiency/claims/README.md).
-M1.2 has [five admitted development reference problems](reports/reference-admission/README.md)
-across axial response, distributed-load bending, thick-cylinder elasticity,
-steady conduction and the [derived Kirsch holed plate](reports/kirsch-reference/matrix.md). VM25 is the one firm published-reference problem; VM92 is
-admitted as derived, with its disputed printed outer-face value excluded from
-published corroboration. The provisional coverage target remains incomplete.
+The [roadmap](ROADMAP.md) states the finish line, prerequisites and completion
+evidence. Its first milestone, M1.1 (claim-specific decisions), distinguishes
+whether a named output agrees with the specification from whether the observed
+evidence settles that decision across the allowed explanations. In the
+[axial-bar result](reports/claim-sufficiency/matrix.md), the same observed stress
+settles stress agreement under prescribed force while leaving deflection
+agreement ambiguous. The [claim contract and derivation](studies/evidence_sufficiency/claims/README.md)
+define that explanation set and its numerical comparison rules.
+
+M1.2 (reference qualification) currently has [five development reference
+problems](reports/reference-admission/README.md): axial response,
+distributed-load bending, thick-cylinder elasticity, steady conduction and
+the [derived Kirsch holed plate](reports/kirsch-reference/matrix.md). VM25 is
+the one firm published-reference problem. VM92 remains a derived reference;
+its disputed printed outer-face value is excluded from published
+corroboration. The provisional coverage target remains incomplete.
 The [VM92 artifact-class result](reports/vm92-artifact-evidence/matrix.md)
 separates source display precision from claim and numerical-reference error;
 its unresolved display convention does not change admission scope.
 The earlier [development matrix](reports/reference-qualification/matrix.md)
-is retained as a historical numerical snapshot. The
-[executed development sweep](reports/development-compute/matrix.md)
-retains cylinder numerical-gate failures, reports conditional fault-detection
-boundaries, and finds no eligible Richardson/GCI estimate in the retained FEA.
-A [focused cylinder investigation](reports/cylinder-convergence/matrix.md) now
-qualifies finer numerical resolutions for the previously failing inputs while
-preserving the original coarse failures and tolerance. The [Claude AI technical
-review](reports/reference-admission/README.md) was non-blind, separately derived
-and reconciled at each admitted scope; it is not a scored reviewer pilot.
-Claim truth and reserved families still need a separate freeze before the
-check/cost matrix and cost-matched baselines.
-The existing synthetic fault study is reusable within its declared assumptions;
-no policy result follows from admission. The historical full-tuple example retains abstract
-check tokens; setup/execution costs and reserved-family evaluation remain future
-work. The wild-capture campaign and its CLI entry point are retired.
+records numerical results and its original review status. The
+[development sweep](reports/development-compute/matrix.md) preserves cylinder
+cases that failed the initial numerical criterion, reports conditional
+synthetic-fault detectability, and finds no retained FEA result eligible for a
+Richardson/GCI error estimate. A [cylinder investigation](reports/cylinder-convergence/matrix.md)
+checks finer resolutions for specified inputs without changing the earlier
+failures or criterion. [Claude AI technical review](reports/reference-admission/README.md)
+was non-blind and included separately derived calculations for each accepted
+reference scope. It was not a scored reviewer pilot.
+
+Before check selection can be evaluated, the project still needs reviewed
+claim decisions, an exposure rule for reserved families, applicable check
+outcomes and a cost model. The current synthetic fault study supports only its
+declared development cases. The original full-response example charges abstract
+check tokens; setup and execution costs remain unmeasured. The wild-capture
+campaign and its CLI entry point are retired.
 
 ## Prior work and positioning (2026-10-09)
 
@@ -80,9 +86,9 @@ Entries are in [docs/references.bib](docs/references.bib).
 - The blind-check design (seeded faults the reviewer must detect) follows
   Salari and Knupp 2000, who seeded coding mistakes into a code-verification
   exercise and ran a blind test. Cite it as the design precedent.
-- The claim here is the counting result only: whether a reviewer recognises
-  that the engineering evidence for a specific claim is insufficient and buys
-  the checks that settle it. A benchmark of that kind was not found in the
+- The research question is whether a reviewer recognises that the available
+  engineering evidence does not settle a specified claim and chooses checks
+  that do. A benchmark for that decision was not found in the
   2026-10-09 review (abstract-level, web search only, forward citations not
   searched).
 - Name collision: Zhang and Wu 2026 (Computers, Materials and Continua) use

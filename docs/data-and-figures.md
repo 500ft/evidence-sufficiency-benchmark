@@ -22,23 +22,25 @@ independent reference and what selectors can observe.
 
 ## Claim-specific development result
 
-The M1.1 [claim contract](../studies/evidence_sufficiency/claims/spec.json) adds
-explicit observables, units, agreement and evidence tolerances, loading
-conventions, assumptions and allowed implementation explanations. It reuses the
-foundation's dimensions and loads. The
-[numeric result](../reports/claim-sufficiency/results.json) is the source for the
-[generated table](../reports/claim-sufficiency/matrix.md), separating artifact
-correctness from claim-specific evidence sufficiency. Regenerate both with:
+The M1.1 [claim contract](../studies/evidence_sufficiency/claims/spec.json)
+names the output and unit for each claim, its numerical agreement rule, and a
+separate tolerance for matching observations. It also states the loading
+convention, assumptions and allowed implementations while reusing the
+foundation's dimensions and loads. The [numeric result](../reports/claim-sufficiency/results.json)
+feeds the [generated table](../reports/claim-sufficiency/matrix.md). That table
+shows both whether an output agrees with the claim and whether the observed
+evidence settles that decision. Neither comparison defines a physical
+application error budget. Regenerate the result and table with:
 
 ```bash
 python -m studies.evidence_sufficiency.claims.run
 ```
 
 The [derivation and reproduction notes](../studies/evidence_sufficiency/claims/README.md)
-explain the finite explanation boundary and retained-row hashes. A table keeps
-the compatible explanations and opposite decisions directly comparable; no
-additional figure is needed. The full-tuple result and its figure above remain
-unchanged by M1.1.
+explain why the allowed implementation set is finite and how the original
+executed rows are identified by hash. The table makes the explanations and
+opposite decisions comparable. The earlier full-response result and figure
+remain unchanged.
 
 ## Preserved calculation-verifier benchmark
 
