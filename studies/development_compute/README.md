@@ -45,26 +45,26 @@ reviewed numerical specification, not retrospective tolerance inflation.
 
 ## Synthetic observation decisions
 
-For a selected claim, define exact discrepancy `d = |y_artifact - y_nominal|`,
-frozen tolerance `t`, bounded observation error `e_obs` and independently checked
-numerical budget `e_num`. The declared model has no probability distribution.
+For a selected claim, define exact discrepancy $d = \lvert y_{\mathrm{artifact}} - y_{\mathrm{nominal}} \rvert$,
+frozen tolerance $t$, bounded observation error $e_{\mathrm{obs}}$ and independently checked
+numerical budget $e_{\mathrm{num}}$. The declared model has no probability distribution.
 All errors are in the observable's unit. Agreement is inclusive:
 
-- Guaranteed pass: `d + e_obs + e_num <= t`.
-- Guaranteed detection: `d - e_obs - e_num > t`.
+- Guaranteed pass: $d + e_{\mathrm{obs}} + e_{\mathrm{num}} \le t$.
+- Guaranteed detection: $d - e_{\mathrm{obs}} - e_{\mathrm{num}} > t$.
 - Otherwise the result depends on the bounded error.
 
 Artifact correctness for this synthetic claim is independently recorded as
-`d <= t`. It is distinct from detection under bounded observations, and from
+$d \le t$. It is distinct from detection under bounded observations, and from
 M1.1's explanation-set evidence sufficiency. No new general sufficiency label
 or reviewer sensitivity is inferred. The new synthetic tolerance does not
 replace PR #21's numerical qualification budget or a physical allowable.
 
-For a fractional modulus reduction `m`, beam/cylinder displacement scales by
-`1/(1-m)`, while the specified stress is independent of modulus. That exact
+For a fractional modulus reduction $m$, beam/cylinder displacement scales by
+$1/(1-m)$, while the specified stress is independent of modulus. That exact
 null space follows from equilibrium, not a fault name. For the wall,
-`R(m) = R_other + R_layer2/(1-m)` and `Q(m) = delta_T/R(m)`.
-The outer-wall rise is `Q/(h_outer*A)`, so it has the same normalized signal.
+$R(m) = R_{\mathrm{other}} + R_{\mathrm{layer\,2}}/(1-m)$ and $Q(m) = \Delta T/R(m)$.
+The outer-wall rise is $Q/(h_{\mathrm{outer}} A)$, so it has the same normalized signal.
 Tests independently solve these algebraic boundary equations and compare them
 with the bisection brackets. Nonzero signals below tolerance remain distinct
 from the exact stress null space. Correct, benign partition/refinement and
@@ -82,9 +82,9 @@ The offline assessment reads the original geometry, material, loads, nominal
 mesh sizes and two observables. Global peak stress changes sign during
 refinement. Maximum displacement is monotone, but its finest-three increments
 cannot fit a positive leading-error order even using nominal target sizes.
-For `h0 > h1 > h2` and positive `p`, the ratio
-`(h0^p-h1^p)/(h1^p-h2^p)` exceeds the limit
-`log(h0/h1)/log(h1/h2)`; the recorded displacement ratio is below that limit.
+For $h_0 > h_1 > h_2$ and positive $p$, the ratio
+$(h_0^p - h_1^p)/(h_1^p - h_2^p)$ exceeds the limit
+$\log(h_0/h_1)/\log(h_1/h_2)$; the recorded displacement ratio is below that limit.
 This rules out that leading-error model for those grids, without fitting an
 oscillatory sequence or claiming a bound from small absolute changes.
 

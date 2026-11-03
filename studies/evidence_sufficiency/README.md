@@ -22,12 +22,12 @@ is the complete tuple of axial stress, extension and reaction magnitude for
 that original specification, within its declared numerical tolerance. It is
 not a claim that every internal parameter in an artifact is correct.
 
-Equilibrium gives constant axial force N. Hooke's law gives u'=N/(EA), so
-u(L)=NL/(EA). Under force control, sigma=F/A and delta=FL/(EA). Under displacement
-control, sigma=E delta/L and reaction=EA delta/L. Thus the logarithmic modulus
+Equilibrium gives constant axial force $N$. Hooke's law gives $u' = N/(EA)$, so
+$u(L) = NL/(EA)$. Under force control, $\sigma = F/A$ and $\delta = FL/(EA)$. Under displacement
+control, $\sigma = E\delta/L$ and reaction $R = EA\delta/L$. Thus the logarithmic modulus
 sensitivity of stress is zero under force control and one under displacement
 control. These derivatives guide one selector; they do not define truth.
-Dimensions: MPa=N/mm², EA/L=N/mm, force/stiffness=mm. As E grows, force-controlled
+Dimensions: MPa = N/mm², $EA/L$ in N/mm, force/stiffness in mm. As $E$ grows, force-controlled
 extension tends to zero; displacement-controlled stress increases. No stress
 concentration, yielding, fatigue or physical safety claim is evaluated.
 

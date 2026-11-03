@@ -17,8 +17,8 @@ future verifier checks.
 
 Use relative tolerance when the expected value is safely away from zero:
 
-```text
-abs(actual - expected) / abs(expected) <= relative_tolerance
+```math
+\frac{\lvert \text{actual} - \text{expected} \rvert}{\lvert \text{expected} \rvert} \le \text{relative tolerance}
 ```
 
 The default relative tolerance is intended to absorb normal rounding in
@@ -29,8 +29,8 @@ hand-calculation style LLM responses, not incorrect arithmetic.
 Use absolute tolerance when the expected value is zero or close enough to zero
 that relative comparison becomes unstable:
 
-```text
-abs(actual - expected) <= absolute_tolerance
+```math
+\lvert \text{actual} - \text{expected} \rvert \le \text{absolute tolerance}
 ```
 
 Benchmark cases must specify the absolute tolerance and unit when they rely on
@@ -40,10 +40,10 @@ this comparison.
 
 When both tolerances are present, a value passes if either comparison passes:
 
-```text
-abs(actual - expected) <= absolute_tolerance
-or
-abs(actual - expected) / abs(expected) <= relative_tolerance
+```math
+\lvert \text{actual} - \text{expected} \rvert \le \text{absolute tolerance}
+\quad \text{or} \quad
+\frac{\lvert \text{actual} - \text{expected} \rvert}{\lvert \text{expected} \rvert} \le \text{relative tolerance}
 ```
 
 ## Unit and Dimension Checks

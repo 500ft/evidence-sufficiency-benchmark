@@ -17,18 +17,21 @@ and a separately assembled stiffness model.
 ![Seeded axial-bar development example: stress, extension and reaction checks for control and half-modulus artifacts under force and displacement loading](reports/evidence-sufficiency/boundary-condition.png)
 
 Seeded development example, not physical validation. Six panels show the stored
-stress [MPa], extension [mm] and reaction [N] for the control (circles) and the
-half-modulus artifact (squares). Panels (a) to (c): prescribed force, 1000 N.
-Panels (d) to (f): prescribed displacement, 0.025 mm. The dashed line is the
-independent specification reference. A filled marker means the panel's check
-passes against that reference; a hollow marker means it fails. Under prescribed
-force only the extension check detects the fault; under prescribed displacement
-the stress and reaction checks detect the fault. Both half-modulus artifacts
-fail the full response tuple. Uniform axial bar, 100 mm long, 20 mm² section;
-one deterministic artifact per point, so there are no error bars. Values:
-matrix.md. Sources: results.json and spec.json.
+stress [MPa], extension [mm] and reaction [N] for the control (blue circles) and
+the half-modulus artifact (orange squares). Panels (a) to (c): prescribed force,
+1000 N. Panels (d) to (f): prescribed displacement, 0.025 mm. The dotted grey
+line is the independent specification reference. A filled marker means the
+panel's check passes against that reference; a hollow marker means it fails.
+Under prescribed force only the extension check detects the fault; under
+prescribed displacement the stress and reaction checks detect the fault. Both
+half-modulus artifacts fail the full response tuple. Uniform axial bar, 100 mm
+long, 20 mm² section; one deterministic artifact per point, so there are no
+error bars. Values: matrix.md. Sources: results.json and spec.json.
+[PDF](reports/evidence-sufficiency/boundary-condition.pdf),
 [SVG](reports/evidence-sufficiency/boundary-condition.svg),
+[plotted values](reports/evidence-sufficiency/boundary-condition-data.csv),
 [caption file](reports/evidence-sufficiency/boundary-condition.caption.md).
+MATLAB draws the figure from the plotted values; see [matlab/README.md](matlab/README.md).
 The figure reads the executed
 [results](reports/evidence-sufficiency/results.json); dimensions, units, loads,
 perturbations and check costs live in the [specification](studies/evidence_sufficiency/spec.json).

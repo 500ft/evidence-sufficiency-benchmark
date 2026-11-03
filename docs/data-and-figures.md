@@ -11,7 +11,8 @@ are recorded in that roadmap.
 | [Specification](../studies/evidence_sufficiency/spec.json) | Single home for dimensions, loading, perturbations, comparison tolerances and acquisition costs | Inputs to the runner |
 | [Numeric result](../reports/evidence-sufficiency/results.json) | Full development outcome matrix, truth, source hashes, policy and per-configuration scores | `python -m studies.evidence_sufficiency.run` |
 | [Tables](../reports/evidence-sufficiency/matrix.md), [outcome CSV](../reports/evidence-sufficiency/outcomes.csv), [policy CSV](../reports/evidence-sufficiency/policies.csv) | Values and checks separated by loading, followed by counts and coverage/cost; CSVs retain full precision | Same command |
-| [PNG](../reports/evidence-sufficiency/boundary-condition.png), [SVG](../reports/evidence-sufficiency/boundary-condition.svg), [caption](../reports/evidence-sufficiency/boundary-condition.caption.md) | Control and half-modulus stress [MPa], extension [mm] and reaction [N]; marker fill shows each observable check outcome, the caption carries the words | `python -m studies.evidence_sufficiency.plot` with matplotlib installed |
+| [PNG](../reports/evidence-sufficiency/boundary-condition.png), [PDF](../reports/evidence-sufficiency/boundary-condition.pdf), [SVG](../reports/evidence-sufficiency/boundary-condition.svg), [plotted values](../reports/evidence-sufficiency/boundary-condition-data.csv), [caption](../reports/evidence-sufficiency/boundary-condition.caption.md) | Control and half-modulus stress [MPa], extension [mm] and reaction [N]; marker fill shows each observable check outcome, the caption carries the words | `python -m studies.evidence_sufficiency.plot`, then `matlab -batch "addpath matlab; render_figures"` ([MATLAB notes](../matlab/README.md)) |
+| [Outcome table](../reports/evidence-sufficiency/outcomes-table.png), [policy table](../reports/evidence-sufficiency/policies-table.png) (PDF and LaTeX source beside each) | Typeset views of the matrix tables below | Same MATLAB command, then `python matlab/typeset_tables.py` |
 | [FEA table](../reports/fea-interpretation.md), [numeric interpretation](../reports/fea-interpretation.json) | Completion, correlation agreement and convergence separated, with original record hashes | `python -m cadloop.fea.interpret` |
 
 The figure is a verification example, not physical validation. Configuration
@@ -19,6 +20,90 @@ and source provenance are linked above; no decorative or generated artwork is
 used. The table and figure derive their numbers from the executed matrix.
 [Protocol and derivation](../studies/evidence_sufficiency/README.md) explain the
 independent reference and what selectors can observe.
+
+### Typeset result tables
+
+MATLAB writes these tables from [results.json](../reports/evidence-sufficiency/results.json)
+and [policies.csv](../reports/evidence-sufficiency/policies.csv). A blue dot means the check
+passes against the specification reference; an orange open dot means it fails.
+
+![Artifact outputs and check outcomes under prescribed force and prescribed displacement](../reports/evidence-sufficiency/outcomes-table.png)
+
+<details><summary>Table as text</summary>
+
+**Prescribed force: artifact outputs**
+
+| Artifact | Stress [MPa] | Extension [mm] | Reaction [N] | Full tuple |
+| :--- | ---: | ---: | ---: | :--- |
+| Correct control | 50.0 | 0.0250 | 1000.0 | Correct |
+| Benign partition | 50.0 | 0.0250 | 1000.0 | Correct |
+| Nuisance density | 50.0 | 0.0250 | 1000.0 | Correct |
+| Modulus fault | 50.0 | 0.0500 | 1000.0 | Incorrect |
+| Area fault | 100.0 | 0.0500 | 1000.0 | Incorrect |
+| Load fault | 25.0 | 0.0125 | 500.0 | Incorrect |
+
+**Prescribed force: executed checks**
+
+| Artifact | Completion | Stress | Extension | Reaction |
+| :--- | :---: | :---: | :---: | :---: |
+| Correct control | PASS | PASS | PASS | PASS |
+| Benign partition | PASS | PASS | PASS | PASS |
+| Nuisance density | PASS | PASS | PASS | PASS |
+| Modulus fault | PASS | PASS | **FAIL** | PASS |
+| Area fault | PASS | **FAIL** | **FAIL** | PASS |
+| Load fault | PASS | **FAIL** | **FAIL** | **FAIL** |
+
+**Prescribed displacement: artifact outputs**
+
+| Artifact | Stress [MPa] | Extension [mm] | Reaction [N] | Full tuple |
+| :--- | ---: | ---: | ---: | :--- |
+| Correct control | 50.0 | 0.0250 | 1000.0 | Correct |
+| Benign partition | 50.0 | 0.0250 | 1000.0 | Correct |
+| Nuisance density | 50.0 | 0.0250 | 1000.0 | Correct |
+| Modulus fault | 25.0 | 0.0250 | 500.0 | Incorrect |
+| Area fault | 50.0 | 0.0250 | 500.0 | Incorrect |
+| Load fault | 25.0 | 0.0125 | 500.0 | Incorrect |
+
+**Prescribed displacement: executed checks**
+
+| Artifact | Completion | Stress | Extension | Reaction |
+| :--- | :---: | :---: | :---: | :---: |
+| Correct control | PASS | PASS | PASS | PASS |
+| Benign partition | PASS | PASS | PASS | PASS |
+| Nuisance density | PASS | PASS | PASS | PASS |
+| Modulus fault | PASS | **FAIL** | PASS | **FAIL** |
+| Area fault | PASS | PASS | PASS | **FAIL** |
+| Load fault | PASS | **FAIL** | **FAIL** | **FAIL** |
+
+</details>
+
+![Comparator decision counts, coverage, mean cost and decision error](../reports/evidence-sufficiency/policies-table.png)
+
+<details><summary>Table as text</summary>
+
+**Decision counts**
+
+| Policy | Wrong accepts [count] | Wrong rejects [count] | Abstentions [count] |
+| :--- | ---: | ---: | ---: |
+| Fixed stress | 2 | 0 | 0 |
+| Random (exact) | 3 | 0 | 0 |
+| Modulus sensitivity | 1 | 0 | 0 |
+| All checks | 0 | 0 | 0 |
+| Cautious stress | 0 | 0 | 8 |
+| Always abstain | 0 | 0 | 12 |
+
+**Coverage and cost**
+
+| Policy | Coverage [%] | Mean cost [tokens/artifact] | Decision error [%] |
+| :--- | ---: | ---: | ---: |
+| Fixed stress | 100.0 | 1 | 16.7 |
+| Random (exact) | 100.0 | 1 | 25.0 |
+| Modulus sensitivity | 100.0 | 1 | 8.3 |
+| All checks | 100.0 | 4 | 0.0 |
+| Cautious stress | 33.3 | 1 | 0.0 |
+| Always abstain | 0.0 | 0 | N/A (no decisions) |
+
+</details>
 
 ## Claim-specific development result
 
@@ -39,6 +124,50 @@ explain the finite explanation boundary and retained-row hashes. A table keeps
 the compatible explanations and opposite decisions directly comparable; no
 additional figure is needed. The full-tuple result and its figure above remain
 unchanged by M1.1.
+
+MATLAB typesets the claim result from
+[results.json](../reports/claim-sufficiency/results.json). A blue dot marks a correct
+claim or sufficient evidence; an orange open dot marks the opposite.
+
+![Explanations H1 and H2: implemented modulus, stress, deflection and claim correctness under each loading](../reports/claim-sufficiency/explanations-table.png)
+
+<details><summary>Table as text</summary>
+
+**Prescribed force**
+
+| Explanation | Implemented modulus E [MPa] | Stress [MPa] | Deflection [mm] | Stress correct | Deflection correct |
+| :--- | ---: | ---: | ---: | :---: | :---: |
+| H1 | 200000 | 50.0 | 0.0250 | Yes | Yes |
+| H2 | 100000 | 50.0 | 0.0500 | Yes | No |
+
+**Prescribed displacement**
+
+| Explanation | Implemented modulus E [MPa] | Stress [MPa] | Deflection [mm] | Stress correct | Deflection correct |
+| :--- | ---: | ---: | ---: | :---: | :---: |
+| H1 | 200000 | 50.0 | 0.0250 | Yes | Yes |
+| H2 | 100000 | 25.0 | 0.0250 | No | Yes |
+
+</details>
+
+![Evidence sufficiency and resolved decision for the stress and deflection claims under each loading](../reports/claim-sufficiency/decisions-table.png)
+
+<details><summary>Table as text</summary>
+
+**Prescribed force**
+
+| Claim | Compatible explanations | Evidence sufficient | Resolved decision | Opposite-decision witness |
+| :--- | :--- | :---: | :--- | :--- |
+| stress | H1, H2 | Yes | accept | None |
+| deflection | H1, H2 | No | ambiguous | H1 / H2 |
+
+**Prescribed displacement**
+
+| Claim | Compatible explanations | Evidence sufficient | Resolved decision | Opposite-decision witness |
+| :--- | :--- | :---: | :--- | :--- |
+| stress | H1 | Yes | accept | None |
+| deflection | H1 | Yes | accept | None |
+
+</details>
 
 ## Preserved calculation-verifier benchmark
 
@@ -78,18 +207,24 @@ white background, coordinated panels, blue/red series, explicit units and
 restrained grid. Circle/square markers and direct check labels provide color
 redundancy. Zero and specification references remain visible. Each observable
 has its own axis and a shared range across loading conventions; there are no
-error bars or dual axes. SVG text remains editable.
+error bars or dual axes. The PDF and SVG are vector files.
 
 On 2026-10-09 the owner asked for one figure pass across the 500ft
-repositories. [`studies/figure_style.py`](../studies/figure_style.py) holds the
-shared rules: three type sizes by role, outward ticks, frameless legends, one
-colour and marker per variant, 300-dpi PNG and SVG without timestamps. The
-figure keeps the design above. Row titles state which checks detect the fault,
-and the plot asserts them against the results before saving. Points carry check
-outcomes only; numeric values live in the matrix table. Category names appear
-once, on the bottom row.
+repositories. On 2026-11-02 the owner asked for every data visual to be redone
+with MATLAB R2025b and LaTeX. MATLAB now draws the figure
+([`matlab/make_boundary_condition.m`](../matlab/make_boundary_condition.m)) from
+the plotted values that `studies/evidence_sufficiency/plot.py` exports.
+[`matlab/fig_style.m`](../matlab/fig_style.m) holds the shared rules: LaTeX
+text, three type sizes by role (9, 8 and 7 pt), bold panel letters, MATLAB blue
+for the control, orange for the half-modulus artifact and dotted grey reference
+lines. Marker shape and fill keep the meaning in greyscale. The Python export
+asserts which checks detect the fault before it writes the data and caption.
+Points carry check outcomes only; numeric values live in the matrix table.
+Category names appear once, on the bottom row.
 
-The active matrix is split into compact Markdown tables rather than rasterized.
+The active matrix stays as compact Markdown tables. MATLAB also writes the
+headline tables as LaTeX (booktabs and siunitx); this page shows the typeset
+PNGs and keeps the Markdown under "Table as text".
 Numeric columns align right, controls precede faults, percentages have one
 decimal and physical values retain enough decimals for the supplied cases.
 Full-precision CSVs are generated views of the same numeric JSON. Blank policy

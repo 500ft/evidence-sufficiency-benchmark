@@ -8,12 +8,12 @@ conduction sweep is repeated.
 
 ## Prospective numerical criteria
 
-Let `P=max(pi,po)`, `S_u=a P/E` and `S_stress=P`, in inches and psi.
-The inherited claim budget remains `B_j=1e-6 S_j`. For doubling radial steps,
-`D_N=max_j |y_N-y_(N/2)|/S_j`. If the error is `C h^4` in the asymptotic regime,
-the finest error is approximately `D_N/(2^4-1)`. This study requires three
+Let $P = \max(p_i, p_o)$, $S_u = aP/E$ and $S_{\mathrm{stress}} = P$, in inches and psi.
+The inherited claim budget remains $B_j = 10^{-6} S_j$. For doubling radial steps,
+$D_N = \max_j \lvert y_N - y_{N/2} \rvert / S_j$. If the error is $C h^4$ in the asymptotic regime,
+the finest error is approximately $D_N/(2^4 - 1)$. This study requires three
 levels, observed order between 3.5 and 4.5, and a safety-factored estimate
-`2 D_N/15 <= 1e-6/4`. It also requires the independent balances below to fit
+$2 D_N/15 \le 10^{-6}/4$. It also requires the independent balances below to fit
 the same quarter-budget allocation. A roundoff-floor control can replace the
 order check when both differences are negligible by the frozen rule.
 
@@ -23,27 +23,29 @@ agree with the rational closed-form answer within the original full budget.
 An audit failure stays failed; it does not trigger truth-based retuning. The
 original all-coarse-level gate is never relabeled.
 
-The pressure-only open-end convention has `sigma_z=0`; radial tension is positive
+The pressure-only open-end convention has $\sigma_z = 0$; radial tension is positive
 and pressure is compressive. For numerical states recovered from the radial
-ODE, use `sigma_theta=E*u/r+nu*sigma_r`. Independent composite Simpson
+ODE, use $\sigma_\theta = E u/r + \nu \sigma_r$. Independent composite Simpson
 integrals check radial equilibrium and energy/work, per unit axial length:
 
-```
-[r sigma_r]_a^b = integral sigma_theta dr
-W/(2 pi) = a*pi*u(a) - b*po*u(b)
-U/pi = integral (sigma_r^2 + sigma_theta^2 - 2 nu sigma_r sigma_theta)*r/E dr
-W/(2 pi) = U/pi
+```math
+\begin{aligned}
+\left[ r \sigma_r \right]_a^b &= \int_a^b \sigma_\theta \, dr \\
+\frac{W}{2\pi} &= a p_i u(a) - b p_o u(b) \\
+\frac{U}{\pi} &= \int_a^b \left( \sigma_r^2 + \sigma_\theta^2 - 2 \nu \sigma_r \sigma_\theta \right) \frac{r}{E} \, dr \\
+\frac{W}{2\pi} &= \frac{U}{\pi}
+\end{aligned}
 ```
 
 The integral-equilibrium unit is psi*in. The energy/work unit here is psi*in^2
-(force, since this is energy per unit axial length). Their scales are `a P`
-and `a^2 P^2/E`. Simpson versus subsampled-Simpson differences separately
+(force, since this is energy per unit axial length). Their scales are $aP$
+and $a^2 P^2/E$. Simpson versus subsampled-Simpson differences separately
 estimate quadrature error. They are not the existing trapezoid residual or the
 RK4 output error. Both tractions are checked. Pure zero loading requires exact
 zero outputs and balances, with no division by zero or invented order.
 
-Dimensionless state `v=E*u/(a*P)`, `s=sigma_r/P`, coordinate `rho=r/a` obeys
-`v'=(1-nu^2)*s-nu*v/rho`, `s'=v/rho^2-(1-nu)*s/rho`.
+Dimensionless state $v = E u/(aP)$, $s = \sigma_r/P$, coordinate $\rho = r/a$ obeys
+$v' = (1 - \nu^2) s - \nu v/\rho$, $s' = v/\rho^2 - (1 - \nu) s/\rho$.
 The numerical fundamental matrix exposes shooting sensitivity without mixed-unit
 condition numbers. A separate 50-digit implementation on the frozen diagnostic
 controls distinguishes floating arithmetic from truncation. It shares the ODE,
