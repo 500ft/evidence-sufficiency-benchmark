@@ -1,9 +1,10 @@
 # Claude AI technical review reconciliation
 
-This is the current case-admission record. **Five base reference problems are
-admitted at the scopes below; one is a firm published-reference problem
-(VM25). M1.2 remains incomplete at 5/10 against its provisional coverage
-target, including 1/2 published-reference problems.** The generated
+This is the current case-admission record. **Six base reference problems are
+admitted at the scopes below; two are firm published-reference problems
+(VM25 and the scoped SDLV302 analytical mode). M1.2 remains incomplete at
+6/10 against its provisional coverage target, including 2/2
+published-reference problems.** The generated
 [reference qualification](../reference-qualification/matrix.md),
 [development compute](../development-compute/matrix.md) and
 [cylinder convergence](../cylinder-convergence/matrix.md) reports retain their
@@ -71,6 +72,7 @@ rights. No vendor page bytes are committed.
 | Pressure-only thick cylinder | **Admitted**, one VM25 published-reference problem. Open-end, zero axial end resultant and free uniform axial strain; specified radial/hoop stress locations and radial displacement in inch/psi. The RK4 qualification covers only declared inputs at their qualified resolutions. Original coarse failures remain failed. Rotation and end-cap loading are excluded. | Yes |
 | Steady conduction | **Admitted as a derived problem**, one VM92-parameter wall with convection films, perfect contact and exact-input heat balance; the MFiX slab is a control within this family. The published VM92 heat-rate and inner-face displays provide coarse corroboration. The disputed printed outer-face target is excluded from published corroboration and from the published-reference count. Exact equations and values are unchanged. | No |
 | Holed-plate elasticity | **Admitted as a derived problem** after a separate [non-blind Claude AI technical review](../kirsch-reference/claude-review/README.md), one ideal plane-stress quarter-square exact restriction of the remote-y Kirsch field. Full position-dependent traction, including shear, is applied on both artificial outer edges. The traction-free hole and symmetry constraints support the specified hoop-stress claim at the +x hole point. The initial all-level quadrature hypothesis failed; a postpilot finer-level decision rule passes at the registered inputs. No finite-edge uniform-load or LE1 published target is admitted. | No |
+| Timoshenko beam dynamics | **Admitted** after a separate [non-blind Claude AI technical review](../sdlv302-modal/claude-review/README.md), the first XY-plane flexural frequency of the ideal simply supported SDLV302 analytical beam. The official first printed target matches the dimensionally correct inertia and independently derived frequency. The manual's conflicting printed inertia is excluded; the higher-mode display convention is unresolved. No 3D HEXA20 result, physical tolerance or modal artifact label is admitted. | Yes |
 
 These admissions qualify the stated **development reference problems**. They
 do not freeze defect labels, validate physical artifacts or establish a
@@ -84,7 +86,7 @@ and a conditional numerical-solver bound. It does not change this admission:
 the source's rounding convention is unverified, and the printed outer target
 remains excluded from published corroboration.
 
-The Kirsch review is a separate later admission. The provenance and verification section above documents the original four-family review only; the [Kirsch record](../kirsch-reference/claude-review/README.md) pins its own reviewed commit, exposed model/session, independent calculations and finding dispositions. Its admission changes coverage, not the historical hashes or dispositions below.
+The provenance and verification section above documents the original four-family review only. The later [Kirsch](../kirsch-reference/claude-review/README.md) and [SDLV302](../sdlv302-modal/claude-review/README.md) records each pin their own reviewed commits, exposure, independent calculations and finding dispositions. Their admissions change current coverage, not the historical hashes or dispositions below.
 
 ## Finding resolution and boundaries
 
