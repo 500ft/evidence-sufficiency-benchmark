@@ -6,10 +6,10 @@ Can a reviewer recognize when passing evidence cannot verify a specific claim,
 and select the least-cost applicable check or combination that settles the
 claim within a stated budget?
 
-This is the only active plan. The [owner decision](docs/OPEN_QUESTIONS.md)
-authorizes its adoption, repository cleanup, the completed M1.1 implementation
-and bounded M1.2 development qualification. Further model spending,
-recruitment, host experiments and publication require separate authorization.
+This remains the only active plan. The [study decision record](docs/OPEN_QUESTIONS.md)
+covers the completed repository cleanup and claim-definition work (M1.1), plus
+bounded development reference work (M1.2). Model spending, recruitment, host
+experiments and publication still require separate user authorization.
 
 The core finish line is a reproducible, independently labeled benchmark with
 claim-specific decisions, executed check outcomes, cost-matched non-LLM
@@ -38,26 +38,26 @@ convergence unknown. Retained CAD/FEA assets are indexed in [history](docs/histo
 
 ## Dependency order
 
-Claim definition -> qualified references and controls -> frozen truth and
-reserved families -> full applicable-check matrix -> non-LLM baselines and
-verified discriminating checks -> authorized reviewer pilot -> scoped write-up.
+Define the claim first. Then verify references and controls, fix claim decisions
+and reserve whole families before tuning, execute the applicable checks, and
+compare non-LLM baselines at matched cost. An authorized reviewer pilot may
+follow. The write-up must stay within the evidence actually produced.
 
-The owner has adopted this order for the next work: case-by-case
-mechanics/heat-transfer reference admission, then frozen claim truth and
-compatible-explanation witnesses with reserved whole families, then the
-complete applicable-check and
-setup/execution/shared-cost matrix, then baselines at matched cost and decision
-coverage. [AUD-6](docs/OPEN_QUESTIONS.md#aud-6-adopted-admission-order-2026-10-12)
-records the order; [AUD-7](docs/OPEN_QUESTIONS.md#aud-7-claude-ai-technical-review-for-current-admission)
-records the owner-authorized Claude AI technical review protocol. The
-[reconciled admission record](reports/reference-admission/README.md) admits the
-scoped development references. The synthetic fault-detectability result
-is already executed and remains reusable within its declared assumptions.
+For the current work, verify each mechanics or heat-transfer reference before
+fixing claim decisions and compatible-explanation examples. Reserve whole
+families before policy tuning. Then execute the applicable checks, including
+setup, execution and shared costs, and compare baselines at matched cost and
+decision coverage. The [admission-order decision (AUD-6)](docs/OPEN_QUESTIONS.md#aud-6-adopted-admission-order-2026-10-12)
+records this sequence; the [Claude AI review decision (AUD-7)](docs/OPEN_QUESTIONS.md#aud-7-claude-ai-technical-review-for-current-admission)
+sets the current technical-review route. The [admission ledger](reports/reference-admission/README.md)
+lists accepted development references and their limits. The synthetic
+fault-detectability result can be reused within its declared assumptions.
 
-Freezing reserved families precedes reviewer or selection-policy tuning.
-Extensions depend on the base result and a separate frozen evaluation design.
-The M1.1 implementation reuses public development inputs; later milestones
-retain their qualification and authorization prerequisites.
+Reserved families and their access rules must be fixed before reviewer or
+selection-policy tuning. Any extension needs the base result and its own
+evaluation design fixed before exposure. The claim-definition result reuses
+public development inputs; later milestones retain their review and
+authorization requirements.
 
 ## M1. Claim-specific foundation: current, incomplete
 
@@ -67,11 +67,12 @@ claim definition; do not expand a case whose reference or decision is unresolved
 ### M1.1 Define the decision and evidence boundary: done
 
 The [claim contract and derivation](studies/evidence_sufficiency/claims/README.md)
-declare observable, units, inclusive absolute tolerance, loading convention,
-assumptions and a finite set of implementation explanations. Artifact correctness
-is agreement with the independent specification for that claim. Evidence
-sufficiency is unanimity of correctness decisions across compatible explanations;
-empty support is inconsistent evidence.
+name the observable, unit, inclusive numerical agreement rule, loading
+convention, assumptions and finite set of possible implementations. A named
+artifact output is correct when it agrees with the independent specification
+under that rule. Evidence is sufficient when every allowed implementation
+consistent with the observations leads to the same correctness decision. If
+none is consistent, the evidence is inconsistent rather than sufficient.
 
 **Completion evidence:** the [executed claim matrix](reports/claim-sufficiency/matrix.md)
 and [regressions](tests/test_claim_sufficiency.py) show the same force-controlled
@@ -135,9 +136,27 @@ resolves an artifact-rule demonstration for this derived case only; it adds no
 case, label or solver qualification. M1.2 coverage and the application of R1–R5 to final artifact classes and
 explanation sets still gate M1.3 label freeze.
 
-The [executed artifact-rule witnesses](reports/artifact-rule-witnesses/matrix.md) now make the R1–R5 development boundaries testable across the admitted families. They separate exact, serialized, solver-bounded and printed-display artifacts, with positive, negative and ambiguous decisions and counterexamples to broader sufficiency. A focused source/licence audit at that time (#25, merged 2026-10-20) found no fifth fully specified, independently checked and reviewed base reference to admit; coverage stayed at the then-admitted set until the Kirsch admission below (#27, merged 2026-10-20). The witness result does not freeze labels or open M1.3. The retained detectability sweep was not rerun.
+The [artifact-rule examples](reports/artifact-rule-witnesses/matrix.md) execute
+the five review boundaries R1–R5: artifact class, allowed explanations, beam
+model, zero-load cylinder behavior and tested solver inputs. They show
+acceptance, rejection and ambiguity for exact, serialized, solver-bounded and
+printed values. The source and licence audit in PR #25 found no additional
+reference at that stage. The examples did not fix final labels or start M1.3,
+and the existing detectability sweep was not rerun.
 
-The [Kirsch exact-restriction result](reports/kirsch-reference/matrix.md) adds one admitted derived holed-plate base problem after a separate, non-blind [Claude AI technical review](reports/kirsch-reference/claude-review/README.md). The initial all-level quadrature hypothesis failed; a postpilot amendment kept the original failures and budgets while qualifying the finest registered level. Independent Airy and reviewer complex-potential calculations support the ideal claim. M1.2 now stands at 5/10 total and 1/2 firm published references. It remains incomplete. The [conditional LE1 audit](reports/kirsch-reference/le1-audit.md) excludes that benchmark pending complete authorized source specification, extraction convention, convergence and review. No label freeze or benchmark scoring follows from this admission.
+The [Kirsch holed-plate result](reports/kirsch-reference/matrix.md) adds one
+derived development reference after a separate, non-blind
+[Claude AI technical review](reports/kirsch-reference/claude-review/README.md).
+The original hypothesis that every registered quadrature level would pass
+failed. A later amendment retained those failures and the original budgets,
+then used the finest registered level for the numerical integration check.
+Airy and reviewer complex-potential calculations support the specified ideal
+stress claim. The [LE1 audit](reports/kirsch-reference/le1-audit.md) still
+excludes that candidate pending a complete usable specification, stress
+extraction convention, convergence evidence and review. Current coverage is
+in the [admission ledger](reports/reference-admission/README.md); M1.2 remains
+incomplete. This reference does not fix benchmark labels or produce selection
+scores.
 
 - Select distinct problems across applicable axial, bending, pressure-vessel,
   holed-plate and conduction physics. Parameter variants and loading variants

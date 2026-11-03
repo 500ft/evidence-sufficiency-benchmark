@@ -87,11 +87,11 @@ engineering-audit check and still be the wrong calculation for the design.
 
 ## 8. Evidence-sufficiency pilot scope
 
-The [new result](reports/evidence-sufficiency/matrix.md) uses seeded artifacts in
-one analytic family with different loading conventions. It is a verification
-example, not physical validation or a completed independent-problem benchmark.
-Check costs are declared abstract tokens. Labels are cross-checked by a separate
-stiffness assembly, but no second human review is claimed. The published matrix
-is development data; no hidden-family evaluation or natural LLM pilot was run.
-The selected faults illustrate sensitivity and cannot establish a general policy
-ranking. See [the protocol](studies/evidence_sufficiency/README.md).
+The [axial-bar example](reports/evidence-sufficiency/matrix.md) uses seeded
+artifacts in one analytic family under two loading conventions. A separate
+stiffness assembly checks its labels, and its check costs are abstract tokens.
+It establishes a development verification example, not physical validation,
+hidden-family performance or a general check-selection ranking. The later
+reference admissions received non-blind Claude AI technical review; no
+independent human review is claimed for them. No natural LLM reviewer pilot
+has run. See the [development method](studies/evidence_sufficiency/README.md).

@@ -1,9 +1,10 @@
 # Claude AI technical review reconciliation
 
-This is the current case-admission record. **Five base reference problems are
-admitted at the scopes below; one is a firm published-reference problem
-(VM25). M1.2 remains incomplete at 5/10 against its provisional coverage
-target, including 1/2 published-reference problems.** The generated
+This ledger records which development problems have an accepted numerical
+reference for a specified claim. **Five base problems are included at the
+scopes below; one has a firm published reference (VM25). M1.2 remains
+incomplete at 5/10 against its provisional coverage target, including 1/2
+published-reference problems.** The generated
 [reference qualification](../reference-qualification/matrix.md),
 [development compute](../development-compute/matrix.md) and
 [cylinder convergence](../cylinder-convergence/matrix.md) reports retain their
@@ -63,6 +64,10 @@ does not guarantee permanent stability or redistribution
 rights. No vendor page bytes are committed.
 
 ## Case dispositions
+
+In the table, *admitted* means accepted as a development reference for the
+stated model and observable after technical review. It does not establish a
+final artifact label, an engineering acceptance limit or reviewer performance.
 
 | Base problem | Admission and supported claim scope | Published-reference count |
 | :--- | :--- | :---: |
@@ -135,10 +140,12 @@ Checks executed for this reconciliation:
 | `.venv/bin/engineering-audit eval benchmark/ --report /tmp/evidence-review-reconcile-benchmark.md` | 17 passed, 0 failed, 2 skipped. |
 | `git diff --check`; check links and heading anchors in the changed Markdown | Passed. |
 
-M1.2 remains incomplete. The next task is to qualify the remaining distinct
-base problems against its provisional coverage target, or explicitly revise
-that target later. Before M1.3 label freeze, resolve the R1–R5 prerequisites
-for artifact classes, compatible explanations and decision tolerances at each
-admitted claim scope. The applicable-check/cost matrix, baselines, scored
-reviewer pilot, optional human comparison, CAD/FEA host work and publication
-retain their separate prerequisites and approvals.
+M1.2 still needs distinct base problems with complete specifications,
+independent answers and technical review to meet its provisional target; any
+target change requires an explicit decision. Before M1.3 fixes final labels,
+resolve the R1–R5 questions for artifact classes, allowed explanations and
+application decision errors at each accepted claim scope. Numerical solver
+budgets and source-display intervals remain separate quantities. The
+applicable-check and cost matrix, baselines, scored reviewer pilot, optional
+human comparison, CAD/FEA host work and publication retain their own
+prerequisites and approvals.
