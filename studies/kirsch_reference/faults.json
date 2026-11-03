@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "registered_public_development_only",
+  "specimen": "studies/kirsch_reference/spec.json case nominal; claim hoop stress sigma_theta_theta at the artifact's own hole boundary x=a, y=0, in MPa",
+  "fault_parameters": ["remote_sigma_MPa", "E_MPa", "nu", "a_m", "B_m"],
+  "parameter_change": "studies/development_compute/manifest.json faults.parameter_change, p_artifact = p_nominal * (1 - magnitude)",
+  "budgets": "Reuse studies/development_compute/manifest.json faults unchanged: magnitudes, claim_tolerance_fraction, bounded_observation_error_fraction, boundary_search and decision rule. Scale is the absolute nominal hoop claim.",
+  "numerical_budget": "studies/kirsch_reference/spec.json budgets.stress_route_abs_MPa evaluated at the changed artifact's remote stress, added to the bounded observation error as the retained cylinder budget is.",
+  "eligibility": "Nominal and each changed artifact must pass every registered gate in studies/kirsch_reference/run.py case_result; a failure raises and blocks that fault class. Numerical eligibility is provisional, never admission.",
+  "truth": "Exact rational 3*sigma from the specification's claim.exact_reference; the binary64 route claim must agree within the numerical budget. Null space is observed from exact signal differences, never assigned from a parameter name.",
+  "controls": {
+    "correct": "magnitude 0",
+    "nuisance": "density_kg_per_m3 metadata added; the model has no body force",
+    "benign_refinement": "inapplicable: the claim is closed-form and the quadrature levels enter only the free-body gates"
+  },
+  "retained_sweep": "Rerun the three retained development-compute fault studies in the same execution and record whether their boundaries reproduce the committed reports/development-compute/results.json; that file is not rewritten.",
+  "exposure": "Public development only; no label, reserved family, benchmark score or new admission",
+  "output": "reports/development-compute/kirsch-faults.json"
+}

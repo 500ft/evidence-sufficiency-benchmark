@@ -59,6 +59,27 @@ Correct, benign-refinement and nuisance controls passed their numerical checks.
 All grid magnitudes, exact signals, tolerances, correctness decisions and control outcomes
 are retained in JSON; no mutation name or selection policy supplies truth.
 
+## Kirsch holed-plate detectability
+
+Source: [kirsch-faults.json](kirsch-faults.json); registration: [faults.json](../../studies/kirsch_reference/faults.json).
+The admitted nominal exact-restriction specimen enters under the same tolerance, bounded observation
+error, magnitudes and bisection as above; the registered Kirsch route budget is its numerical error.
+Each nominal and changed artifact passed every registered Kirsch gate. The three retained fault studies
+above were rerun in the same execution and reproduced their committed boundaries.
+
+| Fault parameter | Exact signal null space | Exit guaranteed-pass boundary [reduction %] | Enter guaranteed-detection boundary [reduction %] |
+| :--- | :---: | ---: | ---: |
+| remote_sigma_MPa | no | 0.79999864 to 0.80000162 | 1.19999945 to 1.20000243 |
+| E_MPa | yes | No crossing in domain | No crossing in domain |
+| nu | yes | No crossing in domain | No crossing in domain |
+| a_m | yes | No crossing in domain | No crossing in domain |
+| B_m | yes | No crossing in domain | No crossing in domain |
+
+Reduction applies to the named Kirsch input. The hoop claim at the artifact hole equals 3 sigma, so modulus,
+Poisson ratio, hole radius and domain size have an exact null space under this claim; only the remote load
+is detectable. A position-fixed observable would be a different claim and is not evaluated.
+Correct and nuisance controls passed; 97 registered-gate evaluations were made.
+
 ## Retained FEA eligibility
 
 | Record | Mesh count | Solver completed | Reference agrees | Retained stability status | Richardson / GCI |

@@ -114,7 +114,11 @@ def test_committed_report_provenance_and_retained_failures():
     from studies.development_compute.run import provenance
     result = json.loads((ROOT/'reports/development-compute/results.json').read_text())
     assert result['provenance'] == provenance()
-    assert (ROOT/'reports/development-compute/matrix.md').read_text() == table(result)
+    kirsch = json.loads((ROOT/'reports/development-compute/kirsch-faults.json').read_text())
+    assert (ROOT/'reports/development-compute/matrix.md').read_text() == table(result, kirsch)
+    # The Kirsch section only inserts lines: every retained line stays, in order.
+    remaining = iter(table(result, kirsch).splitlines())
+    assert all(any(line == kept for kept in remaining) for line in table(result, None).splitlines())
     for case_id, group in result['sweeps'].items():
         assert group['evaluated'] == sum(1 for _ in grid(case_id))
         assert group['qualified'] + group['failed'] == group['evaluated']
@@ -134,3 +138,40 @@ def test_committed_report_provenance_and_retained_failures():
     for phase in ('pilot', 'full'):
         assert result['execution'][phase]['status'] == 'executed'
         assert result['execution'][phase]['peak_rss_bytes'] < MANIFEST['resources']['rss_stop_bytes']
+
+
+def test_kirsch_fault_result_is_pinned_registered_and_algebraically_consistent():
+    import hashlib
+    from studies.kirsch_reference import faults
+    committed = json.loads((ROOT/'reports/development-compute/kirsch-faults.json').read_text())
+    for key, path in (('registration_sha256', 'studies/kirsch_reference/faults.json'),
+                      ('spec_sha256', 'studies/kirsch_reference/spec.json'),
+                      ('manifest_sha256', 'studies/development_compute/manifest.json')):
+        assert committed[key] == hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    assert committed['retained_sweep']['results_sha256'] == hashlib.sha256((ROOT/'reports/development-compute/results.json').read_bytes()).hexdigest()
+    assert committed['retained_sweep']['boundaries_reproduced'] == {c: True for c in MANIFEST['faults']['cases']}
+    by_parameter = {f['parameter']: f for f in committed['faults']}
+    assert list(by_parameter) == faults.REGISTRATION['fault_parameters']
+    spec, nominal = faults.spec_and_nominal()
+    sigma = F(str(nominal['remote_sigma_MPa']))
+    scale = 3*sigma  # hoop at the hole; independent algebra for a load reduction m: signal = 3*sigma*m
+    t, e, c = scale*F(1, 100), scale*F(1, 500), F('1e-9')*sigma  # c: route budget at sigma*(1-m), m < 0.9
+    load = by_parameter['remote_sigma_MPa']
+    assert not load['exact_null_space']
+    for name, root in (('leaves_guaranteed_pass', (t-e-c)/(3*sigma-c)),
+                       ('enters_guaranteed_detection', (t+e+c)/(3*sigma+c))):
+        b = load['boundaries'][name]
+        assert F(b['last_false']) <= root < F(b['first_true'])
+        assert F(b['first_true'])-F(b['last_false']) <= F(1, 2**25)
+    for parameter in ('E_MPa', 'nu', 'a_m', 'B_m'):
+        f = by_parameter[parameter]
+        assert f['exact_null_space'] and all(r['signal_exact'] == '0' for r in f['rows'])
+        assert all(v['status'] == 'no_crossing_in_domain' for v in f['boundaries'].values())
+    assert committed['controls']['correct']['decision'] == 'guaranteed_pass'
+    assert all(committed['controls']['nuisance'].values())
+    # Spot reproduction through the registered Kirsch gates.
+    magnitudes = MANIFEST['faults']['magnitudes']
+    for parameter, magnitude in (('remote_sigma_MPa', '1/50'), ('E_MPa', '1/2')):
+        row = by_parameter[parameter]['rows'][magnitudes.index(magnitude)]
+        assert faults.evaluate(spec, nominal, parameter, F(magnitude)) == row
+    assert by_parameter['remote_sigma_MPa']['rows'][magnitudes.index('1/50')]['decision'] == 'guaranteed_detection'
