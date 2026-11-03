@@ -121,5 +121,28 @@
     "unknown_display": "ambiguous",
     "nearest_display": "reject",
     "truncate_display": "ambiguous"
+  },
+  "kirsch": {
+    "exact_reference_by_case": {
+      "nominal": "accept",
+      "scaled_geometry": "accept",
+      "reversed_load": "accept",
+      "zero_load": "accept"
+    },
+    "constructed_outside_route_budget": "reject",
+    "airy_route_bounded": "ambiguous",
+    "hoop_given_hoop_modulus_and_poisson_vary": {
+      "compatible": [
+        "nominal",
+        "half_E",
+        "nu_0"
+      ],
+      "decisions": {
+        "nominal": "accept",
+        "half_E": "accept",
+        "nu_0": "accept"
+      },
+      "status": "accept"
+    }
   }
 }

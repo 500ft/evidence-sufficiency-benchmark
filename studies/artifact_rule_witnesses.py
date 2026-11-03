@@ -8,6 +8,7 @@ from fractions import Fraction as F
 from pathlib import Path
 
 from studies.artifact_evidence import bounded, claim_decision, displayed, exact
+from studies.kirsch_reference.reference import airy_cartesian, polar
 from studies.reference_qualification import assembled, reference
 from studies.vm92_artifact_evidence import build as vm92_build
 
@@ -123,11 +124,44 @@ def build():
             "unknown_display": vm92["unknown_convention_source_compatibility"],
             "nearest_display": claim_decision(displayed(336, 1, "nearest_half_away_from_zero"), exact(outer), wall_tol),
             "truncate_display": claim_decision(displayed(336, 1, "truncate_toward_zero"), exact(outer), wall_tol)}
+    kspec = json.loads((ROOT / "studies/kirsch_reference/spec.json").read_text())
+    kresult = json.loads((ROOT / "reports/kirsch-reference/results.json").read_text())
+    assert kspec["claim"]["exact_reference"] == "3*sigma"
+    kcases = {c["id"]: c for c in kspec["cases"]}
+    admitted = {c["id"]: c for c in kresult["cases"]}
+    knom, kadm = kcases["nominal"], admitted["nominal"]
+    sigma = F(knom["remote_sigma_MPa"])
+    hoop = F(kadm["claim_sigma_theta_MPa"])
+    airy = F(kadm["independent_claim_sigma_yy_MPa"])
+    # spec budgets.stress_route_abs_MPa, as applied by studies/kirsch_reference/run.py.
+    route_budget = F("1e-9") * max(1, abs(sigma))
+    assert hoop == 3 * sigma and abs(airy - hoop) <= route_budget
+
+    def kirsch_hoop(case):
+        # The admitted routes take E and nu only as domain assertions: the
+        # prescribed-traction stress field does not depend on them.
+        assert float(case["E_MPa"]) > 0 and -1 < float(case["nu"]) < 0.5
+        a, s = float(case["a_m"]), float(case["remote_sigma_MPa"])
+        p, q = polar(a, 0, a, s)[1], airy_cartesian(a, 0, a, s)[1]
+        assert abs(p - q) <= route_budget
+        return F(p)
+
+    kalts = {"nominal": knom, "half_E": {**knom, "E_MPa": knom["E_MPa"] / 2}, "nu_0": {**knom, "nu": 0}}
+    kirsch = {
+        "exact_reference_by_case": {
+            cid: claim_decision(exact(F(admitted[cid]["claim_sigma_theta_MPa"])),
+                                exact(3 * F(c["remote_sigma_MPa"])), 0)
+            for cid, c in kcases.items()},
+        "constructed_outside_route_budget": claim_decision(exact(hoop + 2 * route_budget), exact(3 * sigma), route_budget),
+        "airy_route_bounded": claim_decision(bounded(airy, route_budget), exact(3 * sigma), 0),
+        "hoop_given_hoop_modulus_and_poisson_vary": explanation_decision(3 * sigma, 0,
+            {name: (kirsch_hoop(c), kirsch_hoop(c)) for name, c in kalts.items()}, hoop, 0),
+    }
     return {"status": "development witnesses only; no new case, frozen label or solver run",
             "axial": axial_rows, "beam": beam_rows, "slab": slab_rows,
             "cylinder_zero": zero, "cylinder_registered_inputs": len(selected),
             "cylinder_selected_steps_example": {"id": "prior_153", "steps": selected["prior_153"]},
-            "vm92_regression": wall}
+            "vm92_regression": wall, "kirsch": kirsch}
 
 
 def main():
