@@ -6,15 +6,19 @@
       "id": "boundary-condition-modulus",
       "status": "current",
       "evidence_type": "computed analytic verification example, not physical validation",
-      "generator": "studies/evidence_sufficiency/plot.py",
-      "style": "studies/figure_style.py",
-      "command": "python -m studies.evidence_sufficiency.plot",
+      "generator": "matlab/make_boundary_condition.m",
+      "data_export": "studies/evidence_sufficiency/plot.py",
+      "style": "matlab/fig_style.m",
+      "command": "python -m studies.evidence_sufficiency.plot && matlab -batch \"addpath matlab; render_figures\"",
+      "renderer": "MATLAB R2025b",
       "inputs": [
         "reports/evidence-sufficiency/results.json",
         "studies/evidence_sufficiency/spec.json"
       ],
       "outputs": [
+        "reports/evidence-sufficiency/boundary-condition-data.csv",
         "reports/evidence-sufficiency/boundary-condition.png",
+        "reports/evidence-sufficiency/boundary-condition.pdf",
         "reports/evidence-sufficiency/boundary-condition.svg",
         "reports/evidence-sufficiency/boundary-condition.caption.md"
       ],
@@ -23,7 +27,7 @@
         "extension": "mm",
         "reaction": "N"
       },
-      "caption": "Seeded development example, not physical validation. Six panels show the stored stress [MPa], extension [mm] and reaction [N] for the control (circles) and the half-modulus artifact (squares). Panels (a) to (c): prescribed force, 1000 N. Panels (d) to (f): prescribed displacement, 0.025 mm. The dashed line is the independent specification reference. A filled marker means the panel's check passes against that reference; a hollow marker means it fails. Under prescribed force only the extension check detects the fault; under prescribed displacement the stress and reaction checks detect the fault. Both half-modulus artifacts fail the full response tuple. Uniform axial bar, 100 mm long, 20 mm² section; one deterministic artifact per point, so there are no error bars. Values: matrix.md. Sources: results.json and spec.json."
+      "caption": "Seeded development example, not physical validation. Six panels show the stored stress [MPa], extension [mm] and reaction [N] for the control (blue circles) and the half-modulus artifact (orange squares). Panels (a) to (c): prescribed force, 1000 N. Panels (d) to (f): prescribed displacement, 0.025 mm. The dotted grey line is the independent specification reference. A filled marker means the panel's check passes against that reference; a hollow marker means it fails. Under prescribed force only the extension check detects the fault; under prescribed displacement the stress and reaction checks detect the fault. Both half-modulus artifacts fail the full response tuple. Uniform axial bar, 100 mm long, 20 mm² section; one deterministic artifact per point, so there are no error bars. Values: matrix.md. Sources: results.json and spec.json."
     },
     {
       "id": "legacy-cad-contours-and-deformation",
@@ -57,7 +61,17 @@
         "reports/evidence-sufficiency/outcomes.csv",
         "reports/evidence-sufficiency/policies.csv"
       ],
-      "evidence_type": "seeded development, full-tuple correctness, abstract costs"
+      "evidence_type": "seeded development, full-tuple correctness, abstract costs",
+      "typeset_generator": "matlab/make_result_tables.m",
+      "typeset_command": "matlab -batch \"addpath matlab; render_figures\" && python matlab/typeset_tables.py",
+      "typeset_outputs": [
+        "reports/evidence-sufficiency/outcomes-table.tex",
+        "reports/evidence-sufficiency/outcomes-table.pdf",
+        "reports/evidence-sufficiency/outcomes-table.png",
+        "reports/evidence-sufficiency/policies-table.tex",
+        "reports/evidence-sufficiency/policies-table.pdf",
+        "reports/evidence-sufficiency/policies-table.png"
+      ]
     },
     {
       "id": "claim-sufficiency",
@@ -67,7 +81,17 @@
       "outputs": [
         "reports/claim-sufficiency/matrix.md"
       ],
-      "evidence_type": "public axial-bar development, finite implementation explanations, no physical validation"
+      "evidence_type": "public axial-bar development, finite implementation explanations, no physical validation",
+      "typeset_generator": "matlab/make_result_tables.m",
+      "typeset_command": "matlab -batch \"addpath matlab; render_figures\" && python matlab/typeset_tables.py",
+      "typeset_outputs": [
+        "reports/claim-sufficiency/explanations-table.tex",
+        "reports/claim-sufficiency/explanations-table.pdf",
+        "reports/claim-sufficiency/explanations-table.png",
+        "reports/claim-sufficiency/decisions-table.tex",
+        "reports/claim-sufficiency/decisions-table.pdf",
+        "reports/claim-sufficiency/decisions-table.png"
+      ]
     },
     {
       "id": "fea-evidence",

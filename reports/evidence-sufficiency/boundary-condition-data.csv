@@ -1,0 +1,13 @@
+panel,loading,load,observable,unit,variant,label,value,reference,check_passes
+a,force,1000 N,stress,MPa,correct_control,control,50.0,50.0,true
+a,force,1000 N,stress,MPa,modulus_fault,half modulus,50.0,50.0,true
+b,force,1000 N,displacement,mm,correct_control,control,0.025,0.025,true
+b,force,1000 N,displacement,mm,modulus_fault,half modulus,0.05,0.025,false
+c,force,1000 N,force,N,correct_control,control,1000,1000,true
+c,force,1000 N,force,N,modulus_fault,half modulus,1000,1000,true
+d,displacement,0.025 mm,stress,MPa,correct_control,control,50.0,50.0,true
+d,displacement,0.025 mm,stress,MPa,modulus_fault,half modulus,25.0,50.0,false
+e,displacement,0.025 mm,displacement,mm,correct_control,control,0.025,0.025,true
+e,displacement,0.025 mm,displacement,mm,modulus_fault,half modulus,0.025,0.025,true
+f,displacement,0.025 mm,force,N,correct_control,control,1000.0,1000.0,true
+f,displacement,0.025 mm,force,N,modulus_fault,half modulus,500.0,1000.0,false

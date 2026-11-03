@@ -124,26 +124,28 @@ the scoped admissions; no human reviewer or signature is implied.
 
 ## Bending derivation and independent route
 
-Let x run from the clamp to the free tip, w be positive in the applied load
-direction, and q be a signed uniform load per length. For rectangular width b
-and bending height h, I = b h³/12. Section equilibrium gives the curvature
-moment M(x) = q(L-x)²/2. Integrating EI w'' = M with w(0) = w'(0) = 0 gives
+Let $x$ run from the clamp to the free tip, $w$ be positive in the applied load
+direction, and $q$ be a signed uniform load per length. For rectangular width $b$
+and bending height $h$, $I = b h^3/12$. Section equilibrium gives the curvature
+moment $M(x) = q (L-x)^2/2$. Integrating $E I w'' = M$ with $w(0) = w'(0) = 0$ gives
 
-```
-w(x) = q x² (6L² - 4Lx + x²) / (24EI)
-w(L) = q L⁴ / (8EI)
-|sigma_root| = |q| L² h / (4I)
-R = -qL; C = -qL²/2
+```math
+\begin{aligned}
+w(x) &= \frac{q x^2 \left( 6L^2 - 4Lx + x^2 \right)}{24 E I} \\
+w(L) &= \frac{q L^4}{8 E I} \\
+\lvert \sigma_{\mathrm{root}} \rvert &= \frac{\lvert q \rvert L^2 h}{4 I} \\
+R &= -qL, \qquad C = -\frac{q L^2}{2}
+\end{aligned}
 ```
 
-R and C are the support force and couple, with positive directions conjugate
-to w and w'. Stress is the magnitude at the root extreme fiber. Force times
-length divided by section modulus has units Pa; qL⁴/(EI) has units m.
+$R$ and $C$ are the support force and couple, with positive directions conjugate
+to $w$ and $w'$. Stress is the magnitude at the root extreme fiber. Force times
+length divided by section modulus has units Pa; $qL^4/(EI)$ has units m.
 These equations agree with the uniformly loaded cantilever shown on printed
 p. 268 of [MIT's bending chapter](https://ocw.mit.edu/courses/1-050-solid-mechanics-fall-2004/f9a4d5764b9b0f51ffaacbdf69f7aed8_emech10_04.pdf).
 
 The separate route makes the potential energy stationary, using
-integrals of EI N''ᵢN''ⱼ for stiffness and qNᵢ for consistent nodal loading.
+integrals of $E I N_i'' N_j''$ for stiffness and $q N_i$ for consistent nodal loading.
 This follows the displacement energy formulation in
 [MIT Lecture 8, section 8.3](https://ocw.mit.edu/courses/2-080j-structural-mechanics-fall-2013/2d0cc95bd3556fdadc28226acabafa51_MIT2_080JF13_Lecture8.pdf).
 [assembled.py](assembled.py) assembles cubic Hermite elements, eliminates the
@@ -163,11 +165,11 @@ not inferred from this numerical agreement.
 
 The source is [MFiX VVUQ v1.3.1, section 3.2](https://mfix.netl.doe.gov/wp-content/uploads/2018/10/MDV3-VVUQ_v1.3.1.pdf),
 printed pp. 41–43. The exact length, height, conductivity and face temperatures
-are recorded in the local specification. With constant k, no generation and
-no transverse heat flow, conservation gives (kT')' = 0. Applying both Dirichlet
-conditions yields T(x) = T_left + (T_right-T_left)x/L and
-j = -kT' = k(T_left-T_right)/L. The midpoint claim uses x=L/2. Flux j is signed
-along +x in W/m². No slab depth or total heat-rate claim is needed.
+are recorded in the local specification. With constant $k$, no generation and
+no transverse heat flow, conservation gives $(kT')' = 0$. Applying both Dirichlet
+conditions yields $T(x) = T_{\mathrm{left}} + (T_{\mathrm{right}} - T_{\mathrm{left}}) x/L$ and
+$j = -kT' = k (T_{\mathrm{left}} - T_{\mathrm{right}})/L$. The midpoint claim uses $x = L/2$. Flux $j$ is signed
+along $+x$ in W/m². No slab depth or total heat-rate claim is needed.
 
 Each interval in the independent route has conductance per unit area k/dx.
 At an interior node, incoming and outgoing heat balance determines temperature.
@@ -189,7 +191,7 @@ The [VM25 specification](https://ansyshelp.ansys.com/public/Views/Secured/corp/v
 and [pressure-step axial constraints](https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM25TXT.html)
 define the source scope. The pinned input couples one end's axial displacement
 while leaving its resultant free; no end-cap pressure is applied. Thus the
-homogeneous solution has sigma_z = 0 and a uniform free axial strain.
+homogeneous solution has $\sigma_z = 0$ and a uniform free axial strain.
 Constraining that strain to zero or applying closed-end pressure changes radial
 displacement. Rotation is a separate published load step with a different axial
 constraint in the [VM25 input listing](https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/ans_vm/Hlp_V_VM25TXT.html)
@@ -199,28 +201,32 @@ The source's exterior printout pressure is recorded as a numerical dummy; a
 regression checks its effect against the local numerical budget. No vendor
 input file or figure is redistributed.
 
-For radii a,b and pressures pi,po, tension-positive radial traction is -pi at
-a and -po at b. Equilibrium sigma_r' = (sigma_theta-sigma_r)/r, compatibility
+For radii $a, b$ and pressures $p_i, p_o$, tension-positive radial traction is $-p_i$ at
+$a$ and $-p_o$ at $b$. Equilibrium $\sigma_r' = (\sigma_\theta - \sigma_r)/r$, compatibility
 and isotropic elasticity give
 
-```
-A = (pi*a² - po*b²)/(b²-a²); B = (pi-po)*a²*b²/(b²-a²)
-sigma_r = A - B/r²; sigma_theta = A + B/r²
-u_r = ((1-nu)*A*r + (1+nu)*B/r)/E     [sigma_z = 0]
+```math
+\begin{aligned}
+A &= \frac{p_i a^2 - p_o b^2}{b^2 - a^2}, \qquad B = \frac{(p_i - p_o) a^2 b^2}{b^2 - a^2} \\
+\sigma_r &= A - \frac{B}{r^2}, \qquad \sigma_\theta = A + \frac{B}{r^2} \\
+u_r &= \frac{(1-\nu) A r + (1+\nu) B/r}{E} \qquad [\sigma_z = 0]
+\end{aligned}
 ```
 
 Claims specify inner displacement and radial/hoop stress at the inner,
 mid-thickness and outer radii. Units are inch and psi. The independent
-[radial route](radial.py) never computes A or B. It integrates the state (u,s):
+[radial route](radial.py) never computes $A$ or $B$. It integrates the state $(u, s)$:
 
-```
-u' = (1-nu²)*s/E - nu*u/r
-s' = E*u/r² - (1-nu)*s/r
+```math
+\begin{aligned}
+u' &= \frac{(1-\nu^2) s}{E} - \frac{\nu u}{r} \\
+s' &= \frac{E u}{r^2} - \frac{(1-\nu) s}{r}
+\end{aligned}
 ```
 
 Two RK4 trajectories and a scalar shooting solve enforce both radial tractions.
 Step doubling checks the output error against the exact reference. A separate
-trapezoid integral checks [r*sigma_r] = integral sigma_theta dr. Its second-order
+trapezoid integral checks $[r \sigma_r] = \int \sigma_\theta \, dr$. Its second-order
 residual is retained, separate from the fourth-order displacement error. The
 [review reproduction](../../reports/reference-admission/reproduction.json) shows
 that the nominal residual is largely present even on the exact field, so it is
@@ -231,7 +237,7 @@ Tests cover zero pressure, modulus scaling and zero Poisson ratio, and reject
 closed-end and plane-strain displacement as answers to this contract.
 
 The cylinder's numeric claim and cross-method tolerance is one part per million
-of max(pi,po) for stress and of a*max(pi,po)/E for displacement. These dimensions
+of $\max(p_i, p_o)$ for stress and of $a \max(p_i, p_o)/E$ for displacement. These dimensions
 come from traction and elastic compliance; the fraction is a declared development
 accuracy budget, not a certified bound or physical allowable. All specified step
 counts must meet it, and regression tests require refinement of both displacement
@@ -245,11 +251,13 @@ provides both layer thicknesses, conductivities, film coefficients, fluid
 temperatures and area. These facts are stored once in the specification.
 With perfect contact and no generation, each series path carries the same rate:
 
-```
-R = (1/hi + L1/k1 + L2/k2 + 1/ho)/area
-Q = (Thot - Tambient)/R
-Ti = Thot - Q/(hi*area); To = Tambient + Q/(ho*area)
-Tinterface = Ti - Q*L1/(k1*area)
+```math
+\begin{aligned}
+R &= \frac{1/h_i + L_1/k_1 + L_2/k_2 + 1/h_o}{\mathrm{area}} \\
+Q &= \frac{T_{\mathrm{hot}} - T_{\mathrm{ambient}}}{R} \\
+T_i &= T_{\mathrm{hot}} - \frac{Q}{h_i \, \mathrm{area}}, \qquad T_o = T_{\mathrm{ambient}} + \frac{Q}{h_o \, \mathrm{area}} \\
+T_{\mathrm{interface}} &= T_i - \frac{Q L_1}{k_1 \, \mathrm{area}}
+\end{aligned}
 ```
 
 The independent assembly uses separate convection edges and partitioned layer

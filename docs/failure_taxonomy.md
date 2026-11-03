@@ -45,12 +45,12 @@ tolerance.
 
 ### Positive Example
 
-`F = 10 kN`, `A = 50 mm^2`, and `sigma = F / A`. If the LLM reports
-`sigma = 0.2 MPa`, the verifier should recompute `200 MPa` and flag `FM-01`.
+$F = 10\ \mathrm{kN}$, $A = 50\ \mathrm{mm}^2$, and $\sigma = F/A$. If the LLM reports
+$\sigma = 0.2\ \mathrm{MPa}$, the verifier should recompute $200\ \mathrm{MPa}$ and flag `FM-01`.
 
 ### Negative Example
 
-With the same inputs, `sigma = 200 MPa` is unit-consistent and should not flag
+With the same inputs, $\sigma = 200\ \mathrm{MPa}$ is unit-consistent and should not flag
 `FM-01`.
 
 ### Known Limitations
@@ -92,13 +92,13 @@ Formula selection is categorical. Numeric tolerance does not apply.
 ### Positive Example
 
 For hoop stress in a thin-walled cylindrical pressure vessel, using
-`sigma = p r / (2 t)` should flag `FM-02A` because that is the longitudinal
+$\sigma = pr/(2t)$ should flag `FM-02A` because that is the longitudinal
 stress relation, not the hoop stress relation.
 
 ### Negative Example
 
 For longitudinal stress in a closed-end thin-walled cylindrical pressure vessel,
-`sigma = p r / (2 t)` should not flag `FM-02A`.
+$\sigma = pr/(2t)$ should not flag `FM-02A`.
 
 ### Known Limitations
 
@@ -137,14 +137,14 @@ when an assumption is tied to a numerical threshold such as thin-wall ratio.
 
 ### Positive Example
 
-For a pressure vessel with radius `r = 50 mm` and wall thickness `t = 20 mm`, an
+For a pressure vessel with radius $r = 50\ \mathrm{mm}$ and wall thickness $t = 20\ \mathrm{mm}$, an
 LLM that applies thin-wall formulas and states "thin-walled because t is small"
-should flag `FM-02B`, because `r / t = 2.5` is outside the typical thin-wall
+should flag `FM-02B`, because $r/t = 2.5$ is outside the typical thin-wall
 range.
 
 ### Negative Example
 
-For `r = 50 mm` and `t = 3 mm`, stating the thin-wall assumption is acceptable
+For $r = 50\ \mathrm{mm}$ and $t = 3\ \mathrm{mm}$, stating the thin-wall assumption is acceptable
 for this benchmark and should not flag `FM-02B`.
 
 ### Known Limitations
@@ -192,14 +192,14 @@ checks.
 
 ### Positive Example
 
-If an LLM states `sigma_h = p r / t`, gives `p = 1.2 MPa`, `r = 50 mm`,
-`t = 3 mm`, writes an intermediate value of `25 MPa`, but concludes with the
-correct final answer `20 MPa`, the verifier should flag `FM-07`.
+If an LLM states $\sigma_h = pr/t$, gives $p = 1.2\ \mathrm{MPa}$, $r = 50\ \mathrm{mm}$,
+$t = 3\ \mathrm{mm}$, writes an intermediate value of $25\ \mathrm{MPa}$, but concludes with the
+correct final answer $20\ \mathrm{MPa}$, the verifier should flag `FM-07`.
 
 ### Negative Example
 
 If the same formula and inputs produce stated intermediate and final values of
-`20 MPa`, the verifier should not flag `FM-07`.
+$20\ \mathrm{MPa}$, the verifier should not flag `FM-07`.
 
 ### Known Limitations
 
@@ -241,13 +241,13 @@ conventions must be allowed by the case before they can prevent `FM-03`.
 
 ### Positive Example
 
-For `sigma_h = p r / t`, `p = 1.2 MPa`, `r = 50 mm`, and `t = 3 mm`, reporting
-`25 MPa` should flag `FM-03` because the recomputed value is `20 MPa`.
+For $\sigma_h = pr/t$, $p = 1.2\ \mathrm{MPa}$, $r = 50\ \mathrm{mm}$, and $t = 3\ \mathrm{mm}$, reporting
+$25\ \mathrm{MPa}$ should flag `FM-03` because the recomputed value is $20\ \mathrm{MPa}$.
 
 ### Negative Example
 
-Reporting `20 MPa` for the same formula and inputs should not flag `FM-03`.
-Reporting `20.6 MPa` only avoids `FM-03` when the case explicitly accepts the
+Reporting $20\ \mathrm{MPa}$ for the same formula and inputs should not flag `FM-03`.
+Reporting $20.6\ \mathrm{MPa}$ only avoids `FM-03` when the case explicitly accepts the
 `mean_radius` convention.
 
 ## FM-04: Stress-Concentration Error
@@ -256,17 +256,17 @@ Reporting `20.6 MPa` only avoids `FM-03` when the case explicitly accepts the
 
 For a notched member (V1: a finite-width flat plate with a central transverse
 circular hole in uniaxial tension), the LLM reports a peak stress that does not
-equal `sigma_max = Kt_net * sigma_net` within tolerance. Two distinct mistakes
+equal $\sigma_{\max} = K_{t,\mathrm{net}} \, \sigma_{\mathrm{net}}$ within tolerance. Two distinct mistakes
 fall under this mode:
 
 1. **Stress concentration omitted.** The reported peak equals the net-section
-   nominal stress `sigma_net = P / ((W - d) t)` — the model forgot to apply
-   `Kt`, under-predicting the true peak by the factor `Kt` (~2.4-3x).
-2. **Wrong `Kt` or wrong nominal.** A concentration factor was applied, but the
-   reported peak still misses the validated `sigma_max`. Common causes are using
-   the Kirsch infinite-plate `Kt = 3.0` instead of the finite-width factor, or
+   nominal stress $\sigma_{\mathrm{net}} = P/((W - d) \, t)$ — the model forgot to apply
+   $K_t$, under-predicting the true peak by the factor $K_t$ (~2.4-3x).
+2. **Wrong $K_t$ or wrong nominal.** A concentration factor was applied, but the
+   reported peak still misses the validated $\sigma_{\max}$. Common causes are using
+   the Kirsch infinite-plate $K_t = 3.0$ instead of the finite-width factor, or
    computing the nominal on a wrong net area (e.g. subtracting the circular hole
-   *area* `pi (d/2)^2` instead of the transverse strip `d t`).
+   *area* $\pi (d/2)^2$ instead of the transverse strip $d \, t$).
 
 ### Detection Method
 
@@ -292,22 +292,22 @@ fall under this mode:
 
 ### Tolerance
 
-Use the numeric tolerance policy in `docs/tolerance_policy.md`. `Kt_net` is the
+Use the numeric tolerance policy in `docs/tolerance_policy.md`. $K_{t,\mathrm{net}}$ is the
 Heywood/Howland fit to Peterson's chart (Pilkey Chart 4.1; Roark Table 17.1),
-validated against the Kirsch `d/W -> 0` limit. A reported peak within the case
-tolerance of the validated `sigma_max` does not flag `FM-04`.
+validated against the Kirsch $d/W \to 0$ limit. A reported peak within the case
+tolerance of the validated $\sigma_{\max}$ does not flag `FM-04`.
 
 ### Positive Example
 
-`W = 60 mm`, `t = 6 mm`, `d = 12 mm`, `P = 18 kN`. The validated peak is
-`sigma_max = 157.44 MPa` (`Kt_net = 2.519`, `sigma_net = 62.5 MPa`). Reporting
-`72.9 MPa` (concentration omitted, and net area taken as `W t - pi(d/2)^2`)
+$W = 60\ \mathrm{mm}$, $t = 6\ \mathrm{mm}$, $d = 12\ \mathrm{mm}$, $P = 18\ \mathrm{kN}$. The validated peak is
+$\sigma_{\max} = 157.44\ \mathrm{MPa}$ ($K_{t,\mathrm{net}} = 2.519$, $\sigma_{\mathrm{net}} = 62.5\ \mathrm{MPa}$). Reporting
+$72.9\ \mathrm{MPa}$ (concentration omitted, and net area taken as $W t - \pi (d/2)^2$)
 should flag `FM-04`.
 
 ### Negative Example
 
-For the same geometry, reporting a value within tolerance of `157.44 MPa` —
-e.g. the `syn-kt-hole-0001` control's `145.9 MPa` for its own `W=80,d=20`
+For the same geometry, reporting a value within tolerance of $157.44\ \mathrm{MPa}$ —
+e.g. the `syn-kt-hole-0001` control's $145.9\ \mathrm{MPa}$ for its own $W = 80,\ d = 20$
 geometry — should not flag `FM-04`.
 
 ### Known Limitations
@@ -357,7 +357,7 @@ engineering convention.
 ### Canonical Example
 
 The completed Claude pressure-vessel captures report the inner-radius hoop
-stress `20.0 MPa` and a defensible mean-radius refinement near `20.6 MPa`. When
+stress $20.0\ \mathrm{MPa}$ and a defensible mean-radius refinement near $20.6\ \mathrm{MPa}$. When
 the case explicitly accepts both `inner_radius` and `mean_radius`,
 engineering-audit must not flag the mean-radius value as `FM-03`.
 
