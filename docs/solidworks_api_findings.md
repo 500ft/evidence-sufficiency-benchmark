@@ -1,11 +1,11 @@
 # SOLIDWORKS API findings
 
-Behaviour observed while building `cadloop` against SOLIDWORKS 2024 with
+Behaviour observed while building `cadloop` against SOLIDWORKS 2026 with
 Python 3.12 and `pywin32` 312, driven over COM from a script launched into a
 logged-in Windows session. Each entry is recorded because the failure it
 describes is silent, misleading, or costly to rediscover.
 
-Reference host: Windows 11 Home, SOLIDWORKS 2024 (build 34.2.1), Python 3.12.10,
+Reference host: Windows 11 Home, SOLIDWORKS 2026 (build 34.2.1), Python 3.12.10,
 `pywin32` 312, launched with PsExec into session 1.
 
 ## Dispatch and binding
@@ -24,7 +24,7 @@ Reference host: Windows 11 Home, SOLIDWORKS 2024 (build 34.2.1), Python 3.12.10,
 | --- | --- |
 | `IModelDoc2::AddDimension2` returns a `DisplayDimension`, not a `Dimension`. | `SystemValue` and `FullName` are one hop away, through `GetDimension2(0)`. |
 | `IDimension::FullName` returns three parts, such as `D1@Sketch1@Part1.Part`. | Equations inside the same part need the two-part form `D1@Sketch1`. The document-qualified form is accepted by `Add2` and then discarded. |
-| `IModelDocExtension::CreateMassProperty` is not resolvable on this build. | Take mass properties from the body: `IBody2::GetMassProperties(density)`, where index 3 is volume in cubic metres. |
+| An earlier run could not resolve `IModelDocExtension::CreateMassProperty`. The later material audit on build 34.2.1 accessed it successfully as a property. | `cadloop/materials.py` reads document material, density and mass overrides through that property. Keep the independent body gate using `IBody2::GetMassProperties(density)`, where index 3 is volume in cubic metres; supplying density there does not assign a document material. |
 | `IModelDocExtension::SaveAs3` requires an `AdvancedSaveAsOptions` object. | The three-argument `IModelDoc2::SaveAs3(path, 0, 0)` form is sufficient for both native saves and STEP export, and the target format follows the path's extension. |
 | `SaveAs3` returns a status code, not a boolean, and the observed values are inconsistent. | Saves that produced a valid, correctly sized file returned both `0` and `1` on this host. The return value therefore cannot be truth-tested in either direction; check that the file exists and is non-empty. |
 

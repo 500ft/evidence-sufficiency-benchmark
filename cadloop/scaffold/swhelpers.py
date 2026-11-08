@@ -72,7 +72,7 @@ def end_unattended(app):
     _RESTORE.clear()
 
 
-def connect(visible=False, unattended=True):
+def connect(visible=False, unattended=True, prog_id="SldWorks.Application.34"):
     """Start SOLIDWORKS and return (app, callout, warning_flag).
 
     Dispatch, not EnsureDispatch: gencache cannot automate makepy for this type
@@ -85,7 +85,7 @@ def connect(visible=False, unattended=True):
     import pythoncom
     import win32com.client
 
-    app = win32com.client.Dispatch("SldWorks.Application")
+    app = win32com.client.Dispatch(prog_id)
     app.Visible = visible
     time.sleep(POST_LAUNCH_SETTLE_S)
     globals()["_JOURNAL"] = begin_unattended(app) if unattended else []

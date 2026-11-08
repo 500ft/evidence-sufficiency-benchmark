@@ -5,7 +5,7 @@ How to bring a Windows SOLIDWORKS host from nothing to a state where
 must provide; this file is how to make it provide that.
 
 Written from the bring-up of the reference host (Windows 11 **Home**, SOLIDWORKS
-2024 build 34.2.1, Python 3.12.10, `pywin32` 312). Steps that cost real time to
+2026 build 34.2.1, Python 3.12.10, `pywin32` 312). Steps that cost real time to
 work out are marked **trap**.
 
 ## What you need before starting
