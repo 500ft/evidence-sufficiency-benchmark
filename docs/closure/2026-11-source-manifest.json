@@ -1,0 +1,290 @@
+{
+  "status": "DRAFT REVIEW PACKET; PAPER SCOPE FROZEN; NO FORMAL CLOSURE SIGN-OFF",
+  "prepared": "2026-11-13",
+  "repository": "https://github.com/500ft/evidence-sufficiency-benchmark",
+  "branch": "codex/closure-review-20261113",
+  "report_source_pin": "da661f54fcd7d6d71aed28cb2b1e4384fdd98aa8",
+  "review_base_HEAD": "da661f54fcd7d6d71aed28cb2b1e4384fdd98aa8",
+  "HEAD_matches_report_pin": true,
+  "divergence_name_status": "",
+  "divergence_commits": "",
+  "AGENTS_files": [],
+  "instructions_read": [
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "cd722743feb162932a70aeb5283e52def5418667a16d3a137315b181f7030602"
+    },
+    {
+      "path": "ROADMAP.md",
+      "sha256": "10d74371f89c162a45fafe844eaed9167b5785e2e9114c64302931e4d0591738"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "18d6af9652ae5ef473288f8ae397a4d59e3be47fa7655d165072dbcf852310ce"
+    },
+    {
+      "path": "README.md",
+      "sha256": "06c296111aaec74778d74b606da21ec8505c7a00710fc2c2122ae302ab24a74a"
+    }
+  ],
+  "source_records_copy_sha256": "afe506be3e7063c68f9715d2d05e7c446d07149f1ef089a35f1d32e29dab1135",
+  "source_evidence": [
+    {
+      "path": "README.md",
+      "report_recorded_checkout_sha256": "06c296111aaec74778d74b606da21ec8505c7a00710fc2c2122ae302ab24a74a",
+      "git_HEAD_blob_sha256": "ca1f9d1412957c2e3733be25616697f623ffc7dd5e9b832e6e2a415fb36d78b6",
+      "working_file_sha256": "06c296111aaec74778d74b606da21ec8505c7a00710fc2c2122ae302ab24a74a",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "LICENSE",
+      "report_recorded_checkout_sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "git_HEAD_blob_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "working_file_sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "docs/references.bib",
+      "report_recorded_checkout_sha256": "c484df26b09a575194168aca4fbb91d20b221d97bf40e964db6cd4c2dcfacc26",
+      "git_HEAD_blob_sha256": "67333b19fba352d093cbed03f94e33e3669609e5026d155d6963f04a2d2245de",
+      "working_file_sha256": "c484df26b09a575194168aca4fbb91d20b221d97bf40e964db6cd4c2dcfacc26",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "studies/evidence_sufficiency/spec.json",
+      "report_recorded_checkout_sha256": "99618398bd5cf24fbbab0bd6c362786c33d9d122c6eae0b3ae7cc36739a90037",
+      "git_HEAD_blob_sha256": "4f7b60e6707f2e6f15405ca6509dd6205b348d6617195f1dbc6f6d9753d764df",
+      "working_file_sha256": "99618398bd5cf24fbbab0bd6c362786c33d9d122c6eae0b3ae7cc36739a90037",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "studies/evidence_sufficiency/claims/spec.json",
+      "report_recorded_checkout_sha256": "66c904087e8ef51d63c41406aa3ab60cdb59da5dd82c242f6b2702e264961372",
+      "git_HEAD_blob_sha256": "de43966b2014a782bcf54fb1a803715fbbd30b2f69be9077a1bfa22ecb516678",
+      "working_file_sha256": "66c904087e8ef51d63c41406aa3ab60cdb59da5dd82c242f6b2702e264961372",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "studies/evidence_sufficiency/claims/README.md",
+      "report_recorded_checkout_sha256": "dc15c1972e7a20802e89f63dec9f935fce90cd9e687d1a4152530ccaa369cd18",
+      "git_HEAD_blob_sha256": "360e405756baabb3a5adf95c1a7fa90368c69e8bfa8ebb31db0ff5cd36a491a4",
+      "working_file_sha256": "dc15c1972e7a20802e89f63dec9f935fce90cd9e687d1a4152530ccaa369cd18",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/evidence-sufficiency/results.json",
+      "report_recorded_checkout_sha256": "0a5530ee694cd7852ea4ae9a2d57cef8751be167f754b015ab75af6f039a0279",
+      "git_HEAD_blob_sha256": "f8d3bdc5ed90082093ce055c88534019b44d30cb997af6cb9b23339f923a977f",
+      "working_file_sha256": "0a5530ee694cd7852ea4ae9a2d57cef8751be167f754b015ab75af6f039a0279",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/evidence-sufficiency/matrix.md",
+      "report_recorded_checkout_sha256": "23e3f82fb0d5264e2a78ee58c50e5e5a455e99484657213c5e35d0a30767ca09",
+      "git_HEAD_blob_sha256": "2c00e8c59687736d2cacc79e2640a25deee5662148b8e510edaf18f771679878",
+      "working_file_sha256": "23e3f82fb0d5264e2a78ee58c50e5e5a455e99484657213c5e35d0a30767ca09",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/claim-sufficiency/results.json",
+      "report_recorded_checkout_sha256": "fcf0cd82d0f0cb51b1d48af42fdcff29c2c7e9d336645378b911ea73f3b76812",
+      "git_HEAD_blob_sha256": "09cedad894e03c128b57d00a978cfeb5111774c29a809e67f08642cbddff1992",
+      "working_file_sha256": "fcf0cd82d0f0cb51b1d48af42fdcff29c2c7e9d336645378b911ea73f3b76812",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/claim-sufficiency/matrix.md",
+      "report_recorded_checkout_sha256": "f43663a86763a3d86b1a3f8c30f17f41ee2c35cea0683c2e86c785fa722febbc",
+      "git_HEAD_blob_sha256": "980c67fab97eacc252ecb7cc0a2c3d1381ca67f3d5d3106798d789dc96076cd7",
+      "working_file_sha256": "f43663a86763a3d86b1a3f8c30f17f41ee2c35cea0683c2e86c785fa722febbc",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/reference-qualification/results.json",
+      "report_recorded_checkout_sha256": "4e31bd95735d9e1c0e76858e05743906940027891862ed34921de4ce88bc0f43",
+      "git_HEAD_blob_sha256": "326b8074fd0ec0798c69299d712559a7db89ff3c8fe7070fa7a40e04a0fa1087",
+      "working_file_sha256": "4e31bd95735d9e1c0e76858e05743906940027891862ed34921de4ce88bc0f43",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/reference-qualification/matrix.md",
+      "report_recorded_checkout_sha256": "47eee5243bd95f4977e78c0ba71a33d614ff4712e5d142ea1658c1afaab24deb",
+      "git_HEAD_blob_sha256": "ea730d8bcf8bf44b089f9f906b775bb999c5060f251e2f135b8522a7ac2000a2",
+      "working_file_sha256": "47eee5243bd95f4977e78c0ba71a33d614ff4712e5d142ea1658c1afaab24deb",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/reference-admission/README.md",
+      "report_recorded_checkout_sha256": "9a76a2b9accd66b90a1fc9b6602b452815180ed88b35b851749da201954b330a",
+      "git_HEAD_blob_sha256": "94fe084426c7fed1a4f289f8ef64c44c16f06880b8fb94c6959011d0fbeb88f6",
+      "working_file_sha256": "9a76a2b9accd66b90a1fc9b6602b452815180ed88b35b851749da201954b330a",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/development-compute/results.json",
+      "report_recorded_checkout_sha256": "f1a251418951a6810864266596a1a8ef6b953751540e40b2f9997cdddb332e84",
+      "git_HEAD_blob_sha256": "bf0888a927c7144fa71a35cbde7af7b82c3dcbf944ec366a367967261e3b4c4a",
+      "working_file_sha256": "f1a251418951a6810864266596a1a8ef6b953751540e40b2f9997cdddb332e84",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/development-compute/matrix.md",
+      "report_recorded_checkout_sha256": "dbd98d45a048147536af1c480d50d6fa0f7af8bf083e66f0fbb18c2f0fa221f1",
+      "git_HEAD_blob_sha256": "dff1c7bed4cf7ba25c36489c2c3f33b41a334411ce5e411bdf3f3516ba566e19",
+      "working_file_sha256": "dbd98d45a048147536af1c480d50d6fa0f7af8bf083e66f0fbb18c2f0fa221f1",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/cylinder-convergence/results.json",
+      "report_recorded_checkout_sha256": "e62daad7a2bd1032e5a8342d9ea016e79b76400c1d34e4c2d0fbaef59c42b098",
+      "git_HEAD_blob_sha256": "61534c834706ec2e5f2d524f12fb558c78d3ba6c972c520e514e6fd35620fcf3",
+      "working_file_sha256": "e62daad7a2bd1032e5a8342d9ea016e79b76400c1d34e4c2d0fbaef59c42b098",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/cylinder-convergence/matrix.md",
+      "report_recorded_checkout_sha256": "879f902882d15949be44a68cfb801b7c3921038016b38bc3dbf44299e52d269c",
+      "git_HEAD_blob_sha256": "6077e589643b15465e578fc852c5bcbebfb9e4a651fca02b9a4ef29d29f44217",
+      "working_file_sha256": "879f902882d15949be44a68cfb801b7c3921038016b38bc3dbf44299e52d269c",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/fea-interpretation.json",
+      "report_recorded_checkout_sha256": "ddcc75ceb8a5068e3789fdc77148343b203a70200822119c1edab43039612f9e",
+      "git_HEAD_blob_sha256": "253d79b4ed2f9a21a71f4880d71c2b7165e93b264a924eec7de1be34ca316dda",
+      "working_file_sha256": "ddcc75ceb8a5068e3789fdc77148343b203a70200822119c1edab43039612f9e",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/fea-interpretation.md",
+      "report_recorded_checkout_sha256": "2334d4c7c74fb6b4dcee86b83071ca4abc3157e09af8a5c25189beadddfbd916",
+      "git_HEAD_blob_sha256": "f73039b24ac9c8c440ed93e89799e965289000b003336e0fae1430eef4484cd2",
+      "working_file_sha256": "2334d4c7c74fb6b4dcee86b83071ca4abc3157e09af8a5c25189beadddfbd916",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/kirsch-reference/matrix.md",
+      "report_recorded_checkout_sha256": "8c55ee34c3f8579d9f2fea34d189ca2bf49745f966032d17550a1b9e90b4a67a",
+      "git_HEAD_blob_sha256": "138e42919fa861e176410ed0007ebad0e1ce5b103ce319d12bf7cfbbba571155",
+      "working_file_sha256": "8c55ee34c3f8579d9f2fea34d189ca2bf49745f966032d17550a1b9e90b4a67a",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/kirsch-reference/results.json",
+      "report_recorded_checkout_sha256": "c4ac96b01011ab56d90e01a6d43c5b6b8084c41eae3cf3723b53e674ecfbd608",
+      "git_HEAD_blob_sha256": "05dde3d19a0c0705290b034edd7b5d93498be57c7d5e93e20b9e36d72cb527b1",
+      "working_file_sha256": "c4ac96b01011ab56d90e01a6d43c5b6b8084c41eae3cf3723b53e674ecfbd608",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/kirsch-reference/pilot-failures.json",
+      "report_recorded_checkout_sha256": "ed31ceba71aca7966a19e0b81d6a7f498da7d78dd7d1cee14199693c606f3184",
+      "git_HEAD_blob_sha256": "6f904d78ff94682f921c77a32719f4698ba62e1c3bf1e6b26c4b3e0542dbe36c",
+      "working_file_sha256": "ed31ceba71aca7966a19e0b81d6a7f498da7d78dd7d1cee14199693c606f3184",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/kirsch-reference/claude-review/README.md",
+      "report_recorded_checkout_sha256": "a16fcea6e5aaa47e05248bb31c33bf658a55cbc7b3f13b929787c74bfd8fd503",
+      "git_HEAD_blob_sha256": "019d04a7d91e3fb17261ca0767cb88f5b6efe3b99bd3bf0f5a2fca969a618e2e",
+      "working_file_sha256": "a16fcea6e5aaa47e05248bb31c33bf658a55cbc7b3f13b929787c74bfd8fd503",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "studies/kirsch_reference/spec.json",
+      "report_recorded_checkout_sha256": "76fca6ccf5fc4f9670331760cef4e3b66d7423f9b0b881cdc3f41ef21c80b236",
+      "git_HEAD_blob_sha256": "d4cb8e3c4d4646fdc3e26fe5b672ecc2bc1b5df6bb74d6bdb46e50679f47a3fc",
+      "working_file_sha256": "76fca6ccf5fc4f9670331760cef4e3b66d7423f9b0b881cdc3f41ef21c80b236",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "studies/kirsch_reference/reference.py",
+      "report_recorded_checkout_sha256": "0af7436650e90ffb7ac66573071d50348a4b5da37f8c8e62971dff3f5d046693",
+      "git_HEAD_blob_sha256": "a55d6bad5869ab772b10dd7d6e7097c2c5ad1e9f349dc9fa09d6a59777cfe6da",
+      "working_file_sha256": "0af7436650e90ffb7ac66573071d50348a4b5da37f8c8e62971dff3f5d046693",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    },
+    {
+      "path": "reports/evidence-sufficiency/boundary-condition.pdf",
+      "report_recorded_checkout_sha256": "fc6769c0cfd3e19b8de636cb44fa76fadc40fcb3bc618f311913ee8904c909d5",
+      "git_HEAD_blob_sha256": "fc6769c0cfd3e19b8de636cb44fa76fadc40fcb3bc618f311913ee8904c909d5",
+      "working_file_sha256": "fc6769c0cfd3e19b8de636cb44fa76fadc40fcb3bc618f311913ee8904c909d5",
+      "checkout_exactly_matches_report_hash": true,
+      "HEAD_blob_matches_checkout_content": true,
+      "checkout_representation": "Exact bytes if equal; otherwise Git LF versus Windows checkout CRLF, explicitly compared without rewriting either."
+    }
+  ],
+  "review_report": {
+    "path": "docs/closure/2026-11-review-report.pdf",
+    "sha256": "7087ab35d953ff1217cd48558d20b2ef1becbac7f06b08aa9ea04ee19518b7df",
+    "bytes": 99188,
+    "pages": 9,
+    "public_report_URL": "https://www.mergenulziibayar.com/downloads/reports/evidence-sufficiency-benchmark.pdf"
+  },
+  "tests": "Parent ran an isolated UTF-8 Windows pytest -x sequence and stopped at tests/test_artifact_evidence.py::test_committed_vm92_artifact_result_reproduces. Provenance comparison differs between Windows backslash/raw-CRLF records and committed POSIX-path/LF records. No source, registered hash, pin or acceptance change and no retry. Evaluator not run. Validation not ready; any existing Linux CI result remains separate and unclaimed until executed.",
+  "approvals": {
+    "owner_closure_signoff": false,
+    "independent_Claude_review_signoff": false
+  },
+  "scientific_outputs": "Existing scientific result files remain frozen. The separate local contributor-validation attempt adds no accepted scientific result. No new API collection, CAD or solver run was performed for this packet.",
+  "owner_authorization": {
+    "recorded_date": "2026-11-13",
+    "authority": "Owner instruction in the current conversation",
+    "paper_scope_freeze_and_retained_implementation": true,
+    "documentation_implementation": true,
+    "non_enclosure_report_publication": true,
+    "boundary": "Draft review only; no final CLOSED wording, release tag, owner closure sign-off or Claude closure approval is inferred."
+  },
+  "public_path_policy": "Source and evidence locations use repository-relative paths or evidence basenames. Registered source, working-file and Git-blob hashes are unchanged.",
+  "review_base_context": "Source/result hashes and HEAD pins identify the pre-documentation review base. The new administrative commit does not claim to retain that same Git HEAD."
+}
